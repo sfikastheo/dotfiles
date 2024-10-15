@@ -2,3 +2,4 @@
 
 # Call rofi powermenu
 bash $HOME/.config/rofi/powermenu/powermenu.sh
+

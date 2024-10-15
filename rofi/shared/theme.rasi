@@ -1,9 +1,10 @@
 * {
-	urgent:                             #bf616a;
-    selected:                           #88c0d0;
+	font:						"CaskaydiaCove Nerd Font Mono 10";
+	urgent:                             #bf626a;
+    selected:                           #81a1c1;
 	active:							    #a3be8c;
-    foreground-alt:                     #d8dee9;
-    background-alt:                     #202020;
+    foreground-alt:                     #e5e9f0;
+    background-alt:                     #101010;
     foreground:                         #e5e9f0;
-    background:                         #1a1a1a;
+    background:                         #161616;
 }

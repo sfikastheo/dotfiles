@@ -1,0 +1,51 @@
+# [ Global Config ]
+history=1
+max-history=5
+
+icons=1
+actions=1
+max-visible=5
+
+sort=+time
+ignore-timeout=0
+default-timeout=50000
+
+layer=top
+anchor=top-right
+
+# [ BINDING OPTIONS ]
+on-button-left=invoke-default-action
+on-button-middle=dismiss-group
+on-button-right=dismiss
+on-touch=invoke-default-action
+
+# [ STYLE OPTIONS ]
+font=CaskaydiaCove Nerd Font Mono 10
+outer-margin=6
+margin=2
+padding=6
+border-size=2
+border-radius=8
+width=300
+height=100
+
+background-color=#101010
+text-color=#eceff4
+progress-color=over #0b1c1c
+
+max-icon-size=34
+icon-location=left
+
+format= <b>%s</b>\n%b
+text-alignment=left
+
+[urgency=low]
+border-color=#101010
+
+[urgency=normal]
+border-color=#81a1c1
+
+[urgency=high]
+border-color=#bf616a
+
+
