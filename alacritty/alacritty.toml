@@ -4,7 +4,7 @@
 TERM = "xterm-256color"
 
 [font]
-size = 11
+size = 10
 
 [font.bold]
 family = "CaskaydiaCove Nerd Font Mono"
@@ -19,13 +19,12 @@ family = "CaskaydiaCove Nerd Font Mono"
 style = "Regular"
 
 [shell]
-args = ["-l", "-c", "$HOME/.local/bin/start-tmux.sh"]
+args = ["-l"]
 program = "zsh"
 
 [window]
 option_as_alt = "Both"
-padding = { x = 4, y = 0 }
-decorations = "None"
+padding = { x = 6, y = 0 }
 opacity = 1.0
 
 [scrolling]
@@ -99,8 +98,8 @@ alphabet = "ftluresdh"
 
 [keyboard]
 bindings = [
-    { key = "Y", mods = "Super", action = "Copy" },
-    { key = "P", mods = "Super", action = "Paste" },
+    { key = "C", mods = "Super", action = "Copy" },
+    { key = "V", mods = "Super", action = "Paste" },
     { key = "/", mods = "Super", action = "SearchForward" },
     { key = "/", mods = "Super|Shift", action = "SearchBackward" },
 ]
