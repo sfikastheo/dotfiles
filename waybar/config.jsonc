@@ -1,0 +1,8 @@
+[
+  {
+"output": [ "*" ],
+    "include": [
+      "~/.config/waybar/bars/top.jsonc",
+    ],
+  }
+]

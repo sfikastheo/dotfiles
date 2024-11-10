@@ -1,0 +1,62 @@
+
+#   _   _      _ _      
+#  | | | | ___| (_)_  __
+#  | |_| |/ _ \ | \ \/ /
+#  |  _  |  __/ | |>  < 
+#  |_| |_|\___|_|_/_/\_\
+#
+
+theme = "custom"
+
+[editor]
+line-number = "relative"
+bufferline = "multiple"
+rulers = [80,120]
+color-modes = true
+mouse = true
+text-width = 120
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[editor.lsp]
+display-inlay-hints = true
+display-messages = true
+
+[editor.statusline]
+left = ["mode", "spinner", "version-control"]
+center = ["file-name","file-modification-indicator"]
+right = ["diagnostics", "file-encoding", "selections", "position"]
+separator = "│"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.indent-guides]
+character = "╎"
+render = true
+
+#  _  __                                      
+# | |/ /___ _   _   _ __ ___   __ _ _ __  ___ 
+# | ' // _ \ | | | | '_ ` _ \ / _` | '_ \/ __|
+# | . \  __/ |_| | | | | | | | (_| | |_) \__ \
+# |_|\_\___|\__, | |_| |_| |_|\__,_| .__/|___/
+#           |___/                  |_|        
+
+[keys.normal]
+A-x = "extend_to_line_bounds"
+X = ["extend_line_up", "extend_to_line_bounds"]
+"A-(" = "goto_previous_buffer"
+"A-)" = "goto_next_buffer"
+
+[keys.select]
+A-x = "extend_to_line_bounds"
+X = ["extend_line_up", "extend_to_line_bounds"]
+
+[keys.insert]
+C-j = "normal_mode" 

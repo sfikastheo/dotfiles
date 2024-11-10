@@ -1,0 +1,111 @@
+# Author : Gokul Soumya <gokulps15@gmail.com>
+
+"attribute" = { fg = "yellow01" }
+"comment" = { fg = "gray02", modifiers = ["italic"] }
+"constant" = { fg = "cyan01" }
+"constant.numeric" = { fg = "yellow02" }
+"constant.builtin" = { fg = "yellow02" }
+"constant.character.escape" = { fg = "yellow02" }
+"constructor" = { fg = "blue01" }
+"function" = { fg = "blue01" }
+"function.builtin" = { fg = "blue01" }
+"function.macro" = { fg = "purple01" }
+"keyword" = { fg = "red01" }
+"keyword.control" = { fg = "purple01" }
+"keyword.control.import" = { fg = "red01" }
+"keyword.directive" = { fg = "purple01" }
+"label" = { fg = "purple01" }
+"namespace" = { fg = "blue01" }
+"operator" = { fg = "purple01" }
+"keyword.operator" = { fg = "purple01" }
+"special" = { fg = "blue01" }
+"string" = { fg = "green01" }
+"type" = { fg = "yellow01" }
+"variable.builtin" = { fg = "blue01" }
+"variable.parameter" = { fg = "red01" }
+"variable.other.member" = { fg = "red01" }
+
+"markup.heading" = { fg = "red01" }
+"markup.raw.inline" = { fg = "green01" }
+"markup.bold" = { fg = "yellow02", modifiers = ["bold"] }
+"markup.italic" = { fg = "purple01", modifiers = ["italic"] }
+"markup.strikethrough" = { modifiers = ["crossed_out"] }
+"markup.list" = { fg = "red01" }
+"markup.quote" = { fg = "yellow01" }
+"markup.link.url" = { fg = "cyan01", modifiers = ["underlined"]}
+"markup.link.text" = { fg = "purple01" }
+
+"diff.plus" = "green01"
+"diff.delta" = "yellow02"
+"diff.minus" = "red01"
+
+"diagnostic.info".underline = { color = "blue01", style = "curl" } 
+"diagnostic.hint".underline = { color = "green01", style = "curl" } 
+"diagnostic.warning".underline = { color = "yellow01", style = "curl" } 
+"diagnostic.error".underline = { color = "red01", style = "curl" } 
+"info" = { fg = "blue01", modifiers = ["bold"] }
+"hint" = { fg = "green01", modifiers = ["bold"] }
+"warning" = { fg = "yellow01", modifiers = ["bold"] }
+"error" = { fg = "red01", modifiers = ["bold"] }
+
+"ui.background" = { bg = "black01" }
+"ui.virtual" = { fg = "gray01" }
+"ui.virtual.indent-guide" = { fg = "gray00" }
+"ui.virtual.whitespace" = { fg = "gray01" }
+"ui.virtual.ruler" = { bg = "black02" }
+"ui.virtual.inlay-hint" = { fg = "gray02" }
+
+"ui.cursor" = { fg = "white00", modifiers = ["reversed"] }
+"ui.cursor.primary" = { fg = "white01", modifiers = ["reversed"] }
+"ui.cursor.match" = { fg = "blue01", modifiers = ["underlined"]}
+
+"ui.selection" = { bg = "gray00" }
+"ui.selection.primary" = { bg = "gray01" }
+"ui.cursorline.primary" = { bg = "black01" }
+
+"ui.highlight" = { bg = "black02" }
+"ui.highlight.frameline" = { bg = "#97202a" }
+
+"ui.linenr" = { fg = "gray02" }
+"ui.linenr.selected" = { fg = "white01" }
+
+"ui.statusline" = { fg = "white01", bg = "black00" }
+"ui.statusline.inactive" = { fg = "gray01", bg = "black01" }
+"ui.statusline.normal" = { fg = "black01", bg = "purple01" }
+"ui.statusline.insert" = { fg = "black01", bg = "green01" }
+"ui.statusline.select" = { fg = "black01", bg = "blue01" }
+
+"ui.text" = { fg = "white01" }
+"ui.text.focus" = { fg = "white01", bg = "black00", modifiers = ["bold"] }
+
+"ui.help" = { fg = "white01", bg = "black00" }
+"ui.popup" = { bg = "black00" }
+"ui.window" = { fg = "black00" }
+"ui.menu" = { fg = "white01", bg = "black00" }
+"ui.menu.selected" = { fg = "black00", bg = "blue01" }
+"ui.menu.scroll" = { fg = "white01", bg = "gray01" }
+
+"ui.debug" = { fg = "red01" }
+
+[palette]
+
+red01 = "#E06C75"
+cyan01 = "#56B6C2"
+blue01 = "#61AFEF"
+green01 = "#98C379"
+yellow01 = "#E5C07B"
+yellow02 = "#D19A66"
+purple01 = "#C678DD"
+
+white00 = "#d3d7de"
+white01 = "#c5cbd3"
+white02 = "#a8afbd"
+
+black00 = "#121212"
+black01 = "#161616"
+black02 = "#202020"
+
+gray00 = "#282828"
+gray01 = "#323232"
+gray02 = "#585858"
+

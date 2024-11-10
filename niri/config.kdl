@@ -1,0 +1,218 @@
+// NIRI configuration
+
+// Input device configuration.
+input {
+    keyboard {
+        xkb {
+            layout "us,us"
+	        variant ",colemak_dh_ortho"
+            options "ctrl:nocaps"
+        }
+	track-layout "global"
+    }
+
+    touchpad {
+        tap
+        dwt
+        dwtp
+        accel-speed 0.0
+        accel-profile "flat"
+        scroll-method "two-finger"
+    }
+
+    focus-follows-mouse max-scroll-amount="60%"
+}
+
+// You can configure outputs by their name: `niri msg outputs`
+output "eDP-1" {
+    mode "1920x1200@60"
+    scale 1
+    transform "normal"
+}
+
+layout {
+    gaps 16
+    center-focused-column "never"
+
+    // Customize widths that "switch-preset-column-width" (Mod+R) toggles between.
+    preset-column-widths {
+        proportion 0.333
+        proportion 0.5
+        proportion 0.666
+    }
+
+    default-column-width { proportion 0.5; }
+
+    focus-ring {
+        width 4
+        active-color "#81a1c1"
+        inactive-color "#505050"
+    }
+}
+
+window-rule {
+    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+    match app-id=r#"^org\.gnome\.World\.Secrets$"#
+    block-out-from "screen-capture"
+}
+
+// To find an XKB name for a particular key, you may use a program like wev.
+binds {
+    Alt+Ctrl+Delete     { quit; }
+    Alt+Ctrl+Slash      { show-hotkey-overlay; }
+    Alt+Q               { close-window; }
+
+    // Application keybinds
+    Alt+D               { spawn "sh" "-c" "rofi" "-show" "drun" "theme" "~/.config/rofi/launcher/line.rasi"; }
+    Alt+V               { spawn "rofi" "-c" "rofi" "-dmenu" "-p" "''" "theme" "~/.config/rofi/launcher/list.rasi"; }
+    Super+Alt+L         { spawn "swaylock"; }
+    Super+Alt+P         { power-off-monitors; }
+
+    // Media
+    XF86MonBrightnessUp     allow-when-locked=true { spawn "brightnessctl" "-q" "s" "+5%"; }
+    XF86MonBrightnessDown   allow-when-locked=true { spawn "brightnessctl" "-q" "s" "-5%"; }
+    XF86AudioRaiseVolume    allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+"; }
+    XF86AudioLowerVolume    allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-"; }
+    XF86AudioMute           allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+    XF86AudioMicMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+
+    // Keyboard Layout
+    Alt+Space           { switch-layout "next"; }
+    Alt+Shift+Space     { switch-layout "prev"; }
+
+    // Move Focus
+    Alt+Left            { focus-column-left; }
+    Alt+Down            { focus-window-down; }
+    Alt+Up              { focus-window-up; }
+    Alt+Right           { focus-column-right; }
+
+    Alt+H               { focus-column-left; }
+    Alt+L               { focus-column-right; }
+    Alt+M               { focus-column-left; }
+    Alt+D               { focus-window-down; }
+    Alt+U               { focus-window-up; }
+    Alt+I               { focus-column-right; }
+
+    Alt+Page_Down       { focus-workspace-down; }
+    Alt+Page_Up         { focus-workspace-up; }
+    Alt+N               { focus-workspace-down; }
+    Alt+E               { focus-workspace-up; }
+    Alt+J               { focus-workspace-down; }
+    Alt+K               { focus-workspace-up; }
+
+    // Move Windows
+    Alt+Ctrl+Left       { move-column-left; }
+    Alt+Ctrl+Down       { move-window-down; }
+    Alt+Ctrl+Up         { move-window-up; }
+    Alt+Ctrl+Right      { move-column-right; }
+
+    Alt+Ctrl+H          { move-column-left; }
+    Alt+Ctrl+L          { move-column-right; }
+
+    Alt+Ctrl+M          { move-column-left; }
+    Alt+Ctrl+D          { move-window-down; }
+    Alt+Ctrl+U          { move-window-up; }
+    Alt+Ctrl+I          { move-column-right; }
+
+    Alt+Ctrl+Page_Down  { move-column-to-workspace-down; }
+    Alt+Ctrl+Page_Up    { move-column-to-workspace-up; }
+    Alt+Ctrl+N          { move-column-to-workspace-down; }
+    Alt+Ctrl+E          { move-column-to-workspace-up; }
+    Alt+Ctrl+J          { move-column-to-workspace-down; }
+    Alt+Ctrl+K          { move-column-to-workspace-up; }
+
+    // Focus Monitor
+    Alt+Shift+Left      { focus-monitor-left; }
+    Alt+Shift+Down      { focus-monitor-down; }
+    Alt+Shift+Up        { focus-monitor-up; }
+    Alt+Shift+Right     { focus-monitor-right; }
+
+    Alt+Shift+H         { focus-monitor-left; }
+    Alt+Shift+J         { focus-monitor-down; }
+    Alt+Shift+K         { focus-monitor-up; }
+    Alt+Shift+L         { focus-monitor-right; }
+
+    Alt+Shift+M         { focus-monitor-left; }
+    Alt+Shift+N         { focus-monitor-down; }
+    Alt+Shift+E         { focus-monitor-up; }
+    Alt+Shift+I         { focus-monitor-right; }
+
+    // Move Window to Monitor
+    Alt+Shift+Ctrl+Left  { move-column-to-monitor-left; }
+    Alt+Shift+Ctrl+Down  { move-column-to-monitor-down; }
+    Alt+Shift+Ctrl+Up    { move-column-to-monitor-up; }
+    Alt+Shift+Ctrl+Right { move-column-to-monitor-right; }
+
+    Alt+Shift+Ctrl+H     { move-column-to-monitor-left; }
+    Alt+Shift+Ctrl+J     { move-column-to-monitor-down; }
+    Alt+Shift+Ctrl+K     { move-column-to-monitor-up; }
+    Alt+Shift+Ctrl+L     { move-column-to-monitor-right; }
+
+    Alt+Shift+Ctrl+M     { move-column-to-monitor-left; }
+    Alt+Shift+Ctrl+N     { move-column-to-monitor-down; }
+    Alt+Shift+Ctrl+E     { move-column-to-monitor-up; }
+    Alt+Shift+Ctrl+I     { move-column-to-monitor-right; }
+
+    // Move Workspace
+    Alt+Shift+Page_Down { move-workspace-down; }
+    Alt+Shift+Page_Up   { move-workspace-up; }
+    Alt+Shift+D         { move-workspace-down; }
+    Alt+Shift+U         { move-workspace-up; }
+
+    // Focus Columns using number-row
+    Alt+0               { focus-workspace 1; }
+    Alt+1               { focus-workspace 2; }
+    Alt+2               { focus-workspace 3; }
+    Alt+3               { focus-workspace 4; }
+
+    // Move Columns using number-row
+    Alt+Ctrl+0          { move-column-to-workspace 1; }
+    Alt+Ctrl+1          { move-column-to-workspace 2; }
+    Alt+Ctrl+2          { move-column-to-workspace 3; }
+    Alt+Ctrl+3          { move-column-to-workspace 4; }
+
+    // Stack Windows to Column
+    Alt+G               { consume-window-into-column; }
+    Alt+Shift+G         { expel-window-from-column; }
+
+    // Change Window Size
+    Alt+R 	            { switch-preset-column-width; }
+    Alt+Shift+R         { reset-window-height; }
+    Alt+F 	            { maximize-column; }
+    Alt+Shift+F         { fullscreen-window; }
+    Alt+C 	            { center-column; }
+
+    Alt+Comma           { set-column-width "-10%"; }
+    Alt+Period          { set-column-width "+10%"; }
+    Alt+Shift+Comma     { set-window-height "-10%"; }
+    Alt+Shift+Period    { set-window-height "+10%"; }
+
+    // Screenshot
+    Print 	            { screenshot; }
+    Ctrl+Print 	        { screenshot-screen; }
+    Alt+Print 	        { screenshot-window; }
+}
+
+window-rule {
+    geometry-corner-radius 8
+    clip-to-geometry true
+}
+
+window-rule {
+    match title="Firefox"
+    open-maximized true
+}
+
+environment {
+    // Wayland
+    QT_QPA_PLATFORM "wayland"
+    GDK_BACKEND "wayland"
+    MOZ_ENABLE_WAYLAND "1"
+}
+
+// Omit client-side decorations unless client specifically ask for CSD
+prefer-no-csd
+
+// Start Up:
+spawn-at-startup "waybar"
+

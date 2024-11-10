@@ -1,0 +1,113 @@
+[user]
+    name = sfikastheo
+
+[init]
+    defaultBranch = main
+
+[color]
+    interactive = true
+    branch = true
+    status = true
+
+[url "git://github.com/"]
+    insteadOf = https://github.com/worldcoin
+
+[merge]
+  tool = nvimdiff
+[mergetool]
+  prompt = false
+  keepBackup = false
+[mergetool "nvimdiff"]
+  layout = "LOCAL,BASE,REMOTE / MERGED"
+
+[alias]
+    root = rev-parse --show-toplevel
+    cdroot = !cd `git root`
+    sh = show --color
+    mt = mergetool
+    co = checkout
+    cb = checkout -b
+    st = status
+    rf = reflog
+
+    cm = commit
+    cmf = commit --allow-empty
+    ca = commit --amend
+    caf = commit --amend --no-edit --allow-empty
+    cu = reset HEAD^1
+    me = merge --no-edit
+    mu = reset --merge
+
+    unstage = reset HEAD
+    ours = checkout --ours
+    theirs = checkout --theirs
+    aours = "!f() { (git reset $* >/dev/null); git ours $* && git add $*; }; f"
+    atheirs = "!f() { (git reset $* >/dev/null); git theirs $* && git add $*; }; f"
+
+    d = diff --color
+    du = !git d `git upstream` $@
+    ds = !git d --staged $@
+
+    lg = log -m --simplify-merges --color --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%ar) %Cblue%an <%ae>%Creset' --abbrev-commit
+    lo = log -m --simplify-merges --color --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit
+
+    fe = fetch
+    fa = fetch --all
+    fo = fetch origin
+
+    ps = push
+    psf = push -f
+    psu = push -u
+    psuf = push -uf
+    pso = push origin
+    psof = push origin -f
+
+    pl = pull
+    plo = pull origin
+
+    a = add
+    aa = add --all
+    af = add --all -f
+
+    untracked = ls-files --other --exclude-standard
+    staged = ls-files --staged
+    modified = ls-files --modified
+    deleted = ls-files --deleted
+    gitignored = ls-files -o -i --exclude-standard
+
+    sh = stash
+    shp = stash pop
+    shl = stash list
+    shd = stash drop
+    shc = stash clear
+    sha = stash apply
+
+    chp = cherry-pick
+    chpc = cherry-pick --continue
+    chpq = cherry-pick --quit
+    chpa = cherry-pick --abort
+
+    rv = revert
+    rvc = revert --continue
+    rva = revert --abort
+
+    rb = rebase
+    rbi = rebase -i
+    rbc = rebase --continue
+    rba = rebase --abort
+    rbs = rebase --skip
+
+    br = branch
+    brup = branch --set-upstream
+    brd = branch -D
+
+    rem = remote -v
+    rema = remote add
+    remr = remote rm
+
+    sm = submodule
+    sms = submodule sync
+    smu = submodule update
+    smui = submodule update --init --recursive
+    sme = submodule foreach
+    smepl = submodule foreach "(git pull)&"
