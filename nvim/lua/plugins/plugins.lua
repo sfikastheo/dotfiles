@@ -14,6 +14,7 @@ return {
     -- Which-key
     {
         "folke/which-key.nvim",
+	    version = "^3",
         event = "VeryLazy",
         init = function()
             vim.o.timeout = true
@@ -23,10 +24,11 @@ return {
     -- Telescope
     {
         "nvim-telescope/telescope.nvim",
-        branch = "0.1.x",
+	    event = "VimEnter",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope-ui-select.nvim",
+            { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
         },
         config = function()
             require("plugins.telescope")
@@ -112,12 +114,18 @@ return {
             require("plugins.none-ls")
         end,
     },
+    -- fidget
+    {
+      "j-hui/fidget.nvim",
+      opts = {},
+    },
     --
     -- Completions
     -- nvim-cmp
     {
         -- Completion Engine
         "hrsh7th/nvim-cmp",
+        event = "InsertEnter",
         dependencies = {
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
@@ -194,26 +202,6 @@ return {
         end,
     },
     --
-    -- Language Specific Plugins
-    --
-    -- Org Mode
-    -- Orgmode.nvim
-    {
-        "nvim-orgmode/orgmode",
-        event = "VeryLazy",
-        ft = { "org" },
-        config = function()
-            require("plugins.nvim-org")
-        end,
-    },
-    -- Org-bullets
-    {
-        "akinsho/org-bullets.nvim",
-        ft = { "org" },
-        dependencies = {
-            "nvim-orgmode/orgmode",
-        },
-    },
     -- UI plugins
     -- lua-line
     {

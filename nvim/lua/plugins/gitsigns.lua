@@ -1,6 +1,13 @@
 -- lua/plugins/gitsigns.lua
 local gitsigns = require("gitsigns")
 
+local base_opts = { noremap = true, silent = true }
+
+local function set_opts(desc)
+    local extended_opts = vim.tbl_extend("force", base_opts, { desc = desc })
+    return extended_opts
+end
+
 gitsigns.setup({
     signs = {
         add = { text = "│" },
@@ -70,19 +77,19 @@ gitsigns.setup({
         end, { expr = true, desc = "Previous Git Hunk" })
 
         -- Actions
-        map("n", "<leader>gr", gs.reset_hunk)
-        map("n", "<leader>gR", gs.reset_buffer)
-        map("n", "<leader>gs", gs.stage_hunk, { desc = "Stage Git Hunk" })
-        map("n", "<leader>gu", gs.undo_stage_hunk, { desc = "Undo Stage Git Hunk" })
-        map("n", "<leader>gp", gs.preview_hunk, { desc = "Preview Git Hunk" })
-        map("n", "<leader>gd", gs.diffthis, { desc = "Git Diff" })
-        map("n", "<leader>gb", gs.toggle_current_line_blame)
+        map("n", "<leader>gr", gs.reset_hunk, set_opts("[G]it [R]eset Hunk"))
+        map("n", "<leader>gR", gs.reset_buffer, set_opts("[G]it [R]eset Buffer"))
+        map("n", "<leader>gs", gs.stage_hunk, set_opts("[G]it [S]tage Hunk"))
+        map("n", "<leader>gu", gs.undo_stage_hunk, set_opts("[G]it [U]nstage Hunk"))
+        map("n", "<leader>gp", gs.preview_hunk, set_opts("[G]it [P]review Hunk"))
+        map("n", "<leader>gd", gs.diffthis, set_opts("[G]it [D]iff"))
+        map("n", "<leader>gb", gs.toggle_current_line_blame, set_opts("[G]it [B]lame"))
 
         map("n", "<leader>gD", function()
             gs.diffthis("~")
-        end, { desc = "Git Diff ~" })
+        end, { desc = "[G]it [D]iff [~]" })
 
         -- Text object for hunks
-        map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Select Git Hunk" })
+        map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Select [I]t [H]unk" })
     end,
 })

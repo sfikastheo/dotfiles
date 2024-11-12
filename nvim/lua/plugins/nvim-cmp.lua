@@ -4,7 +4,6 @@ local ls = require("luasnip")
 
 -- Load snippets from friendly-snippets
 require("luasnip.loaders.from_vscode").lazy_load()
-
 cmp.setup({
     snippet = {
         expand = function(args)
@@ -12,18 +11,26 @@ cmp.setup({
         end,
     },
     mapping = cmp.mapping.preset.insert({
-        ["<CR>"] = cmp.mapping.confirm({ select = false }),
-        ["<Tab>"] = cmp.mapping.confirm({ select = false }),
+        ["<C-y>"] = cmp.mapping.confirm({ select = true }),
         ["<C-n>"] = cmp.mapping.select_next_item(),
-        ["<C-p>"] = cmp.mapping.select_prev_item(),
+        ["<C-e>"] = cmp.mapping.select_prev_item(),
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-c>"] = cmp.mapping.abort(),
+        ["<C-l>"] = cmp.mapping(function()
+            if ls.expand_or_locally_jumpable() then
+                ls.expand_or_jump()
+            end
+        end, { "i", "s" }),
+        ["<C-h>"] = cmp.mapping(function()
+            if ls.locally_jumpable(-1) then
+                ls.jump(-1)
+            end
+        end, { "i", "s" }),
     }),
     sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "luasnip" },
-        { name = "orgmode" },
         { name = "buffer" },
         { name = "path" },
         { name = "crates" },

@@ -8,19 +8,16 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
     PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 fi
 
-# Add Nix to the PATH (if it's installed)
-if [[ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]]; then
-    . "$HOME/.nix-profile/etc/profile.d/nix.sh"
-fi
-
 # Add Emacs to the PATH (if it's installed)
-if [[ -e "$HOME/.emacs.d/bin" ]]; then
-    PATH="$HOME/.emacs.d/bin":$PATH
+emacs_bin="$HOME/.config/emacs/bin"
+if [[ -e "${emacs_bin}" ]]; then
+    PATH="${emacs_bin}":$PATH
 fi
 
 # Add .cargo/bin to the PATH (if it's installed)
-if [[ -e "$HOME/.cargo/bin" ]]; then
-    PATH="$HOME/.cargo/bin":$PATH
+cargo_bin="$HOME/.cargo/bin"
+if [[ -e "${cargo_bin}" ]]; then
+    PATH="${cargo_bin}":$PATH
 fi
 
 export PATH
@@ -32,6 +29,13 @@ bindkey -e
 export EDITOR=nvim
 export LANG=en_US.UTF-8
 unsetopt correct_all
+
+# Unified history across sessions
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+export HISTFILE="${ZDOTDIR:-$HOME}/.zsh_history"
+export HISTSIZE=10000
+export SAVEHIST=20000
 
 # Basic aliases
 alias nv=nvim
@@ -116,7 +120,6 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-bin-gem-node \
     zdharma-continuum/zinit-annex-patch-dl \
     zdharma-continuum/zinit-annex-rust
-
 
 # load plugins
 zinit light zsh-users/zsh-syntax-highlighting

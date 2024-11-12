@@ -9,7 +9,7 @@
     branch = true
     status = true
 
-[url "git://github.com/"]
+[url "ssh://github.com/worldcoin"]
     insteadOf = https://github.com/worldcoin
 
 [merge]
@@ -23,6 +23,7 @@
 [alias]
     root = rev-parse --show-toplevel
     cdroot = !cd `git root`
+    unstage = reset HEAD
     sh = show --color
     mt = mergetool
     co = checkout
@@ -38,42 +39,33 @@
     me = merge --no-edit
     mu = reset --merge
 
-    unstage = reset HEAD
-    ours = checkout --ours
-    theirs = checkout --theirs
-    aours = "!f() { (git reset $* >/dev/null); git ours $* && git add $*; }; f"
-    atheirs = "!f() { (git reset $* >/dev/null); git theirs $* && git add $*; }; f"
-
-    d = diff --color
-    du = !git d `git upstream` $@
-    ds = !git d --staged $@
-
     lg = log -m --simplify-merges --color --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%ar) %Cblue%an <%ae>%Creset' --abbrev-commit
     lo = log -m --simplify-merges --color --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit
+    df = diff --color
+    dfs = diff --staged --color
 
-    fe = fetch
+    f = fetch
     fa = fetch --all
     fo = fetch origin
+    fu = fetch upstream
 
     ps = push
     psf = push -f
-    psu = push -u
-    psuf = push -uf
-    pso = push origin
-    psof = push origin -f
+    psb = !git push -u origin $(git branch --show-current)
 
     pl = pull
     plo = pull origin
+    plf = "!f() { git fetch origin \"$1\" && git reset --hard origin/\"$1\"; }; f"
 
     a = add
     aa = add --all
     af = add --all -f
 
-    untracked = ls-files --other --exclude-standard
-    staged = ls-files --staged
-    modified = ls-files --modified
-    deleted = ls-files --deleted
-    gitignored = ls-files -o -i --exclude-standard
+    unt = ls-files --other --exclude-standard
+    sta = ls-files --staged
+    mod = ls-files --modified
+    del = ls-files --deleted
+    ign = ls-files -o -i --exclude-standard
 
     sh = stash
     shp = stash pop
@@ -82,10 +74,10 @@
     shc = stash clear
     sha = stash apply
 
-    chp = cherry-pick
-    chpc = cherry-pick --continue
-    chpq = cherry-pick --quit
-    chpa = cherry-pick --abort
+    ch = cherry-pick
+    chc = cherry-pick --continue
+    chq = cherry-pick --quit
+    cha = cherry-pick --abort
 
     rv = revert
     rvc = revert --continue
@@ -98,16 +90,22 @@
     rbs = rebase --skip
 
     br = branch
-    brup = branch --set-upstream
     brd = branch -D
+    bru = branch --set-upstream
+    brr = !git branch --set-upstream-to=origin/$(git branch --show-current)
 
-    rem = remote -v
-    rema = remote add
-    remr = remote rm
+    re = remote -v
+    rea = remote add
+    rer = remote rm
 
     sm = submodule
     sms = submodule sync
     smu = submodule update
-    smui = submodule update --init --recursive
+    smi = submodule update --init --recursive
     sme = submodule foreach
-    smepl = submodule foreach "(git pull)&"
+    smp = submodule foreach "(git pull)&"
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
