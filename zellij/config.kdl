@@ -2,7 +2,7 @@
 scroll_buffer_size 50000
 default_layout "compact"
 on_force_close "quit"
-mirror_session false
+mirror_session true
 simplified_ui false
 pane_frames false
 
@@ -76,11 +76,11 @@ keybinds clear-defaults=true {
         bind "c" { SearchToggleOption "CaseSensitivity"; }
         bind "w" { SearchToggleOption "Wrap"; }
         bind "o" { SearchToggleOption "WholeWord"; }
-        bind "E" { EditScrollback; SwitchToMode "Normal"; }
+        bind "v" { EditScrollback; SwitchToMode "Normal"; }
         bind "d" { HalfPageScrollDown; }
         bind "u" { HalfPageScrollUp; }
-        bind "j" { Search "down"; }
-        bind "J" { Search "up"; }
+        bind "k" { Search "down"; }
+        bind "K" { Search "up"; }
         bind "n" { ScrollDown; }
         bind "e" { ScrollUp; }
         bind "G" { ScrollToBottom; }
@@ -101,18 +101,12 @@ keybinds clear-defaults=true {
         bind "w" { SwitchToMode "Move"; }
         bind "s" { SwitchToMode "Search"; }
         bind "/" { SwitchToMode "EnterSearch"; SearchInput 0; }
-        bind "o" {
-            LaunchOrFocusPlugin "session-manager" {
-                floating true
-                move_to_focused_tab true
-            };
-            SwitchToMode "Normal"
-        }
+        bind "v" { EditScrollback; SwitchToMode "Normal"; }
 
         // General
         bind "g" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
         bind "t" { ToggleFloatingPanes; SwitchToMode "Normal"; }
-        bind "f" { TogglePaneEmbedOrFloating; SwitchToMode "Normal"; }
+        bind "x" { CloseFocus; SwitchToMode "Normal"; }
         bind "D" { Detach; }
 
         // Panes
@@ -122,7 +116,6 @@ keybinds clear-defaults=true {
         bind "m" { MoveFocus "Left"; SwitchToMode "Normal"; }
         bind "n" { MoveFocus "Down"; SwitchToMode "Normal"; }
         bind "i" { MoveFocus "Right"; SwitchToMode "Normal"; }
-        bind "K" { CloseFocus; SwitchToMode "Normal"; }
 
         // Tabs
         bind "d" { GoToPreviousTab; SwitchToMode "Normal"; }
@@ -142,6 +135,19 @@ keybinds clear-defaults=true {
         bind "7" { GoToTab 7; SwitchToMode "Normal"; }
         bind "8" { GoToTab 8; SwitchToMode "Normal"; }
         bind "9" { GoToTab 9; SwitchToMode "Normal"; }
+
+        // Plugins
+        bind "o" {
+            LaunchOrFocusPlugin "session-manager" {
+                floating true
+                move_to_focused_tab true
+            };
+            SwitchToMode "Normal";
+        }
+        bind "f" {
+            LaunchOrFocusPlugin "zellij:strider";
+            SwitchToMode "Normal";
+        }
     }
     shared_except "locked" {
         bind "Ctrl g" { SwitchToMode "Locked"; }

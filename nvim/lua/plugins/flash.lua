@@ -1,6 +1,5 @@
 -- lua/plugins/flash.lua
 local flash = require("flash")
-local wk = require("which-key")
 
 require("flash").setup({
     -- labels = "asdfghjklqwertyuiopzxcvbnm",
@@ -117,10 +116,14 @@ require("flash").setup({
     },
 })
 
-wk.add({
-    mode = { "n", "x" },
-    { "<leader>f",  group = "Flash" },
-    { "<leader>ft", function() flash.jump() end,              desc = "flash: Hop To" },
-    { "<leader>fk", function() flash.treesitter() end,        desc = "flash: Select TextObj" },
-    { "<leader>fK", function() flash.treesitter_search() end, desc = "flash: Search TextObj" },
-})
+-- Keybindings:
+local set = vim.keymap.set
+local base_opts = { noremap = true, silent = true }
+
+local function set_opts(desc)
+    local extended_opts = vim.tbl_extend("force", base_opts, { desc = desc })
+    return extended_opts
+end
+
+set({"n", "x"}, "<leader>ft", function() flash.jump() end, set_opts("[F]lash [T]o"))
+set({"n", "x"}, "<leader>fT", function() flash.treesitter() end, set_opts("[F]lash [T]extObj"))

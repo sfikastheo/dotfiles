@@ -1,33 +1,42 @@
 -- lua/plugins/lsp/init.lua
 local lspconfig = require("lspconfig")
 
+-- workaround
+-- Suppress specific rust-analyzer errors
+for _, method in ipairs({ "textDocument/diagnostic", "workspace/diagnostic" }) do
+    local default_diagnostic_handler = vim.lsp.handlers[method]
+    vim.lsp.handlers[method] = function(err, result, context, config)
+        if err ~= nil and err.code == -32802 then
+            return
+        end
+        return default_diagnostic_handler(err, result, context, config)
+    end
+end
+
 -- Utility function for common setup tasks
 local on_attach = function(_, bufnr)
     local set = vim.keymap.set
 
     -- LSP Key mappings
-    set("n", "K", vim.lsp.buf.hover, { desc = "Hover documentation", buffer = bufnr })
-    set("n", "gh", vim.lsp.buf.hover, { desc = "Hover documentation", buffer = bufnr })
-    set("n", "gH", vim.lsp.buf.signature_help, { desc = "Signature help", buffer = bufnr })
-    set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition", buffer = bufnr })
-    set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration", buffer = bufnr })
-    set("n", "gi", vim.lsp.buf.implementation, { desc = "Go to implementation", buffer = bufnr })
-    set("n", "go", vim.lsp.buf.type_definition, { desc = "Go to type definition", buffer = bufnr })
-    set("n", "gI", vim.lsp.buf.incoming_calls, { desc = "Incoming calls", buffer = bufnr })
-    set("n", "gO", vim.lsp.buf.outgoing_calls, { desc = "Outgoing calls", buffer = bufnr })
+    set("n", "gh", vim.lsp.buf.hover, { desc = "[G]o to [H]Hover Docs", buffer = bufnr })
+    set("n", "gH", vim.lsp.buf.signature_help, { desc = "[G]o to [S]ignature help", buffer = bufnr })
+    set("n", "gd", vim.lsp.buf.definition, { desc = "[G]o to [D]efinition", buffer = bufnr })
+    set("n", "gD", vim.lsp.buf.declaration, { desc = "[G]o to [D]eclaration", buffer = bufnr })
+    set("n", "gi", vim.lsp.buf.implementation, { desc = "[G]o to [I]mplementation", buffer = bufnr })
+    set("n", "go", vim.lsp.buf.type_definition, { desc = "[G]o to type definition", buffer = bufnr })
+    set("n", "gI", vim.lsp.buf.incoming_calls, { desc = "[G]o to [I]ncoming calls", buffer = bufnr })
+    set("n", "gO", vim.lsp.buf.outgoing_calls, { desc = "[G]o to [O]utgoing calls", buffer = bufnr })
 
-    set("n", "gr", vim.lsp.buf.references, { desc = "Find references", buffer = bufnr })
-    set("n", "gs", vim.lsp.buf.document_symbol, { desc = "Document symbols", buffer = bufnr })
-    set("n", "gS", vim.lsp.buf.workspace_symbol, { desc = "Workspace symbols", buffer = bufnr })
+    set("n", "gr", vim.lsp.buf.references, { desc = "[G]o to [R]eferences", buffer = bufnr })
     set("n", "gR", vim.lsp.buf.rename, { desc = "Rename symbol", buffer = bufnr })
-    set("n", "gc", vim.lsp.buf.code_action, { desc = "Code actions", buffer = bufnr })
+    set("n", "gc", vim.lsp.buf.code_action, { desc = "[G]o to [C]ode Actions", buffer = bufnr })
     set("n", "g=", vim.lsp.buf.format, { desc = "Format document", buffer = bufnr })
 
-    set("n", "gl", vim.diagnostic.open_float, { desc = "Show diagnostics", buffer = bufnr })
-    set("n", "gL", vim.diagnostic.setloclist, { desc = "Send Diagnostics to Loclist", buffer = bufnr })
-    set("n", "gQ", vim.diagnostic.setqflist, { desc = "Send Diagnostics to Quickfix", buffer = bufnr })
-    set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic", buffer = bufnr })
-    set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic", buffer = bufnr })
+    set("n", "gl", vim.diagnostic.open_float, { desc = "[G]o to [L]ine Diagnostics", buffer = bufnr })
+    set("n", "gL", vim.diagnostic.setloclist, { desc = "Send Diagnostics to [L]oclist", buffer = bufnr })
+    set("n", "gQ", vim.diagnostic.setqflist, { desc = "Send Diagnostics to [Q]uickfix", buffer = bufnr })
+    set("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous Diagnostic", buffer = bufnr })
+    set("n", "]d", vim.diagnostic.goto_next, { desc = "Next Diagnostic", buffer = bufnr })
 end
 
 local servers = {

@@ -1,8 +1,9 @@
+-- lua/plugins/telescope.lua
+
 local telescope = require("telescope")
 local themes = require("telescope.themes")
 local builtin = require("telescope.builtin")
 local actions = require("telescope.actions")
-local wk = require("which-key")
 
 -- Utility function to select Telescope theme
 local function theme(theme_name)
@@ -27,7 +28,7 @@ local function get_git_root()
 end
 
 -- Function to set dynamic options for Telescope
-local function set_opts(theme_name, cwd_path)
+local function with(theme_name, cwd_path)
     local opts = theme(theme_name)
     opts.cwd = cwd_path or get_git_root() or vim.fn.getcwd()
     return opts
@@ -43,8 +44,16 @@ telescope.setup({
             vertical = { preview_height = 0.6 },
         },
         vimgrep_arguments = {
-            "rg", "--color=never", "--no-heading", "--with-filename", "--line-number",
-            "--column", "--smart-case", "--hidden", "--glob", "!**/.git/*",
+            "rg",
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
+            "--hidden",
+            "--glob",
+            "!**/.git/*",
         },
         mappings = {
             i = {
@@ -54,6 +63,8 @@ telescope.setup({
                 ["<C-w>s"] = actions.select_horizontal,
                 ["<C-n>"] = actions.move_selection_next,
                 ["<C-e>"] = actions.move_selection_previous,
+                ["<C-j>"] = actions.results_scrolling_left,
+                ["<C-k>"] = actions.results_scrolling_right,
             },
             n = {
                 ["<C-c>"] = actions.close,
@@ -62,45 +73,68 @@ telescope.setup({
                 ["<C-w>s"] = actions.select_horizontal,
                 ["<C-n>"] = actions.move_selection_next,
                 ["<C-e>"] = actions.move_selection_previous,
+                ["<C-j>"] = actions.results_scrolling_left,
+                ["<C-k>"] = actions.results_scrolling_right,
             },
         },
     },
     pickers = {
-        find_files = { find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" } },
+        find_files = {
+            find_command = {
+                "rg",
+                "--files",
+                "--hidden",
+                "--glob",
+                "!**/.git/*"
+            }
+        },
         diagnostics = { layout_strategy = "vertical" },
         registers = { layout_strategy = "vertical" },
     },
     extensions = {
-        ["ui-select"] = { themes.get_dropdown({ layout_config = { width = 0.8 } }) },
+        ["ui-select"] = {
+            themes.get_dropdown({
+                layout_config = { width = 0.8 }
+            })
+        },
     },
 })
 
-wk.add({
-    mode = "n",
-    { "<leader>f",  group = "Telescope" },
+-- Keybindings for Telescope without which-key
+local set = vim.keymap.set
+local base_opts = { noremap = true, silent = true }
 
-    { "<leader>ff", function() builtin.find_files(set_opts("default")) end,                  desc = "Files" },
-    { "<leader>fg", function() builtin.live_grep(set_opts("default")) end,                   desc = "Grep" },
-    { "<leader>fF", function() builtin.find_files(set_opts("default", vim.fn.getcwd())) end, desc = "Files in CWD" },
-    { "<leader>fG", function() builtin.live_grep(set_opts("default", vim.fn.getcwd())) end,  desc = "Grep in CWD" },
-    { "<leader>.",  function() builtin.find_files(set_opts("ivy")) end,                      desc = "Files (ivy)" },
+local function set_opts(desc)
+    local extended_opts = vim.tbl_extend("force", base_opts, { desc = desc })
+    return extended_opts
+end
 
-    { "<leader>fm", function() builtin.marks(theme("dropdown")) end,                         desc = "Marks" },
-    { "<leader>fc", function() builtin.commands(theme("dropdown")) end,                      desc = "Commands" },
-    { "<leader>fR", function() builtin.registers(theme("dropdown")) end,                     desc = "Registers" },
-    { "<leader>,",  function() builtin.buffers(theme("ivy")) end,                            desc = "Buffers" },
+-- General bindings
+set("n", "<leader>fl", builtin.loclist, set_opts("[F]ind [L]ocation list"))
+set("n", "<leader>fR", builtin.registers, set_opts("[F]ind [R]egisters"))
+set("n", "<leader>fj", builtin.jumplist, set_opts("[F]ind [J]ump list"))
+set("n", "<leader>fc", builtin.commands, set_opts("[F]ind [C]ommands"))
+set("n", "<leader>fk", builtin.keymaps, set_opts("[F]ind [K]eymaps"))
+set("n", "<leader>fh", builtin.help_tags, set_opts("[F]ind [H]elp"))
+set("n", "<leader>fm", builtin.marks, set_opts("[F]ind [M]arks"))
 
-    -- Lists with dropdown theme
-    { "<leader>fl", function() builtin.loclist(theme("dropdown")) end,                       desc = "Location list" },
-    { "<leader>fj", function() builtin.jumplist(theme("dropdown")) end,                      desc = "Jump list" },
-    { "<leader>fq", function() builtin.quickfix(theme("dropdown")) end,                      desc = "Quickfix list" },
+set("n", "<leader>fF", function() builtin.find_files(with("default", vim.fn.getcwd())) end,
+    set_opts("[F]ind [F]iles in CWD"))
+set("n", "<leader>fG", function() builtin.live_grep(with("default", vim.fn.getcwd())) end,
+    set_opts("[F]ind by [G]rep in CWD"))
+set("n", "<leader>fq", function() builtin.quickfix(theme("dropdown")) end, set_opts("[F]ind [Q]uickfix list"))
+set("n", "<leader>ff", function() builtin.find_files(with("default")) end, set_opts("[F]ind [F]iles"))
+set("n", "<leader>fg", function() builtin.live_grep(with("default")) end, set_opts("[F]ind by [G]rep"))
+set("n", "<leader>f.", function() builtin.oldfiles(with("ivy")) end, set_opts("[F]ind Recent Files"))
+set("n", "<leader>f,", function() builtin.resume(with("ivy")) end, set_opts("[F]ind Resume search"))
+set("n", "<leader>.", function() builtin.find_files(with("ivy")) end, set_opts("Find Files"))
+set("n", "<leader>,", function() builtin.buffers(theme("ivy")) end, set_opts("Find Buffers"))
 
-    -- LSP-related
-    { "<leader>fi", function() builtin.lsp_incoming_calls(theme("dropdown")) end,            desc = "Incoming calls" },
-    { "<leader>fo", function() builtin.lsp_outgoing_calls(theme("dropdown")) end,            desc = "Outgoing calls" },
-    { "<leader>fr", function() builtin.lsp_references(theme("dropdown")) end,                desc = "References" },
-    { "<leader>fd", function() builtin.diagnostics(theme("default")) end,                    desc = "Diagnostics" },
-})
+-- LSP-related
+set("n", "<leader>fi", builtin.lsp_incoming_calls, set_opts("[F]ind [I]ncoming calls"))
+set("n", "<leader>fo", builtin.lsp_outgoing_calls, set_opts("[F]ind [O]utgoing calls"))
+set("n", "<leader>fr", builtin.lsp_references, set_opts("[F]ind [R]eferences"))
+set("n", "<leader>fd", builtin.diagnostics, set_opts("[F]ind [D]iagnostics"))
 
 -- Load extensions
 telescope.load_extension("ui-select")
