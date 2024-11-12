@@ -3,21 +3,6 @@
 local copilot = require("copilot")
 
 copilot.setup({
-    panel = {
-        enabled = true,
-        auto_refresh = true,
-        keymap = {
-            jump_prev = "[[",
-            jump_next = "]]",
-            accept = "<CR>",
-            refresh = "gr",
-            open = "<C-x>"
-        },
-        layout = {
-            position = "right",
-            ratio = 0.4
-        },
-    },
     suggestion = {
         enabled = true,
         auto_trigger = true,
@@ -25,9 +10,8 @@ copilot.setup({
         debounce = 75,
         keymap = {
             accept = "<C-y>",
-            next = "<C-n>",
-            prev = "<C-p>",
-            accept_line = "<C-l>",
+            next = "<C-j>",
+            prev = "<C-k>",
             dismiss = "<C-c>"
         },
     },

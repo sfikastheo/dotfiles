@@ -28,7 +28,6 @@ require("lualine").setup({
                 path = 1,
                 shorting_target = 40,
             },
-            "lsp_progress",
             "macro_recording",
         },
         lualine_x = { "selectioncount", "searchcount", "encoding", "filetype" },
@@ -52,7 +51,4 @@ require("lualine").setup({
     tabline = {},
     winbar = {},
     inactive_winbar = {},
-    extensions = {
-        "neo-tree",
-    },
 })
