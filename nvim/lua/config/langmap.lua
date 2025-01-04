@@ -23,6 +23,7 @@ local colemak_langmap = {
 local colemak_mappings = {
     { { "n", "v", "o" }, "<C-n>", "4j" },
     { { "n", "v", "o" }, "<C-e>", "4k" },
+    { { "n", "v", "o" }, "<C-m>", "<C-o>" },
 }
 
 -- Function to generate the langmap string

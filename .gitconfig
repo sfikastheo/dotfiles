@@ -39,8 +39,8 @@
     me = merge --no-edit
     mu = reset --merge
 
-    lg = log -m --simplify-merges --color --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%ar) %Cblue%an <%ae>%Creset' --abbrev-commit
     lo = log -m --simplify-merges --color --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit
+    lg = log --oneline --graph --decorate --all
     df = diff --color
     dfs = diff --staged --color
 

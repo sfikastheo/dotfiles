@@ -4,7 +4,7 @@ local sidebar_bg = '#1a1a1a'
 
 require 'nordic'.setup {
     on_palette = function(palette)
-        palette.black0 = '#101010'
+        palette.black0 = '#121212'
         palette.black1 = '#141414'
         palette.black2 = '#161616'
         palette.gray0 = '#1e1e1e'

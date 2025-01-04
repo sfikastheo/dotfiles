@@ -1,20 +1,21 @@
-
-#   _   _      _ _      
-#  | | | | ___| (_)_  __
-#  | |_| |/ _ \ | \ \/ /
-#  |  _  |  __/ | |>  < 
-#  |_| |_|\___|_|_/_/\_\
-#
-
-theme = "custom"
+theme = "onenordic"
 
 [editor]
 line-number = "relative"
 bufferline = "multiple"
+popup-border = "all"
+scrolloff = 8
 rulers = [80,120]
 color-modes = true
 mouse = true
 text-width = 120
+end-of-line-diagnostics = "hint"
+jump-label-alphabet = "tnseriaodhfuplwygmbjvkqxcz"
+gutters = ["diff", "diagnostics", "line-numbers", "spacer"]
+
+[editor.inline-diagnostics]
+cursor-line = "hint"
+other-lines = "hint"
 
 [editor.cursor-shape]
 insert = "bar"
@@ -29,9 +30,8 @@ display-inlay-hints = true
 display-messages = true
 
 [editor.statusline]
-left = ["mode", "spinner", "version-control"]
-center = ["file-name","file-modification-indicator"]
-right = ["diagnostics", "file-encoding", "selections", "position"]
+left = ["mode", "file-name", "spinner"]
+right = ["diagnostics", "selections", "position", "file-type"]
 separator = "│"
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
@@ -41,22 +41,120 @@ mode.select = "SELECT"
 character = "╎"
 render = true
 
-#  _  __                                      
-# | |/ /___ _   _   _ __ ___   __ _ _ __  ___ 
-# | ' // _ \ | | | | '_ ` _ \ / _` | '_ \/ __|
-# | . \  __/ |_| | | | | | | | (_| | |_) \__ \
-# |_|\_\___|\__, | |_| |_| |_|\__,_| .__/|___/
-#           |___/                  |_|        
+# Keybindings // Colemak-dh
 
+# normal
 [keys.normal]
-A-x = "extend_to_line_bounds"
-X = ["extend_line_up", "extend_to_line_bounds"]
-"A-(" = "goto_previous_buffer"
-"A-)" = "goto_next_buffer"
+m = "move_char_left"
+n = "move_line_down"
+e = "move_line_up"
+i = "move_char_right"
+h = "insert_mode"
+H = "insert_at_line_start"
+l = "move_next_word_end"
+L = "move_next_long_word_end"
+k = "search_next"
+K = "search_prev"
+N = "join_selections"
+"A-N" = "join_selections_space"
+E = "keep_selections"
+"A-E" = "remove_selections"
 
-[keys.select]
-A-x = "extend_to_line_bounds"
-X = ["extend_line_up", "extend_to_line_bounds"]
+C-n = "@4n"
+C-e = "@4e"
+C-u = ["page_cursor_half_up", "align_view_center"]
+C-d = ["page_cursor_half_down", "align_view_center"]
+C-h = "@<esc>"
+G = "goto_last_line"
+- = "select_all"
 
+[keys.normal.j]
+m = "match_brackets"
+s = "surround_add"
+r = "surround_replace"
+d = "surround_delete"
+a = "select_textobject_around"
+i = "select_textobject_inner"
+
+[keys.normal.g]
+m = "goto_line_start"
+i = "goto_line_end"
+n = "move_line_down"
+e = "move_line_up"
+G = "goto_last_line"
+h = "hover"
+
+j = "no_op"
+k = "no_op"
+l = "no_op"
+
+[keys.normal.space.w]
+m = "jump_view_left"
+n = "jump_view_down"
+e = "jump_view_up"
+i = "jump_view_right"
+
+h = "no_op"
+j = "no_op"
+k = "no_op"
+l = "no_op"
+C-h = "no_op"
+C-j = "no_op"
+C-k = "no_op"
+C-l = "no_op"
+
+[keys.normal.C-w]
+m = "jump_view_left"
+n = "jump_view_down"
+e = "jump_view_up"
+i = "jump_view_right"
+M = "swap_view_left"
+N = "swap_view_down"
+E = "swap_view_up"
+I = "swap_view_right"
+
+h = "no_op"
+j = "no_op"
+k = "no_op"
+l = "no_op"
+C-h = "no_op"
+C-j = "no_op"
+C-k = "no_op"
+C-l = "no_op"
+
+[keys.normal.z]
+n = "scroll_down"
+e = "scroll_up"
+
+[keys.normal.Z]
+n = "scroll_down"
+e = "scroll_up"
+
+# insert
 [keys.insert]
-C-j = "normal_mode" 
+C-h = "@<esc>"
+
+# select
+[keys.select]
+m = "extend_char_left"
+n = "extend_line_down"
+e = "extend_line_up"
+i = "extend_char_right"
+h = "insert_mode"
+H = "insert_at_line_start"
+l = "extend_next_word_end"
+L = "extend_next_long_word_end"
+k = "search_next"
+K = "search_prev"
+N = "join_selections"
+"A-N" = "join_selections_space"
+E = "keep_selections"
+"A-E" = "remove_selections"
+
+C-h = "@<esc>"
+C-n = "@4n"
+C-e = "@4e"
+C-u = ["page_cursor_half_up", "align_view_center"]
+C-d = ["page_cursor_half_down", "align_view_center"]
+G = "goto_last_line"
+- = "select_all"
