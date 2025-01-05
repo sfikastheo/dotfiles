@@ -42,8 +42,3 @@ set("n", "<c-w><", "20<c-w><", set_opts("[<] width"))
 set("n", "<c-w>>", "20<c-w>>", set_opts("[>] width"))
 set("n", "<c-w>-", "20<c-w>-", set_opts("[-] height"))
 set("n", "<c-w>+", "20<c-w>+", set_opts("[+] height"))
-
--- Miscellaneous
-set("n", "<leader>fp", ':lua print(vim.fn.expand("%:p"))<CR>', set_opts("[F]ile [P]ath"))
-set("n", "<leader>tv", ":vsplit | term<CR>", set_opts("[T]erm Split [v]ertical"))
-set("n", "<leader>ts", ":split | term<CR>", set_opts("[T]erm [S]plit"))

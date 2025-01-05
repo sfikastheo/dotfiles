@@ -36,6 +36,15 @@ vim.opt.smartindent = true
 vim.opt.shiftwidth = indent
 vim.opt.softtabstop = indent
 vim.opt.tabstop = indent
+vim.opt.list = false
+vim.opt.listchars = {
+  eol = '$',          -- `$` at the end of each line
+  space = '·',        -- `·` for space characters
+  tab = '>-',         -- `>-` for tab characters
+  extends = '>',      -- `>` when text extends beyond the window
+  precedes = '<',     -- `<` when text precedes the window
+  nbsp = '%',         -- `%` for non-breaking spaces
+}
 
 -- Search
 vim.opt.grepprg = "rg --vimgrep"

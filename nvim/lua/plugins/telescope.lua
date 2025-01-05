@@ -125,8 +125,6 @@ set("n", "<leader>fG", function() builtin.live_grep(with("default", vim.fn.getcw
 set("n", "<leader>fq", function() builtin.quickfix(theme("dropdown")) end, set_opts("[F]ind [Q]uickfix list"))
 set("n", "<leader>ff", function() builtin.find_files(with("default")) end, set_opts("[F]ind [F]iles"))
 set("n", "<leader>fg", function() builtin.live_grep(with("default")) end, set_opts("[F]ind by [G]rep"))
-set("n", "<leader>f.", function() builtin.oldfiles(with("ivy")) end, set_opts("[F]ind Recent Files"))
-set("n", "<leader>f,", function() builtin.resume(with("ivy")) end, set_opts("[F]ind Resume search"))
 set("n", "<leader>.", function() builtin.find_files(with("ivy")) end, set_opts("Find Files"))
 set("n", "<leader>,", function() builtin.buffers(theme("ivy")) end, set_opts("Find Buffers"))
 

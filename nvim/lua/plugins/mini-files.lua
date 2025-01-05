@@ -30,8 +30,8 @@ mf.setup({
         reveal_cwd  = '@',
         show_help   = 'g?',
         synchronize = '=',
-        trim_left   = '<',
-        trim_right  = '>',
+        trim_left   = '>',
+        trim_right  = '<',
     },
     options = {
         permanent_delete = true,
