@@ -48,19 +48,7 @@ alias jc='sudo journalctl'
 alias md='mkdir -p'
 alias rd=rmdir
 
-# OMZ arguments
-ZSH_THEME=""
-CASE_SENSITIVE="true"
-HYPHEN_INSENSITIVE="true"
-DISABLE_MAGIC_FUNCTIONS="true"
-DISABLE_LS_COLORS="true"
-DISABLE_AUTO_TITLE="true"
-ENABLE_CORRECTION="false"
-COMPLETION_WAITING_DOTS="true"
-DISABLE_UNTRACKED_FILES_DIRTY="true"
-HIST_STAMP="yyyy-mm-dd"
-
-########################Tools ########################
+######################## Tools ########################
 
 # lsd
 if [[ -x "$(command -v lsd)" ]]; then
@@ -94,40 +82,25 @@ if [[ -x "$(command -v zoxide)" ]]; then
     eval "$(zoxide init --cmd cd zsh)"
 fi
 
-# OCaml
-if [[ -r "$HOME/.opam/opam-init/init.zsh" ]]; then
-    source "$HOME/.opam/opam-init/init.zsh" > /dev/null 2> /dev/null
-fi
-
 ######################## Zinit ########################
 
-if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+zinit_path="$HOME/.local/share/zinit"
+if [[ ! -f "$zinit_path/zinit.git/zinit.zsh" ]]; then
     echo "Installing Zinit"
     command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
-    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
-        print -P "%F{33} %F{34}Installation successful.%f%b" || \
-        print -P "%F{160} The clone has failed.%f%b"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" || \
+        print -P "%F{160} zinit not found && installing it has failed.%f%b"
 fi
 
-source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+source "$zinit_path/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-    zdharma-continuum/zinit-annex-as-monitor \
-    zdharma-continuum/zinit-annex-bin-gem-node \
-    zdharma-continuum/zinit-annex-patch-dl \
-    zdharma-continuum/zinit-annex-rust
-
 # load plugins
 zinit light zsh-users/zsh-syntax-highlighting
-zinit snippet OMZ::plugins/git/git.plugin.zsh
-
-zinit ice blockf
 zinit light zsh-users/zsh-completions
+autoload -U compinit && compinit
 
 ######################## Hisc ########################
 
-source $HOME/theo/secrets/.wldrc
+source "$HOME/theo/secrets/.wldrc"

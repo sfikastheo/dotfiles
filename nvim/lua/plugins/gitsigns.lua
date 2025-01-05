@@ -9,44 +9,55 @@ local function set_opts(desc)
 end
 
 gitsigns.setup({
-    signs = {
-        add = { text = "│" },
-        change = { text = "│" },
-        delete = { text = "_" },
-        topdelete = { text = "‾" },
-        changedelete = { text = "~" },
-        untracked = { text = "┆" },
+    signs                        = {
+        add          = { text = '┃' },
+        change       = { text = '┃' },
+        delete       = { text = '_' },
+        topdelete    = { text = '‾' },
+        changedelete = { text = '~' },
+        untracked    = { text = '┆' },
     },
-    signcolumn = true,
-    numhl = false,
-    linehl = false,
-    word_diff = false,
-    watch_gitdir = {
-        follow_files = true,
+    signs_staged                 = {
+        add          = { text = '┃' },
+        change       = { text = '┃' },
+        delete       = { text = '_' },
+        topdelete    = { text = '‾' },
+        changedelete = { text = '~' },
+        untracked    = { text = '┆' },
     },
-    auto_attach = true,
-    attach_to_untracked = false,
-    current_line_blame = false,
-    current_line_blame_opts = {
+    signs_staged_enable          = true,
+    signcolumn                   = true,
+    numhl                        = false,
+    linehl                       = false,
+    word_diff                    = false,
+    watch_gitdir                 = {
+        follow_files = true
+    },
+    auto_attach                  = true,
+    attach_to_untracked          = false,
+    current_line_blame           = false,
+    current_line_blame_opts      = {
         virt_text = true,
-        virt_text_pos = "eol",
+        virt_text_pos = 'eol',
         delay = 10,
         ignore_whitespace = false,
         virt_text_priority = 100,
+        use_focus = true,
     },
     current_line_blame_formatter = "\t  <author>, <author_time:%Y-%m-%d> - <summary>",
-    sign_priority = 6,
-    update_debounce = 100,
-    status_formatter = nil,
-    preview_config = {
-        border = "single",
-        style = "minimal",
-        relative = "cursor",
+    sign_priority                = 6,
+    update_debounce              = 100,
+    status_formatter             = nil,
+    max_file_length              = 40000,
+    preview_config               = {
+        border = 'single',
+        style = 'minimal',
+        relative = 'cursor',
         row = 0,
-        col = 1,
+        col = 1
     },
 
-    on_attach = function(bufnr)
+    on_attach                    = function(bufnr)
         local gs = require('gitsigns')
 
         local function map(mode, l, r, opts)
@@ -56,7 +67,7 @@ gitsigns.setup({
         end
 
         -- Hunk navigation
-        map("n", "]g", function()
+        map("n", "]h", function()
             if vim.wo.diff then
                 return "]c"
             end
@@ -66,7 +77,7 @@ gitsigns.setup({
             return "<Ignore>"
         end, { expr = true, desc = "Next Git Hunk" })
 
-        map("n", "[g", function()
+        map("n", "[h", function()
             if vim.wo.diff then
                 return "[c"
             end
@@ -77,19 +88,21 @@ gitsigns.setup({
         end, { expr = true, desc = "Previous Git Hunk" })
 
         -- Actions
-        map("n", "<leader>gr", gs.reset_hunk, set_opts("[G]it [R]eset Hunk"))
-        map("n", "<leader>gR", gs.reset_buffer, set_opts("[G]it [R]eset Buffer"))
-        map("n", "<leader>gs", gs.stage_hunk, set_opts("[G]it [S]tage Hunk"))
-        map("n", "<leader>gu", gs.undo_stage_hunk, set_opts("[G]it [U]nstage Hunk"))
-        map("n", "<leader>gp", gs.preview_hunk, set_opts("[G]it [P]review Hunk"))
-        map("n", "<leader>gd", gs.diffthis, set_opts("[G]it [D]iff"))
-        map("n", "<leader>gb", gs.toggle_current_line_blame, set_opts("[G]it [B]lame"))
+        map("n", "<leader>hr", gs.reset_hunk, set_opts("[H]unk [R]eset"))
+        map("n", "<leader>hR", gs.reset_buffer, set_opts("[H]unk [R]eset Buffer"))
+        map("n", "<leader>hs", gs.stage_hunk, set_opts("[H]unk [S]tage"))
+        map("n", "<leader>hS", gs.stage_buffer, set_opts("[H]unk [S]tage Buffer"))
+        map("n", "<leader>hu", gs.undo_stage_hunk, set_opts("[H]unk [U]n-stage"))
+        map("n", "<leader>hp", gs.preview_hunk, set_opts("[H]unk [P]review"))
+        map("n", "<leader>hd", gs.diffthis, set_opts("[H]unk [D]iff"))
+        map("n", "<leader>tb", gs.toggle_current_line_blame, set_opts("[T]oggle [B]lame"))
+        map('n', '<leader>td', gs.toggle_deleted, set_opts("[T]oggle [D]eleted"))
 
-        map("n", "<leader>gD", function()
+        map("n", "<leader>hD", function()
             gs.diffthis("~")
-        end, { desc = "[G]it [D]iff [~]" })
+        end, { desc = "[H]unk [D]iff [~]" })
 
         -- Text object for hunks
-        map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Select [I]t [H]unk" })
+        map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "[I]n [H]unk" })
     end,
 })

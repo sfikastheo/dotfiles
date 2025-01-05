@@ -11,7 +11,7 @@ cmp.setup({
         end,
     },
     mapping = cmp.mapping.preset.insert({
-        ["<C-y>"] = cmp.mapping.confirm({ select = true }),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
         ["<C-n>"] = cmp.mapping.select_next_item(),
         ["<C-e>"] = cmp.mapping.select_prev_item(),
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
