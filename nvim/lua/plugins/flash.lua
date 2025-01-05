@@ -126,4 +126,4 @@ local function set_opts(desc)
 end
 
 set({"n", "x"}, "<leader>ft", function() flash.jump() end, set_opts("[F]lash [T]o"))
-set({"n", "x"}, "<leader>fT", function() flash.treesitter() end, set_opts("[F]lash [T]extObj"))
+set({"n", "x"}, "<leader>fs", function() flash.treesitter() end, set_opts("[F]lash [S]elect"))

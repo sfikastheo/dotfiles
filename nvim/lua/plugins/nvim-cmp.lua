@@ -11,11 +11,11 @@ cmp.setup({
         end,
     },
     mapping = cmp.mapping.preset.insert({
-        ["<C-y>"] = cmp.mapping.confirm({ select = true }),
+        ['<C-CR>'] = cmp.mapping.confirm({ select = true }),
         ["<C-n>"] = cmp.mapping.select_next_item(),
         ["<C-e>"] = cmp.mapping.select_prev_item(),
-        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-d>"] = cmp.mapping.scroll_docs(4),
         ["<C-c>"] = cmp.mapping.abort(),
         ["<C-l>"] = cmp.mapping(function()
             if ls.expand_or_locally_jumpable() then
@@ -38,9 +38,11 @@ cmp.setup({
     window = {
         completion = cmp.config.window.bordered({
             border = "rounded",
+            winhighlight = "Normal:Pmenu",
         }),
         documentation = cmp.config.window.bordered({
             border = "rounded",
+            winhighlight = "Normal:Pmenu",
         }),
     },
 })

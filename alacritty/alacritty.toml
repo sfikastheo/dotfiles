@@ -1,4 +1,5 @@
 # Alacritty Configuration file
+general.import = [ "~/.config/alacritty/themes/gruvbox_d.toml" ]
 
 [env]
 TERM = "xterm-256color"
@@ -36,12 +37,6 @@ line_indicator = { foreground = "#424242", background = "#1e1e1e" }
 footer_bar = { foreground = "#cb775d", background = "#161616" }
 selection = { text = "#cb775d", background = "#424242"}
 
-[colors.primary]
-foreground = "#eceff4"
-background = "#1e1e1e"
-dim_foreground = "#e5e9f0"
-bright_foreground = "#f8f8ff"
-
 [colors.search]
 matches = { foreground = "#101010", background = "#cb775d" }
 focused_match = { foreground = "#101010", background = "#b74e58" }
@@ -49,36 +44,6 @@ focused_match = { foreground = "#101010", background = "#b74e58" }
 [colors.hints]
 start = { foreground = "#161616", background = "#cb775d" }
 end = { foreground = "#161616", background = "#cb775d" }
-
-[colors.normal]
-black = "#141414"
-red = "#bf616a"
-green = "#a3be8c"
-yellow = "#ebcb8b"
-blue = "#81a1c1"
-magenta = "#b48ead"
-cyan = "#8fbcbb"
-white = "#e5e9f0"
-
-[colors.bright]
-black = "#626262"
-red = "#c5727a"
-green = "#b1c89d"
-yellow = "#efd49f"
-blue = "#88c0d0"
-magenta = "#be9db8"
-cyan = "#9fc6c5"
-white = "#eceff4"
-
-[colors.dim]
-black = "#101010"
-red = "#b74e58"
-green = "#97b67c"
-yellow = "#e7c173"
-blue = "#5e81ac"
-magenta = "#a97ea1"
-cyan = "#80b3b2"
-white = "#d8dee9"
 
 [selection]
 semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"

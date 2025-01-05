@@ -4,14 +4,14 @@ local sidebar_bg = '#1a1a1a'
 
 require 'nordic'.setup {
     on_palette = function(palette)
-        palette.black0 = '#121212'
-        palette.black1 = '#141414'
-        palette.black2 = '#161616'
+        palette.black0 = '#181818'
+        palette.black1 = '#1a1a1a'
+        palette.black2 = '#1c1c1c'
         palette.gray0 = '#1e1e1e'
-        palette.gray1 = '#424242'
-        palette.gray2 = '#525252'
-        palette.gray3 = '#626262'
-        palette.gray4 = '#727272'
+        palette.gray1 = '#2e2e2e'
+        palette.gray2 = '#3e3e3e'
+        palette.gray3 = '#4e4e4e'
+        palette.gray4 = '#7e7e7e'
         return palette
     end,
     bold_keywords = false,
@@ -23,12 +23,10 @@ require 'nordic'.setup {
     bright_border = false,
     reduced_blue = true,
     swap_backgrounds = false,
-    -- Override the styling of any highlight group.
     on_highlight = function(highlights, palette)
-        -- Overrides similar to what you did with `override`
-        highlights.Visual = { bg = '#424242' }
-        highlights.VisualNOS = { bg = '#424242' }
-        highlights.CursorLine = { bg = '#161616' }
+        highlights.Visual = { bg = palette.gray1 }
+        highlights.VisualNOS = { bg = palette.gray2 }
+        highlights.CursorLine = { bg = palette.black1 }
         highlights.NvimTreeCursorLine = { bg = '#242424' }
         highlights.NvimTreeNormal = { bg = sidebar_bg }
         highlights.NvimTreeNormalNC = { bg = sidebar_bg }
@@ -54,4 +52,4 @@ require 'nordic'.setup {
     }
 }
 
-vim.cmd.colorscheme 'nordic'
+vim.cmd("colorscheme nordic")
