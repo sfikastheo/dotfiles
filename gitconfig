@@ -104,6 +104,7 @@
     smi = submodule update --init --recursive
     sme = submodule foreach
     smp = submodule foreach "(git pull)&"
+
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process

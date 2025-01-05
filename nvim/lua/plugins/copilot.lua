@@ -9,7 +9,7 @@ copilot.setup({
         hide_during_completion = true,
         debounce = 75,
         keymap = {
-            accept = "<C-CR>",
+            accept = "<C-y>",
             next = "<C-j>",
             prev = "<C-k>",
             dismiss = "<C-c>"

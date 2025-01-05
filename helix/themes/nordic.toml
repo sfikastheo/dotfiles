@@ -1,0 +1,142 @@
+"tag" = { fg = "red" }
+"namespace" = { fg = "orange" }
+"type" = { fg = "yellow" }
+"type.builtin" = { fg = "yellow" }
+"type.parameter" = { fg = "cyan" }
+"type.enum" = { fg = "yellow" }
+"type.enum.variant" = { fg = "magenta" }
+"attribute" = { fg = "orange" }
+"comment" = { fg = "gray4", modifiers = ["italic"] }
+"constant" = { fg = "magenta_b" }
+"constant.builtin" = { fg = "magenta" }
+"constant.numeric" = { fg = "green" }
+"constant.character" = { fg = "yellow" }
+"constructor" = { fg = "blue" }
+"function" = { fg = "cyan" }
+"function.builtin" = { fg = "blue" }
+"function.macro" = { fg = "red" }
+"keyword" = { fg = "red" }
+"keyword.control" = { fg = "orange" }
+"keyword.control.import" = { fg = "red" }
+"keyword.directive" = { fg = "magenta" }
+"keyword.operator" = { fg = "magenta" }
+"keyword.storage" = { fg = "orange" }
+"label" = { fg = "magenta" }
+"operator" = { fg = "white1" }
+"special" = { fg = "red" }
+"string" = { fg = "green" }
+"variable.builtin" = { fg = "blue" }
+"variable.parameter" = { fg = "white0" }
+"variable.other.member" = { fg = "cyan" }
+
+"markup.heading" = { fg = "red" }
+"markup.raw.inline" = { fg = "green" }
+"markup.bold" = { fg = "yellow", modifiers = ["bold"] }
+"markup.italic" = { fg = "magenta", modifiers = ["italic"] }
+"markup.strikethrough" = { modifiers = ["crossed_out"] }
+"markup.list" = { fg = "red" }
+"markup.quote" = { fg = "yellow" }
+"markup.link.url" = { fg = "cyan", modifiers = ["underlined"] }
+"markup.link.text" = { fg = "magenta" }
+
+"diagnostic.info".underline = { color = "blue_b", style = "curl" }
+"diagnostic.hint".underline = { color = "green_b", style = "curl" }
+"diagnostic.warning".underline = { color = "yellow_b", style = "curl" }
+"diagnostic.error".underline = { color = "red_b", style = "curl" }
+"diagnostic.unnecessary" = { modifiers = ["dim"] }
+"diagnostic.deprecated" = { modifiers = ["crossed_out"] }
+"info" = { fg = "blue_b", modifiers = ["italic"] }
+"hint" = { fg = "green_b", modifiers = ["italic"] }
+"warning" = { fg = "yellow_b" }
+"error" = { fg = "red_b" }
+
+"diff.plus" = { fg = "green" }
+"diff.delta" = { fg = "yellow" }
+"diff.minus" = { fg = "red" }
+
+"ui.background" = { bg = "gray0" }
+"ui.virtual" = { fg = "gray1" }
+"ui.virtual.indent-guide" = { fg = "gray1" }
+"ui.virtual.whitespace" = { fg = "gray3" }
+"ui.virtual.ruler" = { bg = "black1" }
+"ui.virtual.inlay-hint" = { fg = "gray4" }
+"ui.virtual.jump-label" = { fg = "black1", bg = "red", modifiers = ["bold"] }
+
+"ui.cursor" = { fg = "white0", modifiers = ["reversed"] }
+"ui.cursor.primary" = { fg = "white2", modifiers = ["reversed"] }
+"ui.cursor.match" = { fg = "blue", modifiers = ["underlined"] }
+
+"ui.selection" = { bg = "gray1" }
+"ui.selection.primary" = { bg = "gray2" }
+"ui.cursorline.primary" = { bg = "black1" }
+
+"ui.highlight" = { bg = "black0" }
+"ui.highlight.frameline" = { bg = "#97202a" }
+
+"ui.linenr" = { fg = "gray3" }
+"ui.linenr.selected" = { fg = "white0" }
+
+"ui.statusline" = { fg = "white1", bg = "black1" }
+"ui.statusline.inactive" = { fg = "gray3", bg = "black1" }
+"ui.statusline.normal" = { fg = "black1", bg = "blue", modifiers = ["bold"] }
+"ui.statusline.insert" = { fg = "black1", bg = "green", modifiers = ["bold"] }
+"ui.statusline.select" = { fg = "black1", bg = "magenta", modifiers = ["bold"] }
+
+"ui.bufferline" = { fg = "gray3", bg = "black0" }
+"ui.bufferline.active" = { fg = "black1", bg = "blue", underline = { color = "black1", style = "line" } }
+"ui.bufferline.background" = { bg = "black0" }
+
+"ui.text" = { fg = "white0" }
+"ui.text.focus" = { fg = "white1", bg = "black1", modifiers = ["bold"] }
+
+"ui.help" = { fg = "white0", bg = "black1" }
+"ui.popup" = { bg = "black1" }
+"ui.window" = { fg = "gray3" }
+"ui.menu" = { fg = "white0", bg = "black1" }
+"ui.menu.selected" = { fg = "black0", bg = "blue" }
+"ui.menu.scroll" = { fg = "white0", bg = "black0" }
+
+"ui.debug" = { fg = "red" }
+
+[palette]
+black0 = "#181818"
+black1 = "#1c1c1c"
+
+gray0 = "#1e1e1e" # background
+gray1 = "#2c2c2c"
+gray2 = "#3c3c3c"
+gray3 = "#4c4c4c"
+gray4 = "#7c7c7c"
+
+white0 = "#bbc3d4" # foreground
+white1 = "#d8dee9"
+white2 = "#e5e9f0"
+white3 = "#eceff4"
+
+blue = "#81a1c1"
+blue_b = "#88c0d0"
+blue_d = "#5e81ac"
+
+cyan = "#8fbcbc"
+cyan_b = "#9fc6c5"
+cyan_d = "#80b3b2"
+
+red = "#bf616a"
+red_b = "#c5727a"
+red_d = "#b74e58"
+
+orange = "#d08770"
+orange_b = "#d79784"
+orange_d = "#cb775d"
+
+yellow = "#ebcb8b"
+yellow_b = "#efd49f"
+yellow_d = "#e7c173"
+
+green = "#a3be8c"
+green_b = "#b1c89d"
+green_d = "#97b67c"
+
+magenta = "#b48ead"
+magenta_b = "#be9db8"
+magenta_d = "#a97ea1"
