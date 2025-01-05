@@ -14,7 +14,5 @@ null.setup({
         formatter.isort,
         formatter.black,
         diagnostics.mypy,
-        -- Ocaml
-        formatter.ocamlformat,
     },
 })

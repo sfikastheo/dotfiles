@@ -1,11 +1,11 @@
-theme = "onenordic"
+theme = "nordic"
 
 [editor]
 line-number = "relative"
 bufferline = "multiple"
 popup-border = "all"
 scrolloff = 8
-rulers = [80,120]
+rulers = [120]
 color-modes = true
 mouse = true
 text-width = 120
@@ -14,8 +14,8 @@ jump-label-alphabet = "tnseriaodhfuplwygmbjvkqxcz"
 gutters = ["diff", "diagnostics", "line-numbers", "spacer"]
 
 [editor.inline-diagnostics]
-cursor-line = "hint"
-other-lines = "hint"
+max-wrap = 30
+cursor-line = "warning"
 
 [editor.cursor-shape]
 insert = "bar"
@@ -39,12 +39,13 @@ mode.select = "SELECT"
 
 [editor.indent-guides]
 character = "╎"
-render = true
+render = false
 
 # Keybindings // Colemak-dh
 
 # normal
 [keys.normal]
+"," = { "," = "@<esc>" }
 m = "move_char_left"
 n = "move_line_down"
 e = "move_line_up"
@@ -64,8 +65,6 @@ C-n = "@4n"
 C-e = "@4e"
 C-u = ["page_cursor_half_up", "align_view_center"]
 C-d = ["page_cursor_half_down", "align_view_center"]
-C-h = "@<esc>"
-G = "goto_last_line"
 - = "select_all"
 
 [keys.normal.j]
@@ -75,18 +74,6 @@ r = "surround_replace"
 d = "surround_delete"
 a = "select_textobject_around"
 i = "select_textobject_inner"
-
-[keys.normal.g]
-m = "goto_line_start"
-i = "goto_line_end"
-n = "move_line_down"
-e = "move_line_up"
-G = "goto_last_line"
-h = "hover"
-
-j = "no_op"
-k = "no_op"
-l = "no_op"
 
 [keys.normal.space.w]
 m = "jump_view_left"
@@ -132,10 +119,11 @@ e = "scroll_up"
 
 # insert
 [keys.insert]
-C-h = "@<esc>"
+"," = { "," = "@<esc>" }
 
 # select
 [keys.select]
+"," = { "," = "@<esc>" }
 m = "extend_char_left"
 n = "extend_line_down"
 e = "extend_line_up"
@@ -151,10 +139,22 @@ N = "join_selections"
 E = "keep_selections"
 "A-E" = "remove_selections"
 
-C-h = "@<esc>"
 C-n = "@4n"
 C-e = "@4e"
 C-u = ["page_cursor_half_up", "align_view_center"]
 C-d = ["page_cursor_half_down", "align_view_center"]
-G = "goto_last_line"
 - = "select_all"
+
+[keys.select.j]
+m = "match_brackets"
+s = "surround_add"
+r = "surround_replace"
+d = "surround_delete"
+a = "select_textobject_around"
+i = "select_textobject_inner"
+
+# space
+[keys.normal.space]
+e = "hover"
+
+k = "no_op"
