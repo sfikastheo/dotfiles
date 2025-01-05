@@ -1,12 +1,15 @@
 -- lua/plugins/plugins.lua
 
 return {
+    --
+    -- Themes
+    --
     {
-        "AlexvZyl/nordic.nvim",
+        "cpea2506/one_monokai.nvim",
         lazy = false,
         priority = 1000,
         config = function()
-            require("plugins.themes.nordic")
+            require("plugins.themes.monokai")
         end,
     },
     --
@@ -14,7 +17,7 @@ return {
     -- Which-key
     {
         "folke/which-key.nvim",
-	    version = "^3",
+        version = "^3",
         event = "VeryLazy",
         init = function()
             vim.o.timeout = true
@@ -24,7 +27,7 @@ return {
     -- Telescope
     {
         "nvim-telescope/telescope.nvim",
-	    event = "VimEnter",
+        event = "VimEnter",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope-ui-select.nvim",
@@ -96,7 +99,13 @@ return {
     {
         "williamboman/mason-lspconfig.nvim",
         config = function()
-            require("plugins.lsp.mason-lspconfig")
+            require("mason-lspconfig").setup({
+                automatic_installation = false,
+                ensure_installed = {
+                    "lua_ls",
+                    "pylsp",
+                },
+            })
         end,
     },
     -- LSP Config
@@ -116,8 +125,17 @@ return {
     },
     -- fidget
     {
-      "j-hui/fidget.nvim",
-      opts = {},
+        "j-hui/fidget.nvim",
+        opts = {},
+    },
+    -- tiny-inline-diagnostic
+    {
+        "rachartier/tiny-inline-diagnostic.nvim",
+        event = "LspAttach",
+        priority = 1000,
+        config = function()
+            require('plugins.tiny-inline')
+        end
     },
     --
     -- Completions
@@ -156,20 +174,6 @@ return {
         end,
     },
     --
-    -- Debuggers
-    -- nvim-dap
-    --    {
-    --        "rcarriga/nvim-dap-ui",
-    --        dependencies = {
-    --            "mfussenegger/nvim-dap",
-    --            "nvim-neotest/nvim-nio",
-    --            "theHamsta/nvim-dap-virtual-text",
-    --    },
-    --        config = function()
-    --            require("plugins.dap")
-    --        end,
-    --    },
-    --
     -- Code Completion
     -- Copilot
     {
@@ -187,18 +191,6 @@ return {
         "lewis6991/gitsigns.nvim",
         config = function()
             require("plugins.gitsigns")
-        end,
-    },
-    -- Neogit
-    {
-        "TimUntersberger/neogit",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-telescope/telescope.nvim",
-            "sindrets/diffview.nvim",
-        },
-        config = function()
-            require("plugins.neogit")
         end,
     },
     --
@@ -222,35 +214,6 @@ return {
         event = { "BufReadPre", "BufNewFile" },
         config = function()
             require("plugins.mini-indent")
-        end,
-    },
-    --
-    -- AI Plugins
-    -- Avante
-    {
-        "yetone/avante.nvim",
-        event = "VeryLazy",
-        lazy = false,
-        version = false,
-        opts = {},
-        build = "make",
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-            "stevearc/dressing.nvim",
-            "nvim-lua/plenary.nvim",
-            "MunifTanjim/nui.nvim",
-            "nvim-tree/nvim-web-devicons",
-            "zbirenbaum/copilot.lua",
-            {
-                "MeanderingProgrammer/render-markdown.nvim",
-                opts = {
-                    file_types = { "markdown", "Avante" },
-                },
-                ft = { "markdown", "Avante" },
-            },
-        },
-        config = function()
-            require("plugins.avante")
         end,
     },
 }

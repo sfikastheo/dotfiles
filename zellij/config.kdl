@@ -2,7 +2,7 @@
 scroll_buffer_size 50000
 default_layout "compact"
 on_force_close "quit"
-mirror_session true
+mirror_session false
 simplified_ui false
 pane_frames false
 
@@ -20,21 +20,21 @@ scrollback_lines_to_serialize 10000
 
 // Themes
 themes {
-    nordic {
-        fg "#525252"
-        bg "#424242"
-        black "#101010"
-        red "#bf616a"
-        green "#a3be8c"
-        yellow "#ebcb8b"
-        blue "#81a1c1"
-        magenta "#b48ead"
-        cyan "#8fbcbb"
-        white "#727272"
-        orange "#d08770"
+    gruvbox_d {
+        black   "#32302f"
+        blue    "#7daea3"
+        cyan    "#89b482"
+        green   "#a9b665"
+        magenta "#d3869b"
+        red     "#ea6962"
+        white   "#d4be98"
+        yellow  "#d8a657"
+        orange  "#fe8019"
+        fg      "#d4be98"
+        bg      "#000000"
     }
 }
-theme "nordic"
+theme "gruvbox_d"
 
 plugins {
     tab-bar location="zellij:tab-bar"
