@@ -1,7 +1,5 @@
 -- lua/plugins/nordic.lua
 
-local sidebar_bg = '#1a1a1a'
-
 require 'nordic'.setup {
     on_palette = function(palette)
         palette.black0 = '#181818'
@@ -27,9 +25,7 @@ require 'nordic'.setup {
         highlights.Visual = { bg = palette.gray1 }
         highlights.VisualNOS = { bg = palette.gray2 }
         highlights.CursorLine = { bg = palette.black1 }
-        highlights.NvimTreeCursorLine = { bg = '#242424' }
-        highlights.NvimTreeNormal = { bg = sidebar_bg }
-        highlights.NvimTreeNormalNC = { bg = sidebar_bg }
+        highlights.FloatBorder = { fg = palette.gray4 }
     end,
     cursorline = {
         bold = false,
@@ -37,28 +33,18 @@ require 'nordic'.setup {
         theme = 'dark',
         blend = 0.85,
     },
-    noice = {
-        style = 'classic',
-    },
     telescope = {
         style = 'classic',
     },
-    leap = {
-        -- Dims the backdrop when using leap.
-        dim_backdrop = false,
-    },
-    ts_context = {
-        dark_background = true,
-    }
 }
 
 vim.cmd.colorscheme("nordic")
 
-{
-    "AlexvZyl/nordic.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-        require("plugins.themes.nordic")
-    end,
-}
+-- {
+--     "AlexvZyl/nordic.nvim",
+--     lazy = false,
+--     priority = 1000,
+--     config = function()
+--         require("plugins.themes.nordic")
+--     end,
+-- }

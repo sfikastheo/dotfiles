@@ -48,7 +48,7 @@ cmp.setup({
 cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline({
         ['<C-n>'] = { c = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }) },
-        ['<C-p>'] = { c = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }) },
+        ['<C-e>'] = { c = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }) },
     }),
     sources = cmp.config.sources({
         { name = 'path' },
@@ -59,7 +59,7 @@ cmp.setup.cmdline(':', {
 cmp.setup.cmdline('/', {
     mapping = cmp.mapping.preset.cmdline({
         ['<C-n>'] = { c = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }) },
-        ['<C-p>'] = { c = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }) },
+        ['<C-e>'] = { c = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }) },
     }),
     sources = {
         { name = 'buffer' }

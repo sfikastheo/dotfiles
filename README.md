@@ -3,7 +3,7 @@
 #### Hello there!
 These are my developing dotfiles. This is a work in progress and many things might change with time.
 My goal is to </b>gather/alter/create</b> configuration files for a simple but elegant exprience.
-The dotfiles are aimed to X11 systems, but many components would also work with Wayland.  
+The dotfiles are aimed to X11 systems, but many components would also work with Wayland.
 
 For my convenience, in this repository also included are some small tutorials on basic utilities and some personal customization files.
 ( Even if this in the best place for these... )
@@ -14,11 +14,11 @@ For my convenience, in this repository also included are some small tutorials on
     <ul>
         <li> Window Managers: <b>qtile</b> is my basic focus. Older bspwm & sxhkd configs are also present. </li>
         <li> Compositor: <b>picom</b> almost always accompanies a window manager. </li>
-        <li> Shell: <b>zsh & omyzsh</b>. </li> 
+        <li> Shell: <b>zsh & omyzsh</b>. </li>
         <li> Terminal: <b>kitty</b>, alternatively <b>alacritty & tmux</b> are adviced. </li>
         <li> Editor: <b>neovim</b> is adviced, for an automated configuration try AstroVim. </li>
         <li> File Manager: <b>vifm</b> is a good enough terminal based file manager. <br/>
-             For a GUI file manager any of: <b>nemo, thunar, pacman-fm</b> is more than fine. </li> 
+             For a GUI file manager any of: <b>nemo, thunar, pacman-fm</b> is more than fine. </li>
         <li> Notifications: <b>dunst</b> is more than adequate. Alternatively deadd looks promising. </li>
         <li> System Tray: <b>blueman, network-manager-applet, pasystray</b>. A brightness applet may be advised. </li>
         <li> Images: <b>feh</b> and <b>graphicsmagick</b> will suffice most of the basic needs. </li>
