@@ -8,7 +8,9 @@ local on_attach = function(_, bufnr)
     -- LSP Key mappings
     set("n", "<leader>k", vim.lsp.buf.hover, { desc = "Hover help", buffer = bufnr })
     set("n", "<leader>r", vim.lsp.buf.rename, { desc = "Rename symbol", buffer = bufnr })
+    set("n", "<leader>i", vim.diagnostic.open_float, { desc = "Debug help", buffer = bufnr })
 
+    set("n", "gh", vim.lsp.buf.hover, { desc = "[G]o [H]over", buffer = bufnr })
     set("n", "gd", vim.lsp.buf.definition, { desc = "[G]o to [D]efinition", buffer = bufnr })
     set("n", "gD", vim.lsp.buf.declaration, { desc = "[G]o to [D]eclaration", buffer = bufnr })
     set("n", "gi", vim.lsp.buf.implementation, { desc = "[G]o to [I]mplementation", buffer = bufnr })
@@ -49,7 +51,7 @@ end
 
 -- Diagnostic settings
 vim.diagnostic.config({
-    virtual_text = false, -- Disabled due to inline-diagnostic plugin
+    virtual_text = true,
     signs = true,
     underline = true,
     update_in_insert = true,

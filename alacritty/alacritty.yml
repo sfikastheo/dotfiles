@@ -1,0 +1,62 @@
+env:
+  TERM: xterm-256color
+
+font:
+  size: 10
+  normal:
+    family: "SpaceMono Nerd Font Mono"
+    style: "Regular"
+  bold:
+    family: "SpaceMono Nerd Font Mono"
+    style: "Bold"
+  italic:
+    family: "SpaceMono Nerd Font Mono"
+    style: "Italic"
+
+shell:
+  program: zsh
+  args: ["-l"]
+
+window:
+  padding:
+    x: 6
+    y: 0
+  opacity: 1.0
+  option_as_alt: Both
+
+scrolling:
+  history: 50000
+  multiplier: 3
+
+selection:
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+  save_to_clipboard: false
+
+hints:
+  alphabet: "ftluresdh"
+  enabled:
+    - regex: "(ipfs:|ipns:|magnet:|mailto:|https://|http://|file:|git://|ssh:|ftp://)[^\\u0000-\\u001F\\u007F-\\u009F<>\"\\s{-}\\^⟨⟩`]+"
+      command: "xdg-open"
+      hyperlinks: true
+      post_processing: true
+      persist: false
+      mouse:
+        enabled: true
+      binding:
+        key: H
+        mods: Alt
+
+key_bindings:
+  - { key: Y, mods: Alt, action: Copy }
+  - { key: P, mods: Alt, action: Paste }
+  - { key: Slash, mods: Alt, action: SearchForward }
+  - { key: Slash, mods: Alt|Shift, action: SearchBackward }
+  - { key: J, mods: Shift, mode: Vi|~Search, action: SearchPrevious }
+  - { key: V, mods: Alt|Shift, action: ToggleViMode }
+  - { key: L, mode: Vi|~Search, action: WordRightEnd }
+  - { key: H, mode: Vi|~Search, action: ToggleViMode }
+  - { key: J, mode: Vi|~Search, action: SearchNext }
+  - { key: M, mode: Vi|~Search, action: Left }
+  - { key: N, mode: Vi|~Search, action: Down }
+  - { key: E, mode: Vi|~Search, action: Up }
+  - { key: I, mode: Vi|~Search, action: Right }
