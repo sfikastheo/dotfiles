@@ -39,9 +39,15 @@ alias md='mkdir -p'
 
 # lsd
 if [[ -x "$(command -v lsd)" ]]; then
-    alias ls='lsd -a'
-    alias la='lsd -la'
+    alias ls='lsd'
+    alias ll='lsd -lg'
+    alias la='lsd -lgA'
     alias lt='lsd --tree'
+fi
+
+# lazygit
+if [[ -x "$(command -v lazygit)" ]]; then
+    alias lg='lazygit'
 fi
 
 # fzf -- dependancy: ripgrep, fd-find
@@ -68,23 +74,7 @@ fi
 
 # zoxide
 if [[ -x "$(command -v zoxide)" ]]; then
-    eval "$(zoxide init --cmd cd zsh)"
-fi
-
-# Zellij
-if [[ -x "$(command -v zellij)" ]] && [[ -n ${ZELLIJ} ]]; then
-    zellij_update_tab_name() {
-        local cwd="$(pwd)"
-        if [[ "${cwd}" == "${HOME}" ]]; then
-            cwd="~"
-        else
-            cwd="$(basename "${cwd}")"
-        fi
-        command nohup zellij action rename-tab "${cwd}" >/dev/null 2>&1
-    }
-
-    zellij_update_tab_name
-    chpwd_functions+=(zellij_update_tab_name)
+    eval "$(zoxide init --cmd to zsh)"
 fi
 
 ######################## Zinit ########################
@@ -110,16 +100,11 @@ autoload -U compinit && compinit
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
     PATH="/opt/homebrew/bin:$PATH"
+else
+    alias open='xdg-open'
 fi
 
 ######################## WLD ########################
 
 alias claude="~/.claude/local/claude"
-
 source "$HOME/Projects/secrets/wldrc"
-sshw () {
-    ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null worldcoin@$1
-}
-
-# bun completions
-[ -s "/home/theo/.bun/_bun" ] && source "/home/theo/.bun/_bun"
