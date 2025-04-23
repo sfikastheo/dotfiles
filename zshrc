@@ -37,55 +37,36 @@ alias md='mkdir -p'
 
 ######################## Tools ########################
 
-# lsd
-if [[ -x "$(command -v lsd)" ]]; then
-    alias ls='lsd -a'
-    alias la='lsd -la'
-    alias lt='lsd --tree'
-fi
+if_exists() {
+    local cmd="$1"
+    local action="$2"
 
-# fzf -- dependancy: ripgrep, fd-find
-if [[ -x "$(command -v fzf)" ]]; then
-    export FZF_DEFAULT_COMMAND='rg --files \
-        --hidden --follow --no-ignore --glob "!.git/*"'
+    if [[ -x "$(command -v "$cmd")" ]]; then
+        eval "$action"
+    fi
+}
+
+if_exists fzf "
+    export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --no-ignore --glob \".git/*\"'
     export FZF_DEFAULT_OPTS='--height 40% --reverse'
-    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-    export FZF_ALT_C_COMMAND="fd --type d"
-    export FZF_CTRL_R_OPTS="--preview 'echo {}' \
-        --preview-window down:3:hidden:wrap"
+    export FZF_CTRL_T_COMMAND=\"\$FZF_DEFAULT_COMMAND\"
+    export FZF_ALT_C_COMMAND='fd --type d'
+    export FZF_CTRL_R_OPTS='--preview \"echo {}\" --preview-window down:3:hidden:wrap'
     source <(fzf --zsh)
-fi
+"
 
-# startship
-if [[ -x "$(command -v starship)" ]]; then
-    eval "$(starship init zsh)"
-fi
+if_exists lsd '
+    alias ls="lsd"
+    alias ll="lsd -lg"
+    alias la="lsd -lgA"
+    alias lt="lsd --tree"
+'
 
-# direnv
-if [[ -x "$(command -v direnv)" ]]; then
-    eval "$(direnv hook zsh)"
-fi
-
-# zoxide
-if [[ -x "$(command -v zoxide)" ]]; then
-    eval "$(zoxide init --cmd cd zsh)"
-fi
-
-# Zellij
-if [[ -x "$(command -v zellij)" ]] && [[ -n ${ZELLIJ} ]]; then
-    zellij_update_tab_name() {
-        local cwd="$(pwd)"
-        if [[ "${cwd}" == "${HOME}" ]]; then
-            cwd="~"
-        else
-            cwd="$(basename "${cwd}")"
-        fi
-        command nohup zellij action rename-tab "${cwd}" >/dev/null 2>&1
-    }
-
-    zellij_update_tab_name
-    chpwd_functions+=(zellij_update_tab_name)
-fi
+if_exists zoxide "$(zoxide init --cmd to zsh)"
+if_exists starship "$(starship init zsh)"
+if_exists direnv "$(direnv hook zsh)"
+if_exists lazygit 'alias lg="lazygit"'
+if_exists tmux 'alias tmux="tmux -2"'
 
 ######################## Zinit ########################
 
@@ -110,16 +91,11 @@ autoload -U compinit && compinit
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
     PATH="/opt/homebrew/bin:$PATH"
+else
+    alias open='xdg-open'
 fi
 
 ######################## WLD ########################
 
-alias claude="~/.claude/local/claude"
-
 source "$HOME/Projects/secrets/wldrc"
-sshw () {
-    ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null worldcoin@$1
-}
-
-# bun completions
-[ -s "/home/theo/.bun/_bun" ] && source "/home/theo/.bun/_bun"
+alias claude="/home/sfikastheo/.claude/local/claude"

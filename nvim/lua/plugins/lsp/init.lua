@@ -1,38 +1,41 @@
 -- lua/plugins/lsp/init.lua
 local lspconfig = require("lspconfig")
 
--- Utility function for common setup tasks
+-- Set up LSPs + keymaps
+local set = vim.keymap.set
+local base_opts = { noremap = true, silent = true }
+local function set_opts(desc, bufnr)
+    return vim.tbl_extend("force", base_opts, { desc = desc, buffer = bufnr })
+end
+
 local on_attach = function(_, bufnr)
-    local set = vim.keymap.set
+    set("n", "<leader>j", vim.diagnostic.open_float, set_opts("Hover Diagnostics", bufnr))
+    set("n", "<leader>k", vim.lsp.buf.hover, set_opts("Hover help", bufnr))
 
-    -- LSP Key mappings
-    set("n", "<leader>k", vim.lsp.buf.hover, { desc = "Hover help", buffer = bufnr })
-    set("n", "<leader>r", vim.lsp.buf.rename, { desc = "Rename symbol", buffer = bufnr })
-
-    set("n", "gd", vim.lsp.buf.definition, { desc = "[G]o to [D]efinition", buffer = bufnr })
-    set("n", "gD", vim.lsp.buf.declaration, { desc = "[G]o to [D]eclaration", buffer = bufnr })
-    set("n", "gi", vim.lsp.buf.implementation, { desc = "[G]o to [I]mplementation", buffer = bufnr })
-    set("n", "gy", vim.lsp.buf.type_definition, { desc = "[G]o to type definition", buffer = bufnr })
-    set("n", "gI", vim.lsp.buf.incoming_calls, { desc = "[G]o to [I]ncoming calls", buffer = bufnr })
-    set("n", "gO", vim.lsp.buf.outgoing_calls, { desc = "[G]o to [O]utgoing calls", buffer = bufnr })
-
-    set("n", "gr", vim.lsp.buf.references, { desc = "[G]o to [R]eferences", buffer = bufnr })
-    set("n", "ga", vim.lsp.buf.code_action, { desc = "[G]o to code [A]ctions", buffer = bufnr })
-
-    set("n", "gl", vim.diagnostic.open_float, { desc = "[G]o to [L]ine Diagnostics", buffer = bufnr })
-    set("n", "gL", vim.diagnostic.setloclist, { desc = "Send Diagnostics to [L]oclist", buffer = bufnr })
-    set("n", "gQ", vim.diagnostic.setqflist, { desc = "Send Diagnostics to [Q]uickfix", buffer = bufnr })
-    set("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous Diagnostic", buffer = bufnr })
-    set("n", "]d", vim.diagnostic.goto_next, { desc = "Next Diagnostic", buffer = bufnr })
+    set("n", "gq", vim.diagnostic.setqflist, set_opts("Send Diagnostics to Quickfix", bufnr))
+    set("n", "ga", vim.lsp.buf.code_action, set_opts("Go to Code Actions", bufnr))
+    set("n", "gD", vim.lsp.buf.declaration, set_opts("Go to Declaration", bufnr))
+    set("n", "[d", vim.diagnostic.goto_prev, set_opts("Previous Diagnostic", bufnr))
+    set("n", "]d", vim.diagnostic.goto_next, set_opts("Next Diagnostic", bufnr))
+    set("n", "gr", vim.lsp.buf.references, set_opts("Go to References", bufnr))
 end
 
 local servers = {
-    lua_ls = {},
+    ruff = {},
     gopls = {},
     ts_ls = {},
+    lua_ls = {},
     pylsp = require("plugins.lsp.pylsp"),
+    clangd = require("plugins.lsp.clangd"),
     rust_analyzer = require("plugins.lsp.rust_analyzer"),
 }
+
+-- Add borders to floating windows
+local orig_open = vim.lsp.util.open_floating_preview
+vim.lsp.util.open_floating_preview = function(contents, syntax, opts, ...)
+    opts = vim.tbl_extend("force", opts or {}, { border = "rounded" })
+    return orig_open(contents, syntax, opts, ...)
+end
 
 -- Setup LSP servers
 for name, config in pairs(servers) do
@@ -49,7 +52,7 @@ end
 
 -- Diagnostic settings
 vim.diagnostic.config({
-    virtual_text = false, -- Disabled due to inline-diagnostic plugin
+    virtual_text = true,
     signs = true,
     underline = true,
     update_in_insert = true,

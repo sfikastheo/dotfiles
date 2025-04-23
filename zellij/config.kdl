@@ -1,6 +1,6 @@
 // Settings
 scroll_buffer_size 50000
-default_layout "compact"
+default_layout "default"
 on_force_close "quit"
 mirror_session false
 simplified_ui false
@@ -63,8 +63,6 @@ keybinds clear-defaults=true {
     }
     move {
         bind "Ctrl c" { SwitchToMode "Normal"; }
-        bind "j" "Tab" { MovePane; SwitchToMode "Normal"; }
-        bind "k" { MovePaneBackwards; SwitchToMode "Normal"; }
         bind "m" "Left" { MovePane "Left"; SwitchToMode "Normal"; }
         bind "n" "Down" { MovePane "Down"; SwitchToMode "Normal"; }
         bind "e" "Up" { MovePane "Up"; SwitchToMode "Normal"; }
@@ -72,11 +70,11 @@ keybinds clear-defaults=true {
     }
     search {
         bind "Ctrl c" { SwitchToMode "Normal"; }
+        bind "Ctrl e" { EditScrollback; SwitchToMode "Normal"; }
         bind "/" { SwitchToMode "EnterSearch"; SearchInput 0; }
         bind "c" { SearchToggleOption "CaseSensitivity"; }
         bind "w" { SearchToggleOption "Wrap"; }
         bind "o" { SearchToggleOption "WholeWord"; }
-        bind "v" { EditScrollback; SwitchToMode "Normal"; }
         bind "d" { HalfPageScrollDown; }
         bind "u" { HalfPageScrollUp; }
         bind "k" { Search "down"; }
@@ -97,31 +95,37 @@ keybinds clear-defaults=true {
     tmux {
         // Switch to modes
         bind "Ctrl c" { SwitchToMode "Normal"; }
+        bind "Ctrl e" { EditScrollback; SwitchToMode "Normal"; }
+        bind "Ctrl s" { SwitchToMode "Search"; }
         bind "r" { SwitchToMode "Resize"; }
         bind "w" { SwitchToMode "Move"; }
-        bind "s" { SwitchToMode "Search"; }
         bind "/" { SwitchToMode "EnterSearch"; SearchInput 0; }
-        bind "v" { EditScrollback; SwitchToMode "Normal"; }
 
         // General
+        bind "f" { TogglePaneEmbedOrFloating; SwitchToMode "Normal"; }
         bind "g" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
         bind "t" { ToggleFloatingPanes; SwitchToMode "Normal"; }
         bind "x" { CloseFocus; SwitchToMode "Normal"; }
         bind "D" { Detach; }
 
+        // Stacking
+        bind "F" { TogglePaneFrames; SwitchToMode "Normal"; }
+        bind "." { NextSwapLayout; SwitchToMode "Normal"; }
+        bind "," { PreviousSwapLayout; SwitchToMode "Normal"; }
+
         // Panes
-        bind "e" { MoveFocus "Up"; SwitchToMode "Normal"; }
-        bind "k" { NewPane "Down"; SwitchToMode "Normal"; }
-        bind "j" { NewPane "Right"; SwitchToMode "Normal"; }
+        bind "s" { NewPane "Down"; SwitchToMode "Normal"; }
+        bind "v" { NewPane "Right"; SwitchToMode "Normal"; }
         bind "m" { MoveFocus "Left"; SwitchToMode "Normal"; }
         bind "n" { MoveFocus "Down"; SwitchToMode "Normal"; }
+        bind "e" { MoveFocus "Up"; SwitchToMode "Normal"; }
         bind "i" { MoveFocus "Right"; SwitchToMode "Normal"; }
 
         // Tabs
         bind "d" { GoToPreviousTab; SwitchToMode "Normal"; }
         bind "u" { GoToNextTab; SwitchToMode "Normal"; }
         bind "c" { NewTab; SwitchToMode "Normal"; }
-        bind "," { SwitchToMode "RenameTab"; }
+        bind "Ctrl r" { SwitchToMode "RenameTab"; }
         bind ">" { MoveTab "Right"; }
         bind "<" { MoveTab "Left"; }
 
@@ -142,10 +146,6 @@ keybinds clear-defaults=true {
                 floating true
                 move_to_focused_tab true
             };
-            SwitchToMode "Normal";
-        }
-        bind "f" {
-            LaunchOrFocusPlugin "zellij:strider";
             SwitchToMode "Normal";
         }
     }

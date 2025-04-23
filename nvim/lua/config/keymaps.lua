@@ -19,7 +19,7 @@ vim.g.mapleader = " "
 set("n", "<leader>/", "<Cmd>noh<CR>", set_opts("Clear highlights"))
 
 -- Escape mappings
-set({ "n", "v", "o" }, "<C-c>", "<Esc>", set_opts("Esc"))
+set({ "n", "v", "o", "i" }, "<C-c>", "<Esc>", set_opts("Esc"))
 set({ "v", "o", "i" }, ",,", "<Esc>", set_opts("Esc"))
 set("t", ",,", "<C-\\><C-n>", set_opts("Esc"))
 

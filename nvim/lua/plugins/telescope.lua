@@ -63,8 +63,6 @@ telescope.setup({
                 ["<C-w>s"] = actions.select_horizontal,
                 ["<C-n>"] = actions.move_selection_next,
                 ["<C-e>"] = actions.move_selection_previous,
-                ["<C-j>"] = actions.results_scrolling_left,
-                ["<C-k>"] = actions.results_scrolling_right,
             },
             n = {
                 ["<C-c>"] = actions.close,
@@ -73,8 +71,6 @@ telescope.setup({
                 ["<C-w>s"] = actions.select_horizontal,
                 ["<C-n>"] = actions.move_selection_next,
                 ["<C-e>"] = actions.move_selection_previous,
-                ["<C-j>"] = actions.results_scrolling_left,
-                ["<C-k>"] = actions.results_scrolling_right,
             },
         },
     },
@@ -110,29 +106,35 @@ local function set_opts(desc)
 end
 
 -- General bindings
-set("n", "<leader>fl", builtin.loclist, set_opts("[F]ind [L]ocation list"))
-set("n", "<leader>fR", builtin.registers, set_opts("[F]ind [R]egisters"))
-set("n", "<leader>fj", builtin.jumplist, set_opts("[F]ind [J]ump list"))
-set("n", "<leader>fc", builtin.commands, set_opts("[F]ind [C]ommands"))
-set("n", "<leader>fk", builtin.keymaps, set_opts("[F]ind [K]eymaps"))
-set("n", "<leader>fh", builtin.help_tags, set_opts("[F]ind [H]elp"))
-set("n", "<leader>fm", builtin.marks, set_opts("[F]ind [M]arks"))
+set("n", "<leader>fl", builtin.loclist, set_opts("Find Location list"))
+set("n", "<leader>fR", builtin.registers, set_opts("Find Registers"))
+set("n", "<leader>fj", builtin.jumplist, set_opts("Find Jump list"))
+set("n", "<leader>fc", builtin.commands, set_opts("Find Commands"))
+set("n", "<leader>fk", builtin.keymaps, set_opts("Find Keymaps"))
+set("n", "<leader>fh", builtin.help_tags, set_opts("Find Help"))
+set("n", "<leader>fm", builtin.marks, set_opts("Find Marks"))
 
 set("n", "<leader>fF", function() builtin.find_files(with("default", vim.fn.getcwd())) end,
-    set_opts("[F]ind [F]iles in CWD"))
+    set_opts("Find Files in CWD"))
 set("n", "<leader>fG", function() builtin.live_grep(with("default", vim.fn.getcwd())) end,
-    set_opts("[F]ind by [G]rep in CWD"))
-set("n", "<leader>fq", function() builtin.quickfix(theme("dropdown")) end, set_opts("[F]ind [Q]uickfix list"))
-set("n", "<leader>ff", function() builtin.find_files(with("default")) end, set_opts("[F]ind [F]iles"))
-set("n", "<leader>fg", function() builtin.live_grep(with("default")) end, set_opts("[F]ind by [G]rep"))
+    set_opts("Find by Grep in CWD"))
+set("n", "<leader>fq", function() builtin.quickfix(theme("dropdown")) end, set_opts("Find Quickfix"))
+set("n", "<leader>ff", function() builtin.find_files(with("default")) end, set_opts("Find Files"))
+set("n", "<leader>fg", function() builtin.live_grep(with("default")) end, set_opts("Find by Grep"))
 set("n", "<leader>.", function() builtin.find_files(with("ivy")) end, set_opts("Find Files"))
 set("n", "<leader>,", function() builtin.buffers(theme("ivy")) end, set_opts("Find Buffers"))
 
 -- LSP-related
-set("n", "<leader>fi", builtin.lsp_incoming_calls, set_opts("[F]ind [I]ncoming calls"))
-set("n", "<leader>fo", builtin.lsp_outgoing_calls, set_opts("[F]ind [O]utgoing calls"))
-set("n", "<leader>fr", builtin.lsp_references, set_opts("[F]ind [R]eferences"))
-set("n", "<leader>fd", builtin.diagnostics, set_opts("[F]ind [D]iagnostics"))
+set("n", "gS", builtin.lsp_workspace_symbols, set_opts("Go to Workspace Symbols"))
+set("n", "gy", builtin.lsp_type_definitions, set_opts("Go to Type Definition"))
+set("n", "gi", builtin.lsp_implementations, set_opts("Go to Implementation"))
+set("n", "gI", builtin.lsp_incoming_calls, set_opts("Go to Incoming calls"))
+set("n", "gO", builtin.lsp_outgoing_calls, set_opts("Go to Outgoing calls"))
+set("n", "gs", builtin.lsp_document_symbols, set_opts("Go to Symbols"))
+set("n", "gd", builtin.lsp_definitions, set_opts("Go to Definition"))
+
+set("n", "<leader>fr", builtin.lsp_references, set_opts("Find References"))
+set("n", "<leader>fd", builtin.diagnostics, set_opts("Find Diagnostics"))
 
 -- Load extensions
 telescope.load_extension("ui-select")

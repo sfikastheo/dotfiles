@@ -59,6 +59,7 @@ vim.opt.completeopt = { "menu", "noselect" }
 vim.opt.clipboard:append("unnamedplus")
 vim.opt.termguicolors = true
 vim.opt.concealcursor = 'nc'
+vim.opt.langremap = true
 vim.opt.swapfile = false
 vim.opt.conceallevel = 0
 vim.opt.undofile = true

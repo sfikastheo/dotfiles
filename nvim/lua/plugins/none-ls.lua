@@ -6,11 +6,8 @@ local diagnostics = null.builtins.diagnostics
 -- LSP intergration to Linters-Formatters
 null.setup({
     sources = {
-        -- Lua
         formatter.stylua,
-        -- Web
         formatter.prettier,
-        -- Python
         formatter.isort,
         formatter.black,
         diagnostics.mypy,

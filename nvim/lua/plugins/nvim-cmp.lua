@@ -16,7 +16,6 @@ cmp.setup({
         ["<C-e>"] = cmp.mapping.select_prev_item(),
         ["<C-u>"] = cmp.mapping.scroll_docs(-4),
         ["<C-d>"] = cmp.mapping.scroll_docs(4),
-        ["<C-c>"] = cmp.mapping.abort(),
         ["<C-l>"] = cmp.mapping(function()
             if ls.expand_or_locally_jumpable() then
                 ls.expand_or_jump()
@@ -48,7 +47,7 @@ cmp.setup({
 cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline({
         ['<C-n>'] = { c = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }) },
-        ['<C-p>'] = { c = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }) },
+        ['<C-e>'] = { c = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }) },
     }),
     sources = cmp.config.sources({
         { name = 'path' },
@@ -59,7 +58,7 @@ cmp.setup.cmdline(':', {
 cmp.setup.cmdline('/', {
     mapping = cmp.mapping.preset.cmdline({
         ['<C-n>'] = { c = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }) },
-        ['<C-p>'] = { c = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }) },
+        ['<C-e>'] = { c = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }) },
     }),
     sources = {
         { name = 'buffer' }

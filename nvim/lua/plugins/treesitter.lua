@@ -2,57 +2,43 @@
 require("nvim-treesitter.configs").setup({
     -- Parsers to install:
     ensure_installed = {
-        -- Assembly
-        "asm",
-        "disassembly",
-        -- Linux
-        "devicetree",
-        "bash",
-        "jq",
-        "make",
-        "pem",
-        "strace",
-        -- Programming
         "c",
-        "cpp",
-        "cuda",
-        "cmake",
         "go",
         "lua",
-        "java",
         "nix",
-        "python",
-        "rust",
-        "ron",
         "zig",
-        -- Programming adjacent
-        "json",
-        "csv",
-        -- Web
+        "cpp",
+        "bash",
+        "make",
+        "rust",
+        "cuda",
+        "cmake",
+        "java",
+        "python",
+
         "css",
-        "html",
-        "javascript",
-        "scss",
-        "typescript",
         "xml",
-        -- Configuration files
+        "html",
+        "scss",
+        "javascript",
+        "typescript",
+
         "ini",
-        "dockerfile",
         "rasi",
         "yaml",
         "toml",
-        -- Other
-        "comment",
+        "dockerfile",
+
+        "csv",
+        "json",
         "diff",
-        "git_config",
-        "git_rebase",
+        "comment",
+        "markdown",
         "gitcommit",
         "gitignore",
-        -- Notes
-        "markdown",
+        "git_config",
+        "git_rebase",
         "markdown_inline",
-        -- Plugins
-        "jsonc", -- JSON with comments
     },
 
     sync_install = false,

@@ -64,28 +64,16 @@ return {
         end,
         event = "InsertEnter",
     },
+    -- mini-surround
+    {
+        'echasnovski/mini.surround',
+        version = '*',
+        config = function()
+            require("mini.surround").setup()
+        end,
+    },
     --
     -- LSPs - Formatters - Linters
-    -- Mason
-    {
-        "williamboman/mason.nvim",
-        config = function()
-            require("plugins.lsp.mason")
-        end,
-    },
-    -- Mason LSP Config
-    {
-        "williamboman/mason-lspconfig.nvim",
-        config = function()
-            require("mason-lspconfig").setup({
-                automatic_installation = false,
-                ensure_installed = {
-                    "lua_ls",
-                    "pylsp",
-                },
-            })
-        end,
-    },
     -- LSP Config
     {
         "neovim/nvim-lspconfig",
@@ -114,12 +102,9 @@ return {
             -- Connects cmp to LSP
             "hrsh7th/cmp-nvim-lsp",
             {
-                -- Snipset Engine
                 "L3MON4D3/LuaSnip",
                 dependencies = {
-                    -- Connects cmp with sources
                     "saadparwaiz1/cmp_luasnip",
-                    -- Snipset Provider
                     "rafamadriz/friendly-snippets",
                 },
             },
