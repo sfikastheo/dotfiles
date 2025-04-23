@@ -7,11 +7,11 @@ copilot.setup({
         enabled = true,
         auto_trigger = true,
         hide_during_completion = true,
-        debounce = 75,
+        debounce = 250,
         keymap = {
             accept = "<C-y>",
-            next = "<C-j>",
-            prev = "<C-k>",
+            next = "<C-n>",
+            prev = "<C-e>",
             dismiss = "<C-c>"
         },
     },

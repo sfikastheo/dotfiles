@@ -6,10 +6,66 @@
 // To see all of Zed's default settings without changing your
 // custom settings, run `zed: open default settings`
 {
+  // Editor Behavior
+  "ssh_connections": [
+    {
+      "host": "worldcoin-MINI-1.local",
+      "username": "worldcoin",
+      "projects": [
+        {
+          "paths": [
+            "/home/worldcoin/android"
+          ]
+        }
+      ]
+    }
+  ],
   "vim_mode": true,
-  "ui_font_size": 18,
-  "buffer_font_size": 18,
+  "confirm_quit": true,
+  "base_keymap": "Emacs",
   "relative_line_numbers": true,
+  "line_indicator_format": "short",
+  "show_edit_predictions": true,
+
+  // Vim Configuration
+  "vim": {
+    "toggle_relative_line_numbers": true,
+    "use_system_clipboard": "always"
+  },
+
+  // UI Fonts and Appearance
+  "buffer_font_family": "SpaceMono Nerd Font Mono",
+  "buffer_font_size": 12,
+  "ui_font_family": "SpaceMono Nerd Font Mono",
+  "ui_font_size": 12,
+  "tab_bar": { "show": true },
+  "scrollbar": { "show": "auto" },
+
+  // Theme Configuration
+  "theme": {
+    "mode": "system",
+    "light": "Arrakis Day",
+    "dark": "Arrakis Night"
+  },
+
+  // UI Layout and Panels
+  "toolbar": {
+    "breadcrumbs": false,
+    "quick_actions": false,
+    "selections_menu": false
+  },
+  "gutter": {
+    "line_numbers": true,
+    "code_actions": false,
+    "runnables": false,
+    "folds": true
+  },
+  "indent_guides": {
+    "enabled": true,
+    "coloring": "fixed"
+  },
+
+  // Diagnostics and Error Handling
   "diagnostics": {
     "inline": {
       "enabled": true,
@@ -20,85 +76,84 @@
     },
     "include_warnings": true
   },
-  "theme": {
-    "mode": "system",
-    "light": "One Light",
-    "dark": "Gruvbox Dark Hard"
+
+  // AI Assistant Configuration
+  "features": {
+    "edit_prediction_provider": "copilot"
   },
-  "tabs": {
-    "file_icons": true,
-    "git_status": true
-  },
-  "file_scan_exclusions": [
-    "**/.git", // Git
-    "**/.hg", // Mercurial
-    "**/.jj", // Jujutsu
-    "**/.DS_Store" // macOS
-  ],
-  "indent_guides": {
-    "enabled": true,
-    "coloring": "fixed"
-  },
-  "gutter": {
-    "line_numbers": true,
-    "code_actions": false,
-    "runnables": false,
-    "folds": true
-  },
-  "notification_panel": {
-    "dock": "left",
-    "button": false
-  },
-  "line_indicator_format": "short",
-  "task": {
-    "show_status_indicator": false
-  },
-  "terminal": {
-    "shell": {
-      "program": "zsh"
-    },
-    "dock": "right",
-    "default_width": 640,
-    "default_height": 320,
-    "working_directory": "current_project_directory",
-    "blinking": "terminal_controlled",
-    "cursor_shape": null,
-    "alternate_scroll": "off",
-    "option_as_meta": false,
-    "copy_on_select": true,
-    "button": true,
-    "line_height": "standard",
-    "toolbar": {
-      "title": false,
-      "breadcrumbs": false
-    }
-  },
-  "search": {
-    "case_sensitive": true
-  },
-  "telemetry": {
-    "diagnostics": false,
-    "metrics": false
-  },
-  "assistant": {
+  "agent": {
+    "always_allow_tool_actions": true,
+    "default_profile": "write",
     "default_model": {
       "provider": "zed.dev",
       "model": "claude-3-7-sonnet-latest"
     },
-    "version": "2"
+    "version": "2",
+    "enabled": true
   },
-  "outline_panel": {
-    "button": false
+
+  // Language Server Configuration
+  "lsp": {
+    "nil": {
+      "initialization_options": {
+        "formatting": {
+          "command": ["nixfmt"]
+        }
+      }
+    },
+    "rust-analyzer": {
+      "initialization_options": {
+        "checkOnSave": {
+          "command": "clippy"
+        }
+      }
+    }
   },
-  "collaboration_panel": {
-    "button": false
+
+  // Language-Specific Configuration
+  "languages": {
+    "zig": {
+      "formatter": {
+        "external": {
+          "command": "zig fmt"
+        }
+      }
+    },
+    "Rust": {
+      "formatter": {
+        "external": {
+          "command": "cargo fmt"
+        }
+      }
+    }
   },
-  "chat_panel": {
-    "button": "never"
-  },
-  "toolbar": {
-    "breadcrumbs": false,
-    "quick_actions": false,
-    "selections_menu": false
+
+  // Extensions
+  "auto_install_extensions": {
+    // Themes
+    "git-firefly": true,
+    "melange": true,
+    "zedokai": true,
+    // Languages
+    "terraform": true,
+    "dockerfile": true,
+    "basher": true,
+    "csharp": true,
+    "fsharp": true,
+    "graphql": true,
+    "lua": true,
+    "make": true,
+    "nim": true,
+    "nix": true,
+    "proto": true,
+    "scheme": true,
+    "scss": true,
+    "sql": true,
+    "html": true,
+    "ini": true,
+    "zig": true,
+    "xml": true,
+    "latex": true,
+    "toml": true
   }
 }
