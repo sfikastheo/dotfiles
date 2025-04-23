@@ -64,6 +64,14 @@ return {
         end,
         event = "InsertEnter",
     },
+    -- mini-surround
+    {
+        'echasnovski/mini.surround',
+        version = '*',
+        config = function()
+            require("mini.surround").setup()
+        end,
+    },
     --
     -- LSPs - Formatters - Linters
     -- Mason

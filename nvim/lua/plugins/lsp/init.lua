@@ -49,7 +49,7 @@ end
 
 -- Diagnostic settings
 vim.diagnostic.config({
-    virtual_text = false, -- Disabled due to inline-diagnostic plugin
+    virtual_text = true,
     signs = true,
     underline = true,
     update_in_insert = true,
