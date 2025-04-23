@@ -156,5 +156,4 @@ i = "select_textobject_inner"
 # space
 [keys.normal.space]
 e = "hover"
-
 k = "no_op"

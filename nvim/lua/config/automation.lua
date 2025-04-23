@@ -64,3 +64,28 @@ local function shellcheck_current_buffer()
 end
 
 vim.api.nvim_create_user_command("ShellCheck", shellcheck_current_buffer, {})
+
+-- Write file with elevated permisisons
+local function sudo_write_buffer()
+    local filename = vim.fn.expand('%:p')
+    local temp_filename = vim.fn.tempname()
+    assert(io.open(temp_filename, "w+"), "Failed to create temporary file")
+    vim.cmd('write!' .. temp_filename)
+
+    local sudo_password = vim.fn.inputsecret("Enter sudo password: ")
+    local cmd = 'echo ' .. vim.fn.shellescape(sudo_password) ..
+                ' | sudo -S tee ' .. vim.fn.shellescape(filename) ..
+                ' < ' .. vim.fn.shellescape(temp_filename) .. ' > /dev/null'
+
+    vim.fn.system(cmd)
+    vim.cmd('edit!')
+end
+
+vim.api.nvim_create_user_command("SudoWrite", sudo_write_buffer, {})
+
+-- Set background to light
+local function set_light_background()
+    vim.cmd("set background=light")
+end
+
+vim.api.nvim_create_user_command("BgLight", set_light_background, {})
