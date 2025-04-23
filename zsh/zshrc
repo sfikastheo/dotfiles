@@ -39,8 +39,9 @@ alias md='mkdir -p'
 
 # lsd
 if [[ -x "$(command -v lsd)" ]]; then
-    alias ls='lsd -a'
-    alias la='lsd -la'
+    alias ls='lsd'
+    alias ll='lsd -lg'
+    alias la='lsd -lgA'
     alias lt='lsd --tree'
 fi
 
@@ -74,13 +75,22 @@ fi
 # Zellij
 if [[ -x "$(command -v zellij)" ]] && [[ -n ${ZELLIJ} ]]; then
     zellij_update_tab_name() {
-        local cwd="$(pwd)"
-        if [[ "${cwd}" == "${HOME}" ]]; then
-            cwd="~"
+      if [[ -n $ZELLIJ ]]; then
+        tab_name=''
+        if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+            tab_name+="$(basename "$(git rev-parse --show-toplevel)")/"
+            tab_name+="$(git rev-parse --show-prefix)"
+            tab_name="${tab_name%/}"
         else
-            cwd="$(basename "${cwd}")"
+            tab_name=$PWD
+                if [[ "$tab_name" == "$HOME" ]]; then
+                tab_name="~"
+                 else
+                tab_name="${tab_name##*/}"
+                 fi
         fi
-        command nohup zellij action rename-tab "${cwd}" >/dev/null 2>&1
+        command nohup zellij action rename-tab "$tab_name" >/dev/null 2>&1
+      fi
     }
 
     zellij_update_tab_name
@@ -110,6 +120,8 @@ autoload -U compinit && compinit
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
     PATH="/opt/homebrew/bin:$PATH"
+else
+    alias open='xdg-open'
 fi
 
 ######################## WLD ########################
@@ -120,6 +132,3 @@ source "$HOME/Projects/secrets/wldrc"
 sshw () {
     ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null worldcoin@$1
 }
-
-# bun completions
-[ -s "/home/theo/.bun/_bun" ] && source "/home/theo/.bun/_bun"
