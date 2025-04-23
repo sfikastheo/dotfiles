@@ -29,3 +29,7 @@ local plugins = require("plugins.plugins")
 local opts = {}
 
 require("lazy").setup(plugins, opts)
+
+-- Colorscheme
+vim.o.background = "light"
+vim.cmd.colorscheme("solarized")
