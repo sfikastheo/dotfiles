@@ -1,4 +1,3 @@
--- lua/plugins/cmp.lua
 local cmp = require("cmp")
 local ls = require("luasnip")
 

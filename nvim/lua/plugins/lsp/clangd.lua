@@ -1,5 +1,3 @@
--- lua/plugins/lsp/clangd.lua
-
 return {
     filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },
     settings = {

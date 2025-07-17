@@ -1,5 +1,3 @@
--- Automations
-
 -- Make created terminals modifiable & Enter on Insert
 vim.api.nvim_create_autocmd("TermOpen", {
     pattern = "*",

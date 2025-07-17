@@ -1,8 +1,6 @@
--- lua/plugins/gitsigns.lua
 local gitsigns = require("gitsigns")
 
 local base_opts = { noremap = true, silent = true }
-
 local function set_opts(desc)
     local extended_opts = vim.tbl_extend("force", base_opts, { desc = desc })
     return extended_opts

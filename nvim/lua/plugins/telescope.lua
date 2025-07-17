@@ -1,5 +1,3 @@
--- lua/plugins/telescope.lua
-
 local telescope = require("telescope")
 local themes = require("telescope.themes")
 local builtin = require("telescope.builtin")
@@ -132,8 +130,8 @@ set("n", "gI", builtin.lsp_incoming_calls, set_opts("Go to Incoming calls"))
 set("n", "gO", builtin.lsp_outgoing_calls, set_opts("Go to Outgoing calls"))
 set("n", "gs", builtin.lsp_document_symbols, set_opts("Go to Symbols"))
 set("n", "gd", builtin.lsp_definitions, set_opts("Go to Definition"))
+set("n", "gr", builtin.lsp_references, set_opts("Find References"))
 
-set("n", "<leader>fr", builtin.lsp_references, set_opts("Find References"))
 set("n", "<leader>fd", builtin.diagnostics, set_opts("Find Diagnostics"))
 
 -- Load extensions

@@ -1,5 +1,3 @@
--- lua/plugins/lsp/rust_analyzer.lua
-
 -- rust-analyzer fucks up
 local function setup_rust_analyzer_diagnostics()
     for _, method in ipairs({ "textDocument/diagnostic", "workspace/diagnostic" }) do

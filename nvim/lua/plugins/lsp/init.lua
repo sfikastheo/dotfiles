@@ -1,4 +1,3 @@
--- lua/plugins/lsp/init.lua
 local lspconfig = require("lspconfig")
 
 -- Set up LSPs + keymaps
@@ -10,6 +9,7 @@ end
 
 local on_attach = function(_, bufnr)
     set("n", "<leader>j", vim.diagnostic.open_float, set_opts("Hover Diagnostics", bufnr))
+    set("n", "<leader>r", vim.lsp.buf.references, set_opts("Go to References", bufnr))
     set("n", "<leader>k", vim.lsp.buf.hover, set_opts("Hover help", bufnr))
 
     set("n", "gq", vim.diagnostic.setqflist, set_opts("Send Diagnostics to Quickfix", bufnr))
@@ -17,7 +17,6 @@ local on_attach = function(_, bufnr)
     set("n", "gD", vim.lsp.buf.declaration, set_opts("Go to Declaration", bufnr))
     set("n", "[d", vim.diagnostic.goto_prev, set_opts("Previous Diagnostic", bufnr))
     set("n", "]d", vim.diagnostic.goto_next, set_opts("Next Diagnostic", bufnr))
-    set("n", "gr", vim.lsp.buf.references, set_opts("Go to References", bufnr))
 end
 
 local servers = {

@@ -1,8 +1,5 @@
--- lua/plugins/mini-files.lua
-
 local set = vim.keymap.set
 local mf = require("mini.files")
-
 
 local base_opts = { noremap = true, silent = true }
 local function set_opts(desc)

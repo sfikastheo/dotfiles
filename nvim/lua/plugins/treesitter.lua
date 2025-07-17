@@ -1,4 +1,3 @@
--- lua/plugins/treesitter.lua
 require("nvim-treesitter.configs").setup({
     -- Parsers to install:
     ensure_installed = {

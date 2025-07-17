@@ -1,4 +1,3 @@
--- lua/plugins/none-ls.lua
 local null = require("null-ls")
 local formatter = null.builtins.formatting
 local diagnostics = null.builtins.diagnostics
@@ -8,8 +7,6 @@ null.setup({
     sources = {
         formatter.stylua,
         formatter.prettier,
-        formatter.isort,
-        formatter.black,
         diagnostics.mypy,
     },
 })

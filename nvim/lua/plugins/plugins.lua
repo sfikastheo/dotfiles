@@ -1,16 +1,9 @@
--- lua/plugins/plugins.lua
-
 return {
     --
     -- Themes
     --
     {
-        "cpea2506/one_monokai.nvim",
-        lazy = false,
-        priority = 1000,
-        config = function()
-            require("plugins.themes.monokai")
-        end,
+        require("plugins.themes.catppuccin"),
     },
     --
     -- Core Utilities

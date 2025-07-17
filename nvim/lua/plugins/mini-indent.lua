@@ -1,5 +1,3 @@
--- lua/plugins/mini-indentscope.lua
-
 local mini_indent = require("mini.indentscope")
 
 mini_indent.setup({

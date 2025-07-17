@@ -98,4 +98,5 @@ fi
 ######################## WLD ########################
 
 source "$HOME/Projects/secrets/wldrc"
+source "$HOME/Projects/secrets/secrc"
 alias claude="/home/sfikastheo/.claude/local/claude"

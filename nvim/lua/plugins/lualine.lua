@@ -1,5 +1,3 @@
--- lua/plugins/lualine.lua
-
 require("lualine").setup({
     options = {
         icons_enabled = true,
@@ -31,7 +29,7 @@ require("lualine").setup({
             "macro_recording",
         },
         lualine_x = { "selectioncount", "searchcount", "encoding", "filetype" },
-        lualine_y = { "progress" },
+        lualine_y = { "lsp_status", "progress" },
         lualine_z = { "location" },
     },
     inactive_sections = {

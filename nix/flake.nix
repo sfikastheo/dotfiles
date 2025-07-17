@@ -29,6 +29,7 @@
 
         langTools = with pkgs; [
           go
+          uv
           zig
           zls
           bun
@@ -55,6 +56,7 @@
         ];
 
         world = with pkgs; [
+          cachix
           mongosh
           teleport_16
         ];

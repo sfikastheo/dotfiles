@@ -1,5 +1,3 @@
--- lua/plugins/copilot.lua
-
 local copilot = require("copilot")
 
 copilot.setup({
