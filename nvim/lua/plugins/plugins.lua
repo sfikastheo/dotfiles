@@ -3,7 +3,7 @@ return {
     -- Themes
     --
     {
-        require("plugins.themes.catppuccin"),
+        require("plugins.themes.monokai"),
     },
     --
     -- Core Utilities

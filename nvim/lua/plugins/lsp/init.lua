@@ -13,7 +13,7 @@ local on_attach = function(_, bufnr)
     set("n", "<leader>k", vim.lsp.buf.hover, set_opts("Hover help", bufnr))
 
     set("n", "gq", vim.diagnostic.setqflist, set_opts("Send Diagnostics to Quickfix", bufnr))
-    set("n", "ga", vim.lsp.buf.code_action, set_opts("Go to Code Actions", bufnr))
+    set("n", "g.", vim.lsp.buf.code_action, set_opts("Code Actions", bufnr))
     set("n", "gD", vim.lsp.buf.declaration, set_opts("Go to Declaration", bufnr))
     set("n", "[d", vim.diagnostic.goto_prev, set_opts("Previous Diagnostic", bufnr))
     set("n", "]d", vim.diagnostic.goto_next, set_opts("Next Diagnostic", bufnr))

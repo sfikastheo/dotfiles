@@ -6,26 +6,82 @@
 // To see all of Zed's default settings without changing your
 // custom settings, run `zed: open default settings`
 {
-  // Editor Behavior
+  // MCP Servers
   "ssh_connections": [
     {
-      "host": "worldcoin-MINI-1.local",
-      "username": "worldcoin",
+      "host": "localhost",
+      "username": "root",
+      "port": 2222,
       "projects": [
         {
           "paths": [
-            "/home/worldcoin/android"
+            "/root"
+          ]
+        },
+        {
+          "paths": [
+            "/workspace"
           ]
         }
       ]
     }
   ],
+  "context_servers": {
+    "mcp-server-context7": {
+      "source": "extension",
+      "enabled": true,
+      "settings": {
+        "default_minimum_tokens": "10000"
+      }
+    }
+  },
+
+  // Editor Behavior
   "vim_mode": true,
   "confirm_quit": true,
   "base_keymap": "Emacs",
   "relative_line_numbers": true,
   "line_indicator_format": "short",
   "show_edit_predictions": true,
+
+  // LLM Configuration
+  "language_models": {
+    "openai": {
+      "available_models": [
+        {
+          "name": "gpt-5",
+          "display_name": "gpt-5 high",
+          "reasoning_effort": "high",
+          "max_tokens": 272000,
+          "max_completion_tokens": 20000
+        },
+      ]
+    }
+  },
+
+  // AI Assistant Configuration
+  "agent": {
+    "always_allow_tool_actions": true,
+    "default_view": "text_thread",
+    "default_profile": "write",
+    "enabled": true,
+    "default_model": {
+      "provider": "openai",
+      "model": "gpt-5"
+    },
+    "inline_assistant_model": {
+      "provider": "anthropic",
+      "model": "claude-3-5-sonnet"
+    },
+    "commit_message_model": {
+      "provider": "openai",
+      "model": "gpt-4o-mini"
+    },
+    "thread_summary_model": {
+      "provider": "google",
+      "model": "gemini-2.0-flash"
+    }
+  },
 
   // Vim Configuration
   "vim": {
@@ -45,7 +101,7 @@
   "theme": {
     "mode": "system",
     "light": "Arrakis Day",
-    "dark": "Arrakis Night"
+    "dark": "Gruvbox Dark Hard"
   },
 
   // UI Layout and Panels
@@ -75,21 +131,6 @@
       "max_severity": null
     },
     "include_warnings": true
-  },
-
-  // AI Assistant Configuration
-  "features": {
-    "edit_prediction_provider": "copilot"
-  },
-  "agent": {
-    "always_allow_tool_actions": true,
-    "default_profile": "write",
-    "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-3-7-sonnet-latest"
-    },
-    "version": "2",
-    "enabled": true
   },
 
   // Language Server Configuration
