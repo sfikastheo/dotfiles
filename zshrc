@@ -34,6 +34,7 @@ alias nv=nvim
 alias grep='grep --color=auto --exclude-dir={.git}'
 alias cdr='cd $(git rev-parse --show-toplevel)'
 alias md='mkdir -p'
+alias avante='nvim -c "lua vim.defer_fn(function()require(\"avante.api\").zen_mode()end, 100)"'
 
 ######################## Tools ########################
 

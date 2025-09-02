@@ -26,6 +26,7 @@ vim.opt.sidescrolloff = 8
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.showmode = true
+vim.o.winborder = "rounded"
 
 -- Indentation
 local indent = 4
@@ -59,7 +60,6 @@ vim.opt.completeopt = { "menu", "noselect" }
 vim.opt.clipboard:append("unnamedplus")
 vim.opt.termguicolors = true
 vim.opt.concealcursor = 'nc'
-vim.opt.langremap = true
 vim.opt.swapfile = false
 vim.opt.conceallevel = 0
 vim.opt.undofile = true

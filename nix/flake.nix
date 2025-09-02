@@ -33,9 +33,14 @@
           zig
           zls
           bun
+          nixd
           ruff
           gopls
+          isort
+          taplo
+          black
           rustup
+          prettierd
           nodejs_24
           clang-tools
           nixfmt-rfc-style
@@ -64,8 +69,8 @@
       in
       {
         packages = {
-          system = pkgs.buildEnv {
-            name = "system";
+          default = pkgs.buildEnv {
+            name = "default";
             paths = cliTools ++ langTools ++ devTools ++ world;
             ignoreCollisions = true;
           };

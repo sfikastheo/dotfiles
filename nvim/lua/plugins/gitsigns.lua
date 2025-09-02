@@ -1,106 +1,94 @@
-local gitsigns = require("gitsigns")
+return {
+    "lewis6991/gitsigns.nvim",
+    config = function()
+        local gitsigns = require("gitsigns")
 
-local base_opts = { noremap = true, silent = true }
-local function set_opts(desc)
-    local extended_opts = vim.tbl_extend("force", base_opts, { desc = desc })
-    return extended_opts
-end
+        local sign_chars = {
+            add          = { text = "┃" },
+            change       = { text = "┃" },
+            delete       = { text = "_" },
+            topdelete    = { text = "‾" },
+            changedelete = { text = "~" },
+            untracked    = { text = "┆" },
+        }
 
-gitsigns.setup({
-    signs                        = {
-        add          = { text = '┃' },
-        change       = { text = '┃' },
-        delete       = { text = '_' },
-        topdelete    = { text = '‾' },
-        changedelete = { text = '~' },
-        untracked    = { text = '┆' },
-    },
-    signs_staged                 = {
-        add          = { text = '┃' },
-        change       = { text = '┃' },
-        delete       = { text = '_' },
-        topdelete    = { text = '‾' },
-        changedelete = { text = '~' },
-        untracked    = { text = '┆' },
-    },
-    signs_staged_enable          = true,
-    signcolumn                   = true,
-    numhl                        = false,
-    linehl                       = false,
-    word_diff                    = false,
-    watch_gitdir                 = {
-        follow_files = true
-    },
-    auto_attach                  = true,
-    attach_to_untracked          = false,
-    current_line_blame           = false,
-    current_line_blame_opts      = {
-        virt_text = true,
-        virt_text_pos = 'eol',
-        delay = 10,
-        ignore_whitespace = false,
-        virt_text_priority = 100,
-        use_focus = true,
-    },
-    current_line_blame_formatter = "\t  <author>, <author_time:%Y-%m-%d> - <summary>",
-    sign_priority                = 6,
-    update_debounce              = 100,
-    status_formatter             = nil,
-    max_file_length              = 40000,
-    preview_config               = {
-        border = 'single',
-        style = 'minimal',
-        relative = 'cursor',
-        row = 0,
-        col = 1
-    },
+        gitsigns.setup({
+            signs                        = sign_chars,
+            signs_staged                 = sign_chars,
+            signs_staged_enable          = true,
+            signcolumn                   = true,
+            numhl                        = false,
+            linehl                       = false,
+            word_diff                    = false,
+            watch_gitdir                 = { follow_files = true },
+            auto_attach                  = true,
+            attach_to_untracked          = false,
 
-    on_attach                    = function(bufnr)
-        local gs = require('gitsigns')
+            current_line_blame           = false,
+            current_line_blame_opts      = {
+                virt_text = true,
+                virt_text_pos = "eol",
+                delay = 10,
+                ignore_whitespace = false,
+                virt_text_priority = 100,
+                use_focus = true,
+            },
+            current_line_blame_formatter = "\t  <author>, <author_time:%Y-%m-%d> - <summary>",
 
-        local function map(mode, l, r, opts)
-            opts = opts or {}
-            opts.buffer = bufnr
-            vim.keymap.set(mode, l, r, opts)
-        end
+            sign_priority                = 6,
+            update_debounce              = 100,
+            status_formatter             = nil,
+            max_file_length              = 40000,
+            preview_config               = {
+                border = "single",
+                style = "minimal",
+                relative = "cursor",
+                row = 0,
+                col = 1,
+            },
 
-        -- Hunk navigation
-        map("n", "]h", function()
-            if vim.wo.diff then
-                return "]c"
+            on_attach                    = function(bufnr)
+                local gs = require("gitsigns")
+
+                local maps = {
+                    -- Hunk navigation (expr)
+                    { "n", "]h", function()
+                        if vim.wo.diff then return "]c" end
+                        vim.schedule(gs.next_hunk)
+                        return "<Ignore>"
+                    end, "Next Git Hunk", { expr = true } },
+
+                    { "n", "[h", function()
+                        if vim.wo.diff then return "[c" end
+                        vim.schedule(gs.prev_hunk)
+                        return "<Ignore>"
+                    end, "Previous Git Hunk", { expr = true } },
+
+                    -- Actions
+                    { "n",          "<leader>hr", gs.reset_hunk,                    "Hunk Reset" },
+                    { "n",          "<leader>hR", gs.reset_buffer,                  "Hunk Reset Buffer" },
+                    { "n",          "<leader>hs", gs.stage_hunk,                    "Hunk Stage" },
+                    { "n",          "<leader>hS", gs.stage_buffer,                  "Hunk Stage Buffer" },
+                    { "n",          "<leader>hu", gs.undo_stage_hunk,               "Hunk Un-stage" },
+                    { "n",          "<leader>hp", gs.preview_hunk,                  "Hunk Preview" },
+                    { "n",          "<leader>hd", gs.diffthis,                      "Hunk Diff" },
+                    { "n",          "<leader>tb", gs.toggle_current_line_blame,     "Toggle Blame" },
+                    { "n",          "<leader>td", gs.toggle_deleted,                "Toggle Deleted" },
+
+                    -- Text object
+                    { { "o", "x" }, "ih",         ":<C-U>Gitsigns select_hunk<CR>", "Select Inside Hunk" },
+                }
+
+                local function opts(desc, extra)
+                    local opt = { noremap = true, silent = true, buffer = bufnr, desc = desc }
+                    if extra then for k, v in pairs(extra) do opt[k] = v end end
+                    return opt
+                end
+
+                for _, m in ipairs(maps) do
+                    vim.keymap.set(m[1], m[2], m[3], opts(m[4], m[5]))
+                end
             end
-            vim.schedule(function()
-                gs.next_hunk()
-            end)
-            return "<Ignore>"
-        end, { expr = true, desc = "Next Git Hunk" })
-
-        map("n", "[h", function()
-            if vim.wo.diff then
-                return "[c"
-            end
-            vim.schedule(function()
-                gs.prev_hunk()
-            end)
-            return "<Ignore>"
-        end, { expr = true, desc = "Previous Git Hunk" })
-
-        -- Actions
-        map("n", "<leader>hr", gs.reset_hunk, set_opts("[H]unk [R]eset"))
-        map("n", "<leader>hR", gs.reset_buffer, set_opts("[H]unk [R]eset Buffer"))
-        map("n", "<leader>hs", gs.stage_hunk, set_opts("[H]unk [S]tage"))
-        map("n", "<leader>hS", gs.stage_buffer, set_opts("[H]unk [S]tage Buffer"))
-        map("n", "<leader>hu", gs.undo_stage_hunk, set_opts("[H]unk [U]n-stage"))
-        map("n", "<leader>hp", gs.preview_hunk, set_opts("[H]unk [P]review"))
-        map("n", "<leader>hd", gs.diffthis, set_opts("[H]unk [D]iff"))
-        map("n", "<leader>tb", gs.toggle_current_line_blame, set_opts("[T]oggle [B]lame"))
-        map('n', '<leader>td', gs.toggle_deleted, set_opts("[T]oggle [D]eleted"))
-
-        map("n", "<leader>hD", function()
-            gs.diffthis("~")
-        end, { desc = "[H]unk [D]iff [~]" })
-
-        -- Text object for hunks
-        map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "[I]n [H]unk" })
-    end,
-})
+        })
+    end
+}
