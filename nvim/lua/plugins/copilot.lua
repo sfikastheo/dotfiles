@@ -1,28 +1,12 @@
-local copilot = require("copilot")
-
-copilot.setup({
-    suggestion = {
-        enabled = true,
-        auto_trigger = true,
-        hide_during_completion = true,
-        debounce = 250,
-        keymap = {
-            accept = "<C-y>",
-            next = "<C-n>",
-            prev = "<C-e>",
-            dismiss = "<C-c>"
-        },
-    },
-    filetypes = {
-        yaml = false,
-        markdown = false,
-        help = false,
-        gitcommit = false,
-        gitrebase = false,
-        hgcommit = false,
-        svn = false,
-        cvs = false,
-    },
-    copilot_node_command = 'node',
-    server_opts_overrides = {},
-})
+return {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+        -- blink-cmp-copilot will handle it
+        require("copilot").setup({
+            suggestion = { enabled = false },
+            panel = { enabled = false },
+        })
+    end,
+}

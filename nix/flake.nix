@@ -35,7 +35,11 @@
           bun
           ruff
           gopls
+          isort
+          taplo
+          black
           rustup
+          prettierd
           nodejs_24
           clang-tools
           nixfmt-rfc-style
