@@ -1,5 +1,5 @@
 # Alacritty Configuration file
-general.import = [ "~/.config/alacritty/themes/dark.toml" ]
+general.import = ["~/.config/alacritty/themes/dark.toml"]
 
 [env]
 TERM = "xterm-256color"
@@ -8,15 +8,15 @@ TERM = "xterm-256color"
 size = 10
 
 [font.bold]
-family = "CaskaydiaCove Nerd Font Mono"
+family = "GeistMono Nerd Font Mono"
 style = "Bold"
 
 [font.italic]
-family = "CaskaydiaCove Nerd Font Mono"
+family = "GeistMono Nerd Font Mono"
 style = "Italic"
 
 [font.normal]
-family = "CaskaydiaCove Nerd Font Mono"
+family = "GeistMono Nerd Font Mono"
 style = "Regular"
 
 [terminal.shell]
@@ -35,7 +35,7 @@ multiplier = 3
 [colors]
 line_indicator = { foreground = "#424242", background = "#1e1e1e" }
 footer_bar = { foreground = "#cb775d", background = "#161616" }
-selection = { text = "#cb775d", background = "#424242"}
+selection = { text = "#cb775d", background = "#424242" }
 
 [colors.search]
 matches = { foreground = "#101010", background = "#cb775d" }
@@ -50,31 +50,31 @@ semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
 save_to_clipboard = false
 
 [[hints.enabled]]
-command = "open"
-hyperlinks = true
+command = "xdg-open"
 post_processing = true
-persist = false
 mouse.enabled = true
+hyperlinks = true
+persist = false
 binding = { key = "H", mods = "Alt" }
-regex = "(ipfs:|ipns:|magnet:|mailto:|https://|http://|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`\\\\]+"
 
 [hints]
 alphabet = "ftluresdh"
 
 [keyboard]
 bindings = [
-    { key = "Y", mods = "Alt", action = "Copy" },
-    { key = "P", mods = "Alt", action = "Paste" },
-    { key = "/", mods = "Alt", action = "SearchForward" },
-    { key = "?", mods = "Alt", action = "SearchBackward" },
-    # Vi mode bindings
-    { key = "J", mods = "Shift", mode = "Vi|~Search", action = "SearchPrevious" },
-    { key = "V", mods = "Alt|Shift", action = "ToggleViMode" },
-    { key = "L", mode = "Vi|~Search", action = "WordRightEnd" },
-    { key = "H", mode = "Vi|~Search", action = "ToggleViMode" },
-    { key = "J", mode = "Vi|~Search", action = "SearchNext" },
-    { key = "M", mode = "Vi|~Search", action = "Left" },
-    { key = "N", mode = "Vi|~Search", action = "Down" },
-    { key = "E", mode = "Vi|~Search", action = "Up" },
-    { key = "I", mode = "Vi|~Search", action = "Right" },
+  { key = "Y", mods = "Alt", action = "Copy" },
+  { key = "P", mods = "Alt", action = "Paste" },
+  { key = "/", mods = "Alt", action = "SearchForward" },
+  { key = "?", mods = "Alt", action = "SearchBackward" },
+  # Vi mode bindings
+  { key = "J", mods = "Shift", mode = "Vi|~Search", action = "SearchPrevious" },
+  { key = "V", mods = "Alt|Shift", action = "ToggleViMode" },
+  { key = "L", mode = "Vi|~Search", action = "WordRightEnd" },
+  { key = "H", mode = "Vi|~Search", action = "ToggleViMode" },
+  { key = "J", mode = "Vi|~Search", action = "SearchNext" },
+  { key = "M", mode = "Vi|~Search", action = "Left" },
+  { key = "N", mode = "Vi|~Search", action = "Down" },
+  { key = "E", mode = "Vi|~Search", action = "Up" },
+  { key = "I", mode = "Vi|~Search", action = "Right" },
 ]

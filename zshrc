@@ -1,18 +1,7 @@
 ######################## Path ########################
 
-PATH="/$HOME/.local/bin:$PATH"
-
-# Add .cargo/bin to the PATH
-cargo_bin="$HOME/.cargo/bin"
-if [[ -e "${cargo_bin}" ]]; then
-    PATH="${cargo_bin}":$PATH
-fi
-
-# Add .bun/bin to the PATH
-bun_bin="$HOME/.bun/bin"
-if [[ -e ${bun_bin} ]]; then
-    PATH="${bun_bin}":$PATH
-fi
+PATH="${cargo_bin}":$PATH
+PATH="$HOME/.bun/bin:$PATH"
 
 ######################## Config ########################
 
@@ -56,17 +45,16 @@ if_exists fzf "
     source <(fzf --zsh)
 "
 
-if_exists lsd '
-    alias ls="lsd"
-    alias ll="lsd -lg"
-    alias la="lsd -lgA"
-    alias lt="lsd --tree"
+if_exists eza '
+    alias ls="eza"
+    alias ll="eza -lhB --no-time"
+    alias la="eza -lahBF --no-time"
+    alias lt="eza -lgahBF --tree"
 '
 
 if_exists zoxide "$(zoxide init --cmd to zsh)"
 if_exists starship "$(starship init zsh)"
 if_exists direnv "$(direnv hook zsh)"
-if_exists lazygit 'alias lg="lazygit"'
 if_exists tmux 'alias tmux="tmux -2"'
 
 ######################## Zinit ########################
@@ -100,4 +88,3 @@ fi
 
 source "$HOME/Projects/secrets/wldrc"
 source "$HOME/Projects/secrets/secrc"
-alias claude="/home/sfikastheo/.claude/local/claude"

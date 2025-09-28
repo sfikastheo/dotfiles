@@ -12,7 +12,7 @@ return {
                     telescope = false,
                 }
             })
-            vim.cmd.colorscheme("oldworld")
+            --vim.cmd.colorscheme("oldworld")
         end
     },
     {
@@ -24,17 +24,25 @@ return {
         end
     },
     {
-        'AlexvZyl/nordic.nvim',
+        "AlexvZyl/nordic.nvim",
         lazy = false,
         priority = 1000,
         config = function()
-            require('nordic').setup({
+            require("nordic").setup({
                 telescope = {
-                    style = 'classic',
+                    style = "classic",
                 },
                 bright_border = true,
             })
-            --vim.cmd.colorscheme('nordic')
+            --vim.cmd.colorscheme("nordic")
         end
-    }
+    },
+    {
+        "vague-theme/vague.nvim",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            vim.cmd.colorscheme("vague")
+        end
+    },
 }

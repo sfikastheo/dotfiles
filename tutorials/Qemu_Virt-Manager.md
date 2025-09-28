@@ -37,7 +37,3 @@ newgrp libvirt
 ```
 sudo systemctl enable --now libvirtd
 ```
-
-
-
-

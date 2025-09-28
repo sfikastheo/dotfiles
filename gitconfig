@@ -4,9 +4,6 @@
 [init]
     defaultBranch = main
 
-[core]
-    pager = delta
-
 [merge]
   tool = nvimdiff
   conflictstyle = zdiff3
@@ -125,3 +122,5 @@
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
+[safe]
+	directory = /etc/nixos
