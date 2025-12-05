@@ -1,5 +1,6 @@
 [user]
-    name = sfikastheo
+	name = sfikastheo
+	email = theodore.sfikas@toolsforhumanity.com
 
 [init]
     defaultBranch = main

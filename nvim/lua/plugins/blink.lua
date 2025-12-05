@@ -3,7 +3,6 @@ return {
     dependencies = {
         "rafamadriz/friendly-snippets",
         "giuxtaposition/blink-cmp-copilot",
-        "Kaiser-Yang/blink-cmp-avante"
     },
     version = "1.*",
     opts = {
@@ -16,7 +15,10 @@ return {
             documentation = { auto_show = false },
         },
         sources = {
-            default = { "avante", "lsp", "path", "snippets", "buffer", "copilot" },
+            default = { "lsp", "path", "snippets", "buffer", "copilot" },
+            per_filetype = {
+                codecompanion = { "codecompanion" },
+            },
             providers = {
                 copilot = {
                     name = "copilot",
@@ -24,11 +26,6 @@ return {
                     score_offset = 100,
                     async = true,
                 },
-                avante = {
-                    module = "blink-cmp-avante",
-                    name = "Avante",
-                    opts = {}
-                }
             },
         },
         fuzzy = { implementation = "prefer_rust_with_warning" }
