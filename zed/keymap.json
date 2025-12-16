@@ -6,154 +6,158 @@
 // To see the default key bindings run `zed: open default keymap`
 // from the command palette.
 [
-  // Global Bindings
-  {
-    "bindings": {
-      // General Behavior
-      "ctrl-c": ["workspace::SendKeystrokes", "escape"],
-      "ctrl-n": "menu::SelectNext",
-      "ctrl-e": "menu::SelectPrevious",
-      "alt-y": "editor::Copy",
-      "alt-p": "editor::Paste",
-      // Navigation
-      "ctrl-w m": "workspace::ActivatePaneLeft",
-      "ctrl-w i": "workspace::ActivatePaneRight",
-      "ctrl-w e": "workspace::ActivatePaneUp",
-      "ctrl-w n": "workspace::ActivatePaneDown",
-      "ctrl-w c": "workspace::CloseActiveDock"
+    // Global Bindings
+    {
+        "bindings": {
+            // General Behavior
+            "ctrl-c": ["workspace::SendKeystrokes", "escape"],
+            "ctrl-n": "menu::SelectNext",
+            "ctrl-e": "menu::SelectPrevious",
+            "alt-y": "editor::Copy",
+            "alt-p": "editor::Paste",
+            "ctrl-y": "editor::ConfirmCompletion",
+            // Navigation
+            "ctrl-w m": "workspace::ActivatePaneLeft",
+            "ctrl-w i": "workspace::ActivatePaneRight",
+            "ctrl-w e": "workspace::ActivatePaneUp",
+            "ctrl-w n": "workspace::ActivatePaneDown",
+            "ctrl-w c": "workspace::CloseActiveDock"
+        }
+    },
+
+    // Editor Specific
+    {
+        "context": "Editor",
+        "bindings": {
+            ", ,": ["workspace::SendKeystrokes", "escape"]
+        }
+    },
+
+    {
+        "context": "Editor && (showing_code_actions || showing_completions)",
+        "bindings": {
+            "ctrl-n": "editor::ContextMenuNext",
+            "ctrl-e": "editor::ContextMenuPrevious"
+        }
+    },
+
+    {
+        "context": "Editor && editor_agent_diff",
+        "bindings": {
+            "alt-y": "agent::Keep",
+            "alt-n": "agent::Reject",
+            "alt-d": "agent::OpenAgentDiff",
+            "alt-shift-y": "agent::KeepAll",
+            "alt-shift-n": "agent::RejectAll"
+        }
+    },
+
+    // Vim Control Mode
+    {
+        "context": "VimControl && !menu",
+        "bindings": {
+            // Colemak DHm
+            "m": "vim::Left",
+            "n": "vim::Down",
+            "e": "vim::Up",
+            "i": "vim::Right",
+            "ctrl-m": "vim::NextLineStart",
+            "ctrl-n": ["workspace::SendKeystrokes", "4 n"],
+            "ctrl-e": ["workspace::SendKeystrokes", "4 e"],
+
+            "ctrl-shift-u": "vim::ScrollUp",
+            "ctrl-shift-d": "vim::ScrollDown",
+            "ctrl-u": ["workspace::SendKeystrokes", "ctrl-shift-u z z"],
+            "ctrl-d": ["workspace::SendKeystrokes", "ctrl-shift-d z z"],
+
+            "k": "vim::MoveToNextMatch",
+            "shift-k": "vim::MoveToPreviousMatch",
+            "j": "vim::PushMark",
+            "h": ["vim::PushObject", { "around": false }],
+            "l": "vim::NextWordEnd",
+            "g l": "vim::PreviousWordEnd",
+            "shift-l": ["vim::NextWordEnd", { "ignore_punctuation": true }],
+            "g shift-l": [
+                "vim::PreviousWordEnd",
+                { "ignore_punctuation": true }
+            ],
+
+            "space e": "editor::Hover",
+            "ctrl-w shift-m": "workspace::SwapPaneLeft",
+            "ctrl-w shift-i": "workspace::SwapPaneRight",
+            "ctrl-w shift-e": "workspace::SwapPaneUp",
+            "ctrl-w shift-n": "workspace::SwapPaneDown",
+
+            // Nvim corrections
+            "g r": "editor::FindAllReferences",
+            "space g b": "git::Blame",
+            "ctrl-w c": "pane::CloseActiveItem"
+        }
+    },
+
+    // Vim Mode Specific
+    {
+        "context": "vim_mode == normal",
+        "bindings": {
+            "shift-n": "vim::JoinLines",
+            "h": "vim::InsertBefore",
+            "shift-h": "vim::InsertFirstNonWhitespace"
+        }
+    },
+    {
+        "context": "vim_mode == visual",
+        "bindings": {
+            "shift-h": "vim::InsertBefore",
+            "shift-n": "vim::JoinLines"
+        }
+    },
+    {
+        "context": "vim_mode == insert && !(showing_code_actions || showing_completions)",
+        "bindings": {
+            "ctrl-n": "editor::ShowCompletions"
+        }
+    },
+
+    // Editor Navigation
+    {
+        "context": "(not_editing || EmptyPane) || (VimControl && !menu)",
+        "bindings": {
+            // Text Navigation
+            "space f f": "file_finder::Toggle",
+            "space f g": "pane::DeploySearch",
+            "space f d": "diagnostics::Deploy",
+            "space f c": "command_palette::Toggle",
+
+            // Panels and Docks
+            "space o p": "project_panel::ToggleFocus",
+            "space o o": "outline_panel::ToggleFocus",
+            "space a a": "agent::ToggleFocus",
+            "space a n": "agent::NewThread"
+        }
+    },
+
+    // Project Panel
+    {
+        "context": "ProjectPanel && not_editing",
+        "bindings": {
+            "n": "menu::SelectNext",
+            "e": "menu::SelectPrevious",
+            "m": "project_panel::CollapseSelectedEntry",
+            "i": "project_panel::ExpandSelectedEntry",
+
+            // File Operations
+            "c": "project_panel::Rename",
+            "o": "project_panel::NewFile",
+            "d d": "project_panel::Delete"
+        }
+    },
+
+    // Outline Panel
+    {
+        "context": "OutlinePanel && not_editing",
+        "bindings": {
+            "n": "menu::SelectNext",
+            "e": "menu::SelectPrevious"
+        }
     }
-  },
-
-  // Editor Specific
-  {
-    "context": "Editor",
-    "bindings": {
-      ", ,": ["workspace::SendKeystrokes", "escape"]
-    }
-  },
-
-  {
-    "context": "Editor && (showing_code_actions || showing_completions)",
-    "bindings": {
-      "ctrl-n": "editor::ContextMenuNext",
-      "ctrl-e": "editor::ContextMenuPrevious"
-    }
-  },
-
-  {
-    "context": "Editor && editor_agent_diff",
-    "bindings": {
-      "alt-y": "agent::Keep",
-      "alt-n": "agent::Reject",
-      "alt-d": "agent::OpenAgentDiff",
-      "alt-shift-y": "agent::KeepAll",
-      "alt-shift-n": "agent::RejectAll"
-    }
-  },
-
-  // Vim Control Mode
-  {
-    "context": "VimControl && !menu",
-    "bindings": {
-      // Colemak DHm
-      "m": "vim::Left",
-      "n": "vim::Down",
-      "e": "vim::Up",
-      "i": "vim::Right",
-      "ctrl-m": "vim::NextLineStart",
-      "ctrl-n": ["workspace::SendKeystrokes", "4 n"],
-      "ctrl-e": ["workspace::SendKeystrokes", "4 e"],
-
-      "ctrl-shift-u": "vim::ScrollUp",
-      "ctrl-shift-d": "vim::ScrollDown",
-      "ctrl-u": ["workspace::SendKeystrokes", "ctrl-shift-u z z"],
-      "ctrl-d": ["workspace::SendKeystrokes", "ctrl-shift-d z z"],
-
-      "k": "vim::MoveToNextMatch",
-      "shift-k": "vim::MoveToPreviousMatch",
-      "j": "vim::PushMark",
-      "h": ["vim::PushObject", { "around": false }],
-      "l": "vim::NextWordEnd",
-      "g l": "vim::PreviousWordEnd",
-      "shift-l": ["vim::NextWordEnd", { "ignore_punctuation": true }],
-      "g shift-l": ["vim::PreviousWordEnd", { "ignore_punctuation": true }],
-
-      "space e": "editor::Hover",
-      "ctrl-w shift-m": "workspace::SwapPaneLeft",
-      "ctrl-w shift-i": "workspace::SwapPaneRight",
-      "ctrl-w shift-e": "workspace::SwapPaneUp",
-      "ctrl-w shift-n": "workspace::SwapPaneDown",
-
-      // Nvim corrections
-      "g r": "editor::FindAllReferences",
-      "space g b": "git::Blame",
-      "ctrl-w c": "pane::CloseActiveItem"
-    }
-  },
-
-  // Vim Mode Specific
-  {
-    "context": "vim_mode == normal",
-    "bindings": {
-      "shift-n": "vim::JoinLines",
-      "h": "vim::InsertBefore",
-      "shift-h": "vim::InsertFirstNonWhitespace"
-    }
-  },
-  {
-    "context": "vim_mode == visual",
-    "bindings": {
-      "shift-h": "vim::InsertBefore",
-      "shift-n": "vim::JoinLines"
-    }
-  },
-  {
-    "context": "vim_mode == insert && !(showing_code_actions || showing_completions)",
-    "bindings": {
-      "ctrl-n": "editor::ShowCompletions"
-    }
-  },
-
-  // Editor Navigation
-  {
-    "context": "(not_editing || EmptyPane) || (VimControl && !menu)",
-    "bindings": {
-      // Text Navigation
-      "space f f": "file_finder::Toggle",
-      "space f g": "pane::DeploySearch",
-      "space f d": "diagnostics::Deploy",
-      "space f c": "command_palette::Toggle",
-
-      // Panels and Docks
-      "space o p": "project_panel::ToggleFocus",
-      "space o o": "outline_panel::ToggleFocus",
-      "space a a": "agent::ToggleFocus",
-      "space a n": "agent::NewThread"
-    }
-  },
-
-  // Project Panel
-  {
-    "context": "ProjectPanel && not_editing",
-    "bindings": {
-      "n": "menu::SelectNext",
-      "e": "menu::SelectPrevious",
-      "m": "project_panel::CollapseSelectedEntry",
-      "i": "project_panel::ExpandSelectedEntry",
-
-      // File Operations
-      "c": "project_panel::Rename",
-      "o": "project_panel::NewFile",
-      "d d": "project_panel::Delete"
-    }
-  },
-
-  // Outline Panel
-  {
-    "context": "OutlinePanel && not_editing",
-    "bindings": {
-      "n": "menu::SelectNext",
-      "e": "menu::SelectPrevious"
-    }
-  }
 ]

@@ -14,14 +14,10 @@
       "port": 2222,
       "projects": [
         {
-          "paths": [
-            "/root"
-          ]
+          "paths": ["/root"]
         },
         {
-          "paths": [
-            "/workspace"
-          ]
+          "paths": ["/workspace"]
         }
       ]
     }
@@ -39,7 +35,7 @@
   // Editor Behavior
   "vim_mode": true,
   "confirm_quit": true,
-  "base_keymap": "Emacs",
+  "base_keymap": "Atom",
   "relative_line_numbers": true,
   "line_indicator_format": "short",
   "show_edit_predictions": true,
@@ -54,7 +50,7 @@
           "reasoning_effort": "high",
           "max_tokens": 272000,
           "max_completion_tokens": 20000
-        },
+        }
       ]
     }
   },
@@ -90,9 +86,9 @@
   },
 
   // UI Fonts and Appearance
-  "buffer_font_family": "SpaceMono Nerd Font Mono",
+  "buffer_font_family": "GeistMono Nerd Font",
   "buffer_font_size": 12,
-  "ui_font_family": "SpaceMono Nerd Font Mono",
+  "ui_font_family": "GeistMono Nerd Font",
   "ui_font_size": 12,
   "tab_bar": { "show": true },
   "scrollbar": { "show": "auto" },
@@ -101,7 +97,7 @@
   "theme": {
     "mode": "system",
     "light": "Arrakis Day",
-    "dark": "Gruvbox Dark Hard"
+    "dark": "Zedokai (Filter Ristretto)"
   },
 
   // UI Layout and Panels
