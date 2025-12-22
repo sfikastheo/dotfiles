@@ -9,6 +9,9 @@
   tool = nvimdiff
   conflictstyle = zdiff3
 
+[core]
+    pager = delta
+
 [color]
     interactive = true
     branch = true
@@ -53,7 +56,8 @@
     mu = reset --merge
 
     lo = log -m --simplify-merges --color --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit
-    lg = log --oneline --graph --decorate --all
+    lg = log --graph --date=short --decorate --first-parent --pretty=format:'%C(auto)%h %ad %d %s'
+    lga = log --graph --date=short --decorate --all --pretty=format:'%C(auto)%h %ad %d %s'
     df = diff --color
     dfs = diff --staged --color
 

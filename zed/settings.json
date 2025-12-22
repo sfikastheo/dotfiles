@@ -6,37 +6,17 @@
 // To see all of Zed's default settings without changing your
 // custom settings, run `zed: open default settings`
 {
-  // MCP Servers
-  "ssh_connections": [
-    {
-      "host": "localhost",
-      "username": "root",
-      "port": 2222,
-      "projects": [
-        {
-          "paths": ["/root"]
-        },
-        {
-          "paths": ["/workspace"]
-        }
-      ]
-    }
-  ],
-  "context_servers": {
-    "mcp-server-context7": {
-      "source": "extension",
-      "enabled": true,
-      "settings": {
-        "default_minimum_tokens": "10000"
-      }
-    }
-  },
-
   // Editor Behavior
+  "edit_predictions": {
+    "mode": "eager"
+  },
+  "features": {
+    "edit_prediction_provider": "copilot"
+  },
   "vim_mode": true,
   "confirm_quit": true,
-  "base_keymap": "Atom",
-  "relative_line_numbers": true,
+  "base_keymap": "None",
+  "relative_line_numbers": "enabled",
   "line_indicator_format": "short",
   "show_edit_predictions": true,
 
@@ -63,11 +43,11 @@
     "enabled": true,
     "default_model": {
       "provider": "openai",
-      "model": "gpt-5"
+      "model": "gpt-5.1"
     },
     "inline_assistant_model": {
-      "provider": "anthropic",
-      "model": "claude-3-5-sonnet"
+      "provider": "openai",
+      "model": "gpt-5.1"
     },
     "commit_message_model": {
       "provider": "openai",
@@ -94,11 +74,7 @@
   "scrollbar": { "show": "auto" },
 
   // Theme Configuration
-  "theme": {
-    "mode": "system",
-    "light": "Arrakis Day",
-    "dark": "Zedokai (Filter Ristretto)"
-  },
+  "theme": "Chanterelle",
 
   // UI Layout and Panels
   "toolbar": {
@@ -108,7 +84,6 @@
   },
   "gutter": {
     "line_numbers": true,
-    "code_actions": false,
     "runnables": false,
     "folds": true
   },
@@ -140,8 +115,9 @@
     },
     "rust-analyzer": {
       "initialization_options": {
-        "checkOnSave": {
-          "command": "clippy"
+        "checkOnSave": true,
+        "check": {
+          "workspace": false
         }
       }
     }
@@ -149,13 +125,6 @@
 
   // Language-Specific Configuration
   "languages": {
-    "zig": {
-      "formatter": {
-        "external": {
-          "command": "zig fmt"
-        }
-      }
-    },
     "Rust": {
       "formatter": {
         "external": {
