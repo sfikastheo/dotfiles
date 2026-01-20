@@ -24,8 +24,10 @@
 		},
 	],
 	"edit_predictions": {
-		"provider": "copilot",
-  "mode": "subtle",
+		"mode": "subtle",
+	},
+	"features": {
+		"edit_prediction_provider": "copilot",
 	},
 	"vim_mode": true,
 	"confirm_quit": true,
@@ -51,10 +53,8 @@
 
 	// AI Assistant Configuration
 	"agent": {
-		"tool_permissions": {
-   "default": "allow"
-  },
-  "default_view": "text_thread",
+		"always_allow_tool_actions": true,
+		"default_view": "text_thread",
 		"default_profile": "write",
 		"enabled": true,
 		"default_model": {
