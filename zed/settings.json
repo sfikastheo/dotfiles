@@ -7,8 +7,23 @@
 // custom settings, run `zed: open default settings`
 {
   // Editor Behavior
+  "cursor_shape": "bar",
+  "cursor_blink": false,
+  "ssh_connections": [
+    {
+      "host": "localhost",
+      "username": "root",
+      "port": 2222,
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/workspace"]
+        }
+      ]
+    }
+  ],
   "edit_predictions": {
-    "mode": "eager"
+    "mode": "subtle"
   },
   "features": {
     "edit_prediction_provider": "copilot"
@@ -39,15 +54,15 @@
   "agent": {
     "always_allow_tool_actions": true,
     "default_view": "text_thread",
-    "default_profile": "write",
+    "default_profile": "ask",
     "enabled": true,
     "default_model": {
-      "provider": "openai",
-      "model": "gpt-5.1"
+      "provider": "copilot_chat",
+      "model": "gpt-5-mini"
     },
     "inline_assistant_model": {
       "provider": "openai",
-      "model": "gpt-5.1"
+      "model": "gpt-5.2"
     },
     "commit_message_model": {
       "provider": "openai",
@@ -67,14 +82,16 @@
 
   // UI Fonts and Appearance
   "buffer_font_family": "GeistMono Nerd Font",
-  "buffer_font_size": 12,
+  "buffer_font_size": 12.5,
   "ui_font_family": "GeistMono Nerd Font",
-  "ui_font_size": 12,
+  "ui_font_size": 12.5,
+  "agent_ui_font_size": 14,
+  "agent_buffer_font_size": 12.5,
   "tab_bar": { "show": true },
   "scrollbar": { "show": "auto" },
 
   // Theme Configuration
-  "theme": "Chanterelle",
+  "theme": "Min Dark (Solid)",
 
   // UI Layout and Panels
   "toolbar": {
@@ -90,6 +107,13 @@
   "indent_guides": {
     "enabled": true,
     "coloring": "fixed"
+  },
+
+  // Git Integration
+  "git": {
+    "inline_blame": {
+      "enabled": false
+    }
   },
 
   // Diagnostics and Error Handling
@@ -118,17 +142,6 @@
         "checkOnSave": true,
         "check": {
           "workspace": false
-        }
-      }
-    }
-  },
-
-  // Language-Specific Configuration
-  "languages": {
-    "Rust": {
-      "formatter": {
-        "external": {
-          "command": "cargo fmt"
         }
       }
     }

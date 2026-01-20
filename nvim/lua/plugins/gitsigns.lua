@@ -52,25 +52,25 @@ return {
 
                 local maps = {
                     -- Hunk navigation (expr)
-                    { "n", "]h", function()
+                    { "n", "]c", function()
                         if vim.wo.diff then return "]c" end
                         vim.schedule(gs.next_hunk)
                         return "<Ignore>"
                     end, "Next Git Hunk", { expr = true } },
 
-                    { "n", "[h", function()
+                    { "n", "[c", function()
                         if vim.wo.diff then return "[c" end
                         vim.schedule(gs.prev_hunk)
                         return "<Ignore>"
                     end, "Previous Git Hunk", { expr = true } },
 
                     -- Actions
-                    { "n",          "<leader>hr", gs.reset_hunk,                    "Hunk Reset" },
-                    { "n",          "<leader>hR", gs.reset_buffer,                  "Hunk Reset Buffer" },
-                    { "n",          "<leader>hs", gs.stage_hunk,                    "Hunk Stage" },
-                    { "n",          "<leader>hS", gs.stage_buffer,                  "Hunk Stage Buffer" },
-                    { "n",          "<leader>hu", gs.undo_stage_hunk,               "Hunk Un-stage" },
-                    { "n",          "<leader>hp", gs.preview_hunk,                  "Hunk Preview" },
+                    { "n",          "<leader>gr", gs.reset_hunk,                    "Hunk Reset" },
+                    { "n",          "<leader>gR", gs.reset_buffer,                  "Hunk Reset Buffer" },
+                    { "n",          "<leader>gs", gs.stage_hunk,                    "Hunk Stage" },
+                    { "n",          "<leader>gS", gs.stage_buffer,                  "Hunk Stage Buffer" },
+                    { "n",          "<leader>gu", gs.undo_stage_hunk,               "Hunk Un-stage" },
+                    { "n",          "<leader>gp", gs.preview_hunk,                  "Hunk Preview" },
                     { "n",          "<leader>hd", gs.diffthis,                      "Hunk Diff" },
                     { "n",          "<leader>tb", gs.toggle_current_line_blame,     "Toggle Blame" },
                     { "n",          "<leader>td", gs.toggle_deleted,                "Toggle Deleted" },
