@@ -17,6 +17,11 @@ return {
             command = "clippy",
             extraArgs = { "--no-deps", "--all-features" },
           },
+          inlayHints = {
+            chainingHints = { enable = true },
+            parameterHints = { enable = true },
+            typeHints = { enable = true },
+          },
           procMacro = {
             enable = true,
             ignored = {

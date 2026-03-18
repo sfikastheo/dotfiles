@@ -44,5 +44,5 @@ set("n", "<c-w>-", "20<c-w>-", set_opts("- height"))
 set("n", "<c-w>+", "20<c-w>+", set_opts("+ height"))
 
 -- LSP
-set("n", "<leader>ll", "<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>",
+set("n", "<leader>tt", "<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>",
     set_opts("Inlay Hints"))

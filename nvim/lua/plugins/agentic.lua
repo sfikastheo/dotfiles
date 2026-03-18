@@ -2,9 +2,9 @@ return {
     "carlos-algms/agentic.nvim",
     keys = {
         -- Toggle and sessions
-        { "<leader>at", function() require("agentic").toggle() end,           mode = { "n", "v", "i" }, desc = "Toggle Agentic" },
-        { "<leader>an", function() require("agentic").new_session() end,      mode = { "n", "v", "i" }, desc = "New Session" },
-        { "<leader>ar", function() require("agentic").restore_session() end,  mode = { "n", "v", "i" }, desc = "Restore Session" },
+        { "<leader>at", function() require("agentic").toggle() end,           mode = { "n", "v" }, desc = "Toggle Agentic" },
+        { "<leader>an", function() require("agentic").new_session() end,      mode = { "n", "v" }, desc = "New Session" },
+        { "<leader>ar", function() require("agentic").restore_session() end,  mode = { "n", "v" }, desc = "Restore Session" },
 
         -- Context
         { "<leader>af", function() require("agentic").add_file() end,                       desc = "Add File" },

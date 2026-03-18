@@ -42,7 +42,38 @@ return {
         lazy = false,
         priority = 1000,
         config = function()
-            vim.cmd.colorscheme("vague")
+            -- vim.cmd.colorscheme("vague")
+        end
+    },
+    {
+        "f4z3r/gruvbox-material.nvim",
+        name = "gruvbox-material",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            require("gruvbox-material").setup({
+                contrast = "hard",
+                float = {
+                    background_color = nil,
+                },
+                customize = function(group, options)
+                    -- darker bg: replace bg0 (#1d2021) everywhere
+                    local darker_bg = "#181818"
+                    if options.bg == "#1d2021" then
+                        options.bg = darker_bg
+                    end
+                    -- fix blink & mini.files
+                    if group:find("Pmenu") or group:find("Float") then
+                        options.bg = nil
+                        if group == "PmenuSel" then
+                            options.fg = "#ebdbb2"
+                            options.bg = "#32302f"
+                        end
+                    end
+                    return options
+                end,
+            })
+            vim.cmd.colorscheme("gruvbox-material")
         end
     },
 }
