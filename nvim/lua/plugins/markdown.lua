@@ -1,6 +1,6 @@
 return {
     'MeanderingProgrammer/render-markdown.nvim',
-    ft = { "markdown", "codecompanion" },
+    ft = { "markdown", "codecompanion", "AgenticChat" },
     dependencies = {
         'nvim-treesitter/nvim-treesitter',
         'nvim-tree/nvim-web-devicons'

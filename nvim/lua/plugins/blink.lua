@@ -6,6 +6,9 @@ return {
     },
     version = "1.*",
     opts = {
+        enabled = function()
+            return not vim.tbl_contains({ "AgenticInput" }, vim.bo.filetype)
+        end,
         keymap = { preset = "default" },
         appearance = {
             nerd_font_variant = "mono"
@@ -16,10 +19,7 @@ return {
         },
         sources = {
             default = { "lsp", "path", "snippets", "buffer", "copilot" },
-            per_filetype = {
-                codecompanion = { "codecompanion" },
-            },
-            providers = {
+             providers = {
                 copilot = {
                     name = "copilot",
                     module = "blink-cmp-copilot",

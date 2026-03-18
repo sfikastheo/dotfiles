@@ -65,16 +65,19 @@ return {
                     end, "Previous Git Hunk", { expr = true } },
 
                     -- Actions
-                    { "n",          "<leader>gR", gs.reset_buffer,                  "Hunk Reset Buffer" },
-                    { "n",          "<leader>gS", gs.stage_buffer,                  "Hunk Stage Buffer" },
-                    { "n",          "<leader>gb", gs.toggle_current_line_blame,     "Toggle Blame" },
-                    { "n",          "<leader>gd", gs.toggle_deleted,                "Toggle Deleted" },
-                    { "n",          "<leader>gp", gs.preview_hunk,                  "Hunk Preview" },
-                    { "n",          "<leader>gr", gs.reset_hunk,                    "Hunk Reset" },
-                    { "n",          "<leader>gs", gs.stage_hunk,                    "Hunk Stage" },
-                    { "n",          "<leader>gu", gs.undo_stage_hunk,               "Hunk Un-stage" },
-                    { "n",          "<leader>hd", gs.diffthis,                      "Hunk Diff" },
-                    { { "o", "x" }, "ih",       ":<C-U>Gitsigns select_hunk<CR>",   "Select Inside Hunk" },
+                    { "n",          "<leader>gR", gs.reset_buffer,                              "Reset Buffer" },
+                    { "n",          "<leader>gS", gs.stage_buffer,                              "Stage Buffer" },
+                    { "n",          "<leader>gb", gs.toggle_current_line_blame,                 "Toggle Blame" },
+                    { "n",          "<leader>gd", gs.toggle_deleted,                            "Toggle Deleted" },
+                    { "n",          "<leader>gD", gs.diffthis,                                  "Diff This" },
+                    { "n",          "<leader>gp", gs.preview_hunk,                              "Preview Hunk" },
+                    { "n",          "<leader>gr", gs.reset_hunk,                                "Reset Hunk" },
+                    { "v",          "<leader>gr", function() gs.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end, "Reset Selection" },
+                    { "n",          "<leader>gs", gs.stage_hunk,                                "Stage Hunk" },
+                    { "v",          "<leader>gs", function() gs.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end, "Stage Selection" },
+                    { "n",          "<leader>gu", function() gs.reset_hunk { staged = true } end, "Unstage Hunk" },
+                    { { "o", "x" }, "ih",         ":<C-U>Gitsigns select_hunk<CR>",             "Inside Hunk" },
+                    { { "o", "x" }, "ah",         ":<C-U>Gitsigns select_hunk<CR>",             "Around Hunk" },
                 }
 
                 local function opts(desc, extra)
