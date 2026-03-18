@@ -6,32 +6,27 @@ return {
         ['rust-analyzer'] = {
           diagnostics = {
             enable = true,
-            experimental = true,
+            experimental = { enable = true },
           },
           cargo = {
             allFeatures = true,
-            loadOutDirsFromCheck = true,
-            runBuildScripts = true,
+            buildScripts = { enable = true },
           },
-          checkOnSave = true,
           check = {
+            enable = true,
             command = "clippy",
             extraArgs = { "--no-deps", "--all-features" },
           },
           procMacro = {
             enable = true,
             ignored = {
-              -- ["async-trait"] = { "async_trait" },
               ["napi-derive"] = { "napi" },
               ["async-recursion"] = { "async_recursion" },
             },
-          }
+          },
         }
       },
       capabilities = opts.capabilities,
-      flags = {
-        debounce_text_changes = 150,
-      },
     })
   end
 }

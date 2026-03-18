@@ -36,7 +36,6 @@ set({ "n", "v" }, "<leader>D", 'D', set_opts("Cut line"))
 -- Enhanced navigation
 set({ "n", "v", "o" }, "<C-u>", "<C-u>zz", set_opts("Up"))
 set({ "n", "v", "o" }, "<C-d>", "<C-d>zz", set_opts("Down"))
-set({ "n", "v", "o" }, "gm", "%", set_opts("Go Matching"))
 
 -- Window resizing
 set("n", "<c-w><", "20<c-w><", set_opts("< width"))

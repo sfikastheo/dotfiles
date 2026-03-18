@@ -38,4 +38,4 @@ local function generate_langmap(mappings)
 end
 
 vim.opt.langmap = generate_langmap(colemak_langmap)
-vim.opt.langremap = true -- fixes macros
+vim.opt.langremap = true -- needed for macro playback

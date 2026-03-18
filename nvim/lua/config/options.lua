@@ -2,6 +2,9 @@
 -- Options
 ------------------------------------------------------------
 
+-- Disable matchit (conflicts with langremap)
+vim.g.loaded_matchit = 1
+
 -- StatusLine
 vim.opt.cmdheight = 0
 vim.g.VM_set_statusline = 0

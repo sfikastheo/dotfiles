@@ -7,6 +7,13 @@
 // custom settings, run `zed: open default settings`
 {
 	// Editor Behavior
+	"agent_servers": {
+		"claude": {
+			"favorite_config_option_values": {
+				"mode": ["plan", "default", "bypassPermissions"],
+			},
+		},
+	},
 	"cursor_blink": false,
 	"cursor_shape": "bar",
 	"hard_tabs": true,
@@ -25,7 +32,7 @@
 	],
 	"edit_predictions": {
 		"provider": "copilot",
-  "mode": "subtle",
+		"mode": "subtle",
 	},
 	"vim_mode": true,
 	"confirm_quit": true,
@@ -52,26 +59,14 @@
 	// AI Assistant Configuration
 	"agent": {
 		"tool_permissions": {
-   "default": "allow"
-  },
-  "default_view": "text_thread",
+			"default": "allow",
+		},
+		"default_view": "text_thread",
 		"default_profile": "write",
 		"enabled": true,
 		"default_model": {
-			"provider": "openai",
-			"model": "gpt-5.2",
-		},
-		"inline_assistant_model": {
-			"provider": "openai",
-			"model": "gpt-5.2",
-		},
-		"commit_message_model": {
-			"provider": "openai",
-			"model": "gpt-4o-mini",
-		},
-		"thread_summary_model": {
-			"provider": "google",
-			"model": "gemini-2.0-flash",
+			"provider": "anthropic",
+			"model": "claude-sonnet-4-6-latest",
 		},
 	},
 
@@ -92,7 +87,7 @@
 	"scrollbar": { "show": "auto" },
 
 	// Theme Configuration
-	"theme": "Min Dark (Solid)",
+	"theme": "Zedokai Darker (Filter Ristretto)",
 
 	// UI Layout and Panels
 	"toolbar": {

@@ -15,14 +15,10 @@ return {
             date_format = "%Y-%m-%d-%a",
             time_format = "%H:%M",
         },
-        ui = {
-            -- use `render-markdown` instead
-            checkboxes = {
-                order = { " ", "~", "!", ">", "x" },
-            },
-            bullets = {},
-            external_link_icon = {},
+        checkbox = {
+            order = { " ", "~", "!", ">", "x" },
         },
+        ui = { enable = false },
     },
     config = function(_, opts)
         require("obsidian").setup(opts)

@@ -52,7 +52,6 @@ return {
                 auto_install = true,
                 sync_install = false,
                 indent = { enable = true },
-                autopairs = { enable = true },
                 textobjects = {
                     select = {
                         enable = true,
