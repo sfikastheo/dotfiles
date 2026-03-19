@@ -1,4 +1,7 @@
 return {
     'nvim-mini/mini.indentscope',
-    version = '*'
+    version = '*',
+	config = function(_)
+        require('mini.indentscope').setup()
+	end
 }

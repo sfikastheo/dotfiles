@@ -1,8 +1,11 @@
 return {
     {
         "nvim-telescope/telescope.nvim",
-        tag = "0.1.8",
-        dependencies = { "nvim-lua/plenary.nvim" },
+        tag = "v0.2.2",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope-ui-select.nvim",
+        },
 
         -- compact defaults + pickers (single source of truth)
         opts = function()
@@ -25,16 +28,33 @@ return {
                         vertical   = { preview_height = 0.6 },
                     },
                     vimgrep_arguments = {
-                        "rg", "--color=never", "--no-heading", "--with-filename",
-                        "--line-number", "--column", "--smart-case", "--hidden",
+                        "rg",
+                        "--color=never",
+                        "--column",
                         "--glob", "!**/.git/*",
+                        "--hidden",
+                        "--line-number",
+                        "--no-config",
+                        "--no-heading",
+                        "--smart-case",
+                        "--with-filename",
                     },
                     mappings = { i = common, n = common },
                 },
+                extensions = {
+                    ["ui-select"] = require("telescope.themes").get_dropdown(),
+                },
                 pickers = {
                     find_files  = {
-                        find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+                        find_command = {
+                            "rg",
+                            "--no-config",
+                            "--files",
+                            "--hidden",
+                            "--glob", "!**/.git/*",
+                        },
                     },
+                    live_grep   = { },
                     diagnostics = { layout_strategy = "vertical" },
                     registers   = { layout_strategy = "vertical" },
                 },
@@ -70,6 +90,7 @@ return {
             end
 
             telescope.setup(opts)
+            telescope.load_extension("ui-select")
 
             -- define all mappings declaratively
             local maps = {

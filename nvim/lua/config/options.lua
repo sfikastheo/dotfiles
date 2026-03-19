@@ -42,12 +42,12 @@ vim.opt.softtabstop = indent
 vim.opt.tabstop = indent
 vim.opt.list = false
 vim.opt.listchars = {
-  eol = '$',          -- `$` at the end of each line
-  space = '·',        -- `·` for space characters
-  tab = '>-',         -- `>-` for tab characters
-  extends = '>',      -- `>` when text extends beyond the window
-  precedes = '<',     -- `<` when text precedes the window
-  nbsp = '%',         -- `%` for non-breaking spaces
+    eol = '$',      -- `$` at the end of each line
+    space = '·',    -- `·` for space characters
+    tab = '>-',     -- `>-` for tab characters
+    extends = '>',  -- `>` when text extends beyond the window
+    precedes = '<', -- `<` when text precedes the window
+    nbsp = '%',     -- `%` for non-breaking spaces
 }
 
 -- Search
@@ -60,7 +60,6 @@ vim.opt.smartcase = true
 vim.opt.completeopt = { "menu", "noselect" }
 
 -- Behavior
-vim.opt.clipboard:append("unnamedplus")
 vim.opt.termguicolors = true
 vim.opt.concealcursor = 'nc'
 vim.opt.swapfile = false
@@ -69,3 +68,15 @@ vim.opt.undofile = true
 vim.opt.hidden = false
 vim.opt.laststatus = 3
 vim.opt.wrap = true
+
+-- Clipboard
+vim.opt.clipboard:append("unnamedplus")
+
+local function use_osc52()
+  return vim.env.SSH_CONNECTION ~= nil
+      or vim.env.NVIM_USE_OSC52 ~= nil
+end
+
+if use_osc52() then
+  vim.g.clipboard = "osc52"
+end

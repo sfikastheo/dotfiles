@@ -14,8 +14,7 @@ return {
           },
           check = {
             enable = true,
-            command = "clippy",
-            extraArgs = { "--no-deps", "--all-features" },
+            command = "check",
           },
           inlayHints = {
             chainingHints = { enable = true },

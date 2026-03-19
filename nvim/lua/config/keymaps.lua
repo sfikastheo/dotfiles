@@ -43,6 +43,9 @@ set("n", "<c-w>>", "20<c-w>>", set_opts("> width"))
 set("n", "<c-w>-", "20<c-w>-", set_opts("- height"))
 set("n", "<c-w>+", "20<c-w>+", set_opts("+ height"))
 
+-- Keybinding deviations
+set("n", "<c-w>n", "<nop>", set_opts(""))
+
 -- LSP
 set("n", "<leader>tt", "<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>",
     set_opts("Inlay Hints"))
