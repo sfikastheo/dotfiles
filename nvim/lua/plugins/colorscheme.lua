@@ -1,7 +1,7 @@
 return {
     {
         "dgox16/oldworld.nvim",
-        lazy = false,
+        lazy = true,
         priority = 1000,
         config = function()
             require("oldworld").setup({
@@ -12,20 +12,20 @@ return {
                     telescope = false,
                 }
             })
-            --vim.cmd.colorscheme("oldworld")
+            vim.cmd.colorscheme("oldworld")
         end
     },
     {
         "savq/melange-nvim",
-        lazy = false,
+        lazy = true,
         priority = 1000,
         config = function()
-            -- vim.cmd.colorscheme("melange")
+            vim.cmd.colorscheme("melange")
         end
     },
     {
         "AlexvZyl/nordic.nvim",
-        lazy = false,
+        lazy = true,
         priority = 1000,
         config = function()
             require("nordic").setup({
@@ -34,15 +34,15 @@ return {
                 },
                 bright_border = true,
             })
-            --vim.cmd.colorscheme("nordic")
+            vim.cmd.colorscheme("nordic")
         end
     },
     {
         "vague-theme/vague.nvim",
-        lazy = false,
+        lazy = true,
         priority = 1000,
         config = function()
-            -- vim.cmd.colorscheme("vague")
+            vim.cmd.colorscheme("vague")
         end
     },
     {
@@ -58,7 +58,7 @@ return {
                 },
                 customize = function(group, options)
                     -- darker bg: replace bg0 (#1d2021) everywhere
-                    local darker_bg = "#181818"
+                    local darker_bg = "#141617"
                     if options.bg == "#1d2021" then
                         options.bg = darker_bg
                     end
@@ -76,4 +76,19 @@ return {
             vim.cmd.colorscheme("gruvbox-material")
         end
     },
+    {
+        "wtfox/jellybeans.nvim",
+        lazy = true,
+        priority = 1000,
+        opts = {
+            flat_ui = false,
+            on_colors = function(c)
+                c.background = "#f7dfc5"
+            end,
+        },
+        config = function(_, opts)
+            require("jellybeans").setup(opts)
+            vim.cmd.colorscheme("jellybeans-light")
+        end
+    }
 }
