@@ -2,96 +2,73 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter-textobjects",
-        },
+        branch = "main",
         lazy = false,
-        branch = 'master',
+        dependencies = {
+            { "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
+        },
         config = function()
-            require("nvim-treesitter.configs").setup({
-                ensure_installed = {
-                    "c",
-                    "go",
-                    "lua",
-                    "nix",
-                    "zig",
-                    "cpp",
-                    "bash",
-                    "make",
-                    "rust",
-                    "cuda",
-                    "cmake",
-                    "java",
-                    "python",
-                    "css",
-                    "xml",
-                    "html",
-                    "scss",
-                    "javascript",
-                    "typescript",
-                    "ini",
-                    "rasi",
-                    "yaml",
-                    "toml",
-                    "dockerfile",
-                    "csv",
-                    "json",
-                    "diff",
-                    "comment",
-                    "markdown",
-                    "gitcommit",
-                    "gitignore",
-                    "git_config",
-                    "git_rebase",
-                    "markdown_inline",
-                },
-                highlight = {
-                    enable = true,
-                    additional_vim_regex_highlighting = { "rust" }
-                },
-                auto_install = true,
-                sync_install = false,
-                indent = { enable = true },
-                textobjects = {
-                    select = {
-                        enable = true,
-                        lookahead = true,
-                        selection_modes = {},
-                        keymaps = {
-                            ["if"] = "@function.inner",
-                            ["af"] = "@function.outer",
-                            ["is"] = "@class.inner",
-                            ["as"] = "@class.outer",
-                            ["ic"] = "@conditional.inner",
-                            ["ac"] = "@conditional.outer",
-                            ["il"] = "@loop.inner",
-                            ["al"] = "@loop.outer",
-                            ["ip"] = "@paragraph.inner",
-                            ["ap"] = "@paragraph.outer",
-                            ["ib"] = "@block.inner",
-                            ["ab"] = "@block.outer",
-                            ["ia"] = "@assignment.inner",
-                            ["aa"] = "@assignment.outer",
-                            ["aj"] = "@assignment.lhs",
-                            ["ak"] = "@assignment.rhs"
-                        }
-                    },
-                    lsp_interop = {
-                        enable = true,
-                        border = {
-                            { "╭", "floatborder" },
-                            { "─", "floatborder" },
-                            { "╮", "floatborder" },
-                            { "│", "floatborder" },
-                            { "╯", "floatborder" },
-                            { "─", "floatborder" },
-                            { "╰", "floatborder" },
-                            { "│", "floatborder" },
-                        },
-                        floating_preview_opts = {},
-                    }
-                }
+            require("nvim-treesitter").install({
+                "bash",
+                "c",
+                "cmake",
+                "cpp",
+                "css",
+                "csv",
+                "cuda",
+                "diff",
+                "dockerfile",
+                "git_rebase",
+                "gitcommit",
+                "go",
+                "html",
+                "java",
+                "javascript",
+                "json",
+                "lua",
+                "make",
+                "markdown",
+                "markdown_inline",
+                "nix",
+                "python",
+                "rust",
+                "scss",
+                "toml",
+                "typescript",
+                "xml",
+                "yaml",
+                "zig",
             })
-        end
-    }
+        end,
+    },
+    {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        branch = "main",
+        config = function()
+            local select = require("nvim-treesitter-textobjects.select")
+            local keymaps = {
+                ["af"] = "@function.outer",
+                ["if"] = "@function.inner",
+                ["as"] = "@class.outer",
+                ["is"] = "@class.inner",
+                ["ac"] = "@conditional.outer",
+                ["ic"] = "@conditional.inner",
+                ["al"] = "@loop.outer",
+                ["il"] = "@loop.inner",
+                ["ap"] = "@paragraph.outer",
+                ["ip"] = "@paragraph.inner",
+                ["ab"] = "@block.outer",
+                ["ib"] = "@block.inner",
+                ["aa"] = "@assignment.outer",
+                ["ia"] = "@assignment.inner",
+                ["aj"] = "@assignment.lhs",
+                ["ak"] = "@assignment.rhs",
+            }
+            for key, query in pairs(keymaps) do
+                vim.keymap.set({ "x", "o" }, key, function()
+                    select.select_textobject(query, "textobjects")
+                end)
+            end
+        end,
+    },
 }
