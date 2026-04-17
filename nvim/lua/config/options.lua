@@ -61,7 +61,7 @@ vim.opt.completeopt = { "menu", "noselect" }
 
 -- Behavior
 vim.opt.termguicolors = true
-vim.opt.concealcursor = 'nc'
+vim.opt.concealcursor = ''
 vim.opt.swapfile = false
 vim.opt.conceallevel = 0
 vim.opt.undofile = true
