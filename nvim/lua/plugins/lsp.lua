@@ -27,7 +27,7 @@ return {
         -- Keymaps
         local maps = {
             { "n", "<leader>j", vim.diagnostic.open_float, "Hover Diagnostics" },
-            { "n", "<leader>r", vim.lsp.buf.references, "Go to References" },
+            { "n", "<leader>fr", vim.lsp.buf.references, "Find References" },
             { "n", "<leader>k", vim.lsp.buf.hover, "Hover help" },
             { "n", "gq", vim.diagnostic.setqflist, "Diagnostics → Quickfix" },
             { "n", "g.", vim.lsp.buf.code_action, "Code Actions" },
@@ -53,7 +53,6 @@ return {
             "markdown",
             "nix",
             "python",
-            "rust",
             "terraform",
             "toml",
             "typescript",
