@@ -48,47 +48,38 @@ return {
             },
 
             on_attach                    = function(bufnr)
-                local gs = require("gitsigns")
-
-                local maps = {
-                    -- Hunk navigation (expr)
-                    { "n", "]c", function()
-                        if vim.wo.diff then return "]c" end
-                        vim.schedule(gs.next_hunk)
-                        return "<Ignore>"
-                    end, "Next Git Hunk", { expr = true } },
-
-                    { "n", "[c", function()
-                        if vim.wo.diff then return "[c" end
-                        vim.schedule(gs.prev_hunk)
-                        return "<Ignore>"
-                    end, "Previous Git Hunk", { expr = true } },
-
-                    -- Actions
-                    { "n",          "<leader>gR", gs.reset_buffer,                              "Reset Buffer" },
-                    { "n",          "<leader>gS", gs.stage_buffer,                              "Stage Buffer" },
-                    { "n",          "<leader>gb", gs.toggle_current_line_blame,                 "Toggle Blame" },
-                    { "n",          "<leader>gd", gs.toggle_deleted,                            "Toggle Deleted" },
-                    { "n",          "<leader>gD", gs.diffthis,                                  "Diff This" },
-                    { "n",          "<leader>gp", gs.preview_hunk,                              "Preview Hunk" },
-                    { "n",          "<leader>gr", gs.reset_hunk,                                "Reset Hunk" },
-                    { "v",          "<leader>gr", function() gs.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end, "Reset Selection" },
-                    { "n",          "<leader>gs", gs.stage_hunk,                                "Stage Hunk" },
-                    { "v",          "<leader>gs", function() gs.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end, "Stage Selection" },
-                    { "n",          "<leader>gu", function() gs.reset_hunk { staged = true } end, "Unstage Hunk" },
-                    { { "o", "x" }, "ih",         ":<C-U>Gitsigns select_hunk<CR>",             "Inside Hunk" },
-                    { { "o", "x" }, "ah",         ":<C-U>Gitsigns select_hunk<CR>",             "Around Hunk" },
-                }
-
-                local function opts(desc, extra)
-                    local opt = { noremap = true, silent = true, buffer = bufnr, desc = desc }
-                    if extra then for k, v in pairs(extra) do opt[k] = v end end
-                    return opt
+                local function map(mode, lhs, rhs, desc)
+                    vim.keymap.set(mode, lhs, rhs, { noremap = true, silent = true, buffer = bufnr, desc = desc })
                 end
 
-                for _, m in ipairs(maps) do
-                    vim.keymap.set(m[1], m[2], m[3], opts(m[4], m[5]))
-                end
+                -- Hunk navigation
+                map("n", "]c", function()
+                    if vim.wo.diff then vim.cmd.normal({ "]c", bang = true }) else gitsigns.nav_hunk('next') end
+                end, "Next Git Hunk")
+                map("n", "[c", function()
+                    if vim.wo.diff then vim.cmd.normal({ "[c", bang = true }) else gitsigns.nav_hunk('prev') end
+                end, "Previous Git Hunk")
+
+                -- Actions
+                map("n", "<leader>gr", gitsigns.reset_hunk, "Reset Hunk")
+                map("n", "<leader>gs", gitsigns.stage_hunk, "Stage Hunk")
+                map("n", "<leader>gR", gitsigns.reset_buffer, "Reset Buffer")
+                map("n", "<leader>gS", gitsigns.stage_buffer, "Stage Buffer")
+                map("n", "<leader>gb", gitsigns.toggle_current_line_blame, "Toggle Blame")
+                map("n", "<leader>gd", gitsigns.preview_hunk_inline, "Preview Hunk Diff")
+                map("n", "<leader>gD", gitsigns.diffthis, "Diff This")
+                map("n", "<leader>gp", gitsigns.preview_hunk, "Preview Hunk")
+
+
+                map("n", "<leader>gu", function() gitsigns.reset_hunk { staged = true } end, "Unstage Hunk")
+                map("v", "<leader>gr", function() gitsigns.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end,
+                    "Reset Selection")
+                map("v", "<leader>gs", function() gitsigns.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end,
+                    "Stage Selection")
+
+                -- Text objects
+                map({ "o", "x" }, "ih", gitsigns.select_hunk, "Inside Hunk")
+                map({ "o", "x" }, "ah", gitsigns.select_hunk, "Around Hunk")
             end
         })
     end
