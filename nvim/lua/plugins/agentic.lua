@@ -37,5 +37,14 @@ return {
             layout = "inline",
             center_on_navigate_hunks = true,
         },
+        spinner_chars = {
+            thinking = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
+        },
+        message_icons = {
+            thinking = "[P]",
+            finished = "[D]",
+            stopped = "[S]",
+            error = "[E]",
+        },
     },
 }
