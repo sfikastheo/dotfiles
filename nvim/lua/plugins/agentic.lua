@@ -23,9 +23,10 @@ return {
         },
         keymaps = {
             widget = {
-                change_thought_level = "<leader>aw",
-                switch_model = "<leader>af",
-                switch_provider = "<leader>ap",
+                close = "q",
+                change_thought_level = "<leader>aT",
+                switch_model = "<leader>aS",
+                switch_provider = "<leader>aP",
             },
             diff_preview = {
                 next_hunk = "]a",
