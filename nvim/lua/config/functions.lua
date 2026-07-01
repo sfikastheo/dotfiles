@@ -113,15 +113,34 @@ end
 local function get_uncompleted_tasks(file)
     local tasks = {}
     local in_task = false
+    local in_tasks_section = false
+    local pending_heading = nil
 
     for _, line in ipairs(vim.fn.readfile(file)) do
-        if line:match("^%- %[[^xX]%]") then
-            table.insert(tasks, line)
-            in_task = true
-        elseif line:match("^%s+") and in_task then
-            table.insert(tasks, line)
-        else
+        if line:match("^## Tasks%s*$") then
+            in_tasks_section = true
+        elseif line:match("^## ") then
+            in_tasks_section = false
             in_task = false
+            pending_heading = nil
+        elseif in_tasks_section then
+            if line:match("^### ") then
+                pending_heading = line
+                in_task = false
+            elseif line:match("^%- %[[^xX]%]") then
+                if pending_heading then
+                    if #tasks > 0 then table.insert(tasks, "") end
+                    table.insert(tasks, pending_heading)
+                    table.insert(tasks, "")
+                    pending_heading = nil
+                end
+                table.insert(tasks, line)
+                in_task = true
+            elseif line:match("^%s+") and in_task then
+                table.insert(tasks, line)
+            else
+                in_task = false
+            end
         end
     end
 
