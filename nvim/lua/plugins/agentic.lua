@@ -16,7 +16,7 @@ return {
         { "<leader>ax", function() require("agentic").stop_generation() end,              mode = { "n" },      desc = "Stop Generation" },
     },
     opts = {
-        provider = "claude-agent-acp",
+        provider = "codex-acp",
         windows = {
             position = "right",
             width = "40%",
