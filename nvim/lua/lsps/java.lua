@@ -1,8 +1,8 @@
 return {
     setup = function(opts)
-        vim.lsp.config('terraformls', {
+        vim.lsp.config("jdtls", {
             capabilities = opts.capabilities
         })
-        vim.lsp.enable("terraformls")
+        vim.lsp.enable("jdtls")
     end
 }

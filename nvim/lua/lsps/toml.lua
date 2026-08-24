@@ -1,8 +1,8 @@
 return {
-  setup = function(opts)
-    vim.lsp.enable("taplo")
-    vim.lsp.config('taplo', {
-      capabilities = opts.capabilities
-    })
-  end
+    setup = function(opts)
+        vim.lsp.config('taplo', {
+            capabilities = opts.capabilities
+        })
+        vim.lsp.enable("taplo")
+    end
 }

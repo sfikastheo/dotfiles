@@ -49,6 +49,7 @@ return {
             "c",
             "fsharp",
             "golang",
+            "java",
             "lua",
             "markdown",
             "nix",

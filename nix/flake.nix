@@ -39,6 +39,7 @@
           isort
           taplo
           black
+          jdt-language-server
           rustup
           prettierd
           nodejs_24

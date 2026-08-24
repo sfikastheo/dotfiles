@@ -1,8 +1,8 @@
 return {
-  setup = function(opts)
-    vim.lsp.enable("clangd")
-    vim.lsp.config('clangd', {
-      capabilities = opts.capabilities
-    })
-  end
+    setup = function(opts)
+        vim.lsp.config('clangd', {
+            capabilities = opts.capabilities
+        })
+        vim.lsp.enable("clangd")
+    end
 }
