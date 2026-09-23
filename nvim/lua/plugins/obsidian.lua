@@ -15,6 +15,7 @@ return {
                     return assert(vim.fn.getcwd())
                 end,
                 overrides = {
+                    frontmatter = { enabled = false },
                     notes_subdir = vim.NIL,
                     new_notes_location = vim.NIL,
                     daily_notes = {

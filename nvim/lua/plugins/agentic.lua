@@ -17,6 +17,11 @@ return {
     },
     opts = {
         provider = "codex-acp",
+        acp_providers = {
+            ["codex-acp"] = {
+                env = { CODEX_PATH = vim.fn.exepath("codex") },
+            },
+        },
         windows = {
             position = "right",
             width = "40%",
