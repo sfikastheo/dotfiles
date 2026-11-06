@@ -1,9 +1,9 @@
 return {
     setup = function(opts)
-        vim.lsp.config("pyright", {
+        vim.lsp.config("ty", {
             capabilities = opts.capabilities
         })
-        vim.lsp.enable("pyright")
+        vim.lsp.enable("ty")
         vim.lsp.config("ruff", {
             capabilities = opts.capabilities
         })
