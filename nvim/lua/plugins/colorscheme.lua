@@ -1,7 +1,7 @@
 return {
     {
         "dgox16/oldworld.nvim",
-        lazy = false,
+        lazy = true,
         priority = 1000,
         config = function()
             require("oldworld").setup({
@@ -43,6 +43,23 @@ return {
         priority = 1000,
         config = function()
             vim.cmd.colorscheme("vague")
+        end
+    },
+    {
+        "rebelot/kanagawa.nvim",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            vim.cmd.colorscheme("kanagawa-dragon")
+        end
+    },
+    {
+        "rose-pine/neovim",
+        name = "rose-pine",
+        lazy = true,
+        priority = 1000,
+        config = function()
+            vim.cmd.colorscheme("rose-pine-main")
         end
     },
     {
