@@ -114,7 +114,7 @@ local function get_uncompleted_tasks(file)
     local tasks = {}
     local in_task = false
     local in_tasks_section = false
-    local pending_heading = nil
+    local pending_headings = {}
 
     for _, line in ipairs(vim.fn.readfile(file)) do
         if line:match("^## Tasks%s*$") then
@@ -122,17 +122,22 @@ local function get_uncompleted_tasks(file)
         elseif line:match("^## ") then
             in_tasks_section = false
             in_task = false
-            pending_heading = nil
+            pending_headings = {}
         elseif in_tasks_section then
-            if line:match("^### ") then
-                pending_heading = line
+            local hashes = line:match("^(###+) ")
+            if hashes then
+                local level = #hashes
+                for i = level, 6 do pending_headings[i] = nil end
+                if level <= 6 then pending_headings[level] = line end
                 in_task = false
             elseif line:match("^%- %[[^xX]%]") then
-                if pending_heading then
-                    if #tasks > 0 then table.insert(tasks, "") end
-                    table.insert(tasks, pending_heading)
-                    table.insert(tasks, "")
-                    pending_heading = nil
+                for i = 3, 6 do
+                    if pending_headings[i] then
+                        if #tasks > 0 and tasks[#tasks] ~= "" then table.insert(tasks, "") end
+                        table.insert(tasks, pending_headings[i])
+                        table.insert(tasks, "")
+                        pending_headings[i] = nil
+                    end
                 end
                 table.insert(tasks, line)
                 in_task = true
